@@ -62,7 +62,7 @@ tailwind.config = {
 3. `#about` — Two-column bio + stats
 4. `#music` — Spotify embed + Apple Music button
 5. `#videos` — YouTube embed + thumbnails
-6. `#gallery` — Masonry photo grid
+6. `#gallery` — Masonry photo grid with lightbox. Clicking any `.gallery-item` opens `#lightbox` (full-screen overlay). Visibility is toggled via the `.is-open` class — do not re-implement this feature.
 7. `#events` — Upcoming shows list
 8. `#newsletter` — Slim email signup strip (between Events and Contact)
 9. `#contact` — Booking form + footer (footer contains second newsletter form)
