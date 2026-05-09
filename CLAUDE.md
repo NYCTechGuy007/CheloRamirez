@@ -93,7 +93,7 @@ if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 ### Still needed (edit `index.html` directly)
 | Token                 | Location       | How to Replace                              |
 |-----------------------|----------------|---------------------------------------------|
-| `assets/images/hero.jpg` | Hero bg     | Drop real performance photo here            |
+| `brand assets/photos/` | Hero bg       | Choose a performance photo from this folder |
 | `[EVENT_1_DATE]` etc. | Events section | Real show dates, venues, cities             |
 | Gallery images        | `#gallery`     | Replace placeholder `<img>` srcs with real photos |
 
@@ -144,10 +144,10 @@ Two modes — choose based on intent:
 - Use after any layout change to verify responsiveness at 390px width
 
 ## Brand Assets
-- Always check the `assets/` folder before designing. It may contain photos, logos, color guides, or style references.
+- Always check the `brand assets/` folder before designing. It may contain photos, logos, color guides, or style references.
 - If assets exist there, use them. Do not use placeholders where real assets are available.
 - If a logo is present, use it. If a color palette is defined, use those exact values — do not invent brand colors.
-- Real photos go in `assets/images/`. See the Placeholder Token Registry for which tokens to replace.
+- Real photos are in `brand assets/photos/`. Logos are in `brand assets/logos/`. See the Placeholder Token Registry for which tokens to replace.
 
 ## Anti-Generic Guardrails
 - **Colors:** Never use default Tailwind palette (indigo-500, blue-600, etc.). Use only the design system tokens defined above (`wine`, `gold`, `cream`, `muted`, `surface`, `site`).
@@ -168,6 +168,9 @@ The site has a working EN/ES language toggle. Key facts for future edits:
 - **Persistence:** `localStorage` key `'cr-lang'`; restored on every page load. **Default language is Spanish (`es`)** — first-time visitors land on Spanish. Only override if user has a saved `'en'` preference.
 - **Toggle UI:** `#lang-toggle` click handler; `#lang-en` and `#lang-es` spans turn gold when active.
 - **Adding new translatable text:** add a `data-i18n="key"` attribute to the element, then add the key to both `en` and `es` objects in `TRANSLATIONS`.
+
+### Script Timing Constraint
+`setLanguage()` is called inside the main `<script>` block (lines 926–1316). Any HTML element added **after** that block (currently: the newsletter popup at line 1318+) is not yet in the DOM when `setLanguage` runs, so translations won't be applied on initial load. For elements in this zone, always set the hardcoded default text to **Spanish** (not English), so first-time visitors see the correct language. The `data-i18n` attributes still work correctly for subsequent language toggles.
 
 ### Translation Workflow
 Work in English first — do not update Spanish until English content is finalized.
