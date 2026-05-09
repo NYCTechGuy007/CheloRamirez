@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chelo Ramirez — El Mariachi de Colombia</title>
+  <meta name="description" content="Chelo Ramirez — Colombian mariachi musician available for bookings and live performances. Weddings, festivals, corporate and private events." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            wine:     '#5A0A18',
+            gold:     '#E5B547',
+            goldHigh: '#F5D078',
+            copper:   '#C25028',
+            cream:    '#F2E6C9',
+            muted:    '#8A7A69',
+            surface:  '#1A1410',
+            site:     '#0A0A0A',
+          },
+          fontFamily: {
+            display: ['"Cormorant Garamond"', 'serif'],
+            body:    ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ── Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: auto; } /* Lenis handles smooth scroll */
+    body {
+      background-color: #0A0A0A;
+      color: #F2E6C9;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── Diamond texture overlay ── */
+    .diamond-bg {
+      background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='10,1 19,10 10,19 1,10' fill='none' stroke='%23C9922A' stroke-width='0.4' opacity='0.18'/%3E%3C/svg%3E");
+      background-size: 28px 28px;
+    }
+
+    /* ── Typography ── */
+    .font-display { font-family: 'Cormorant Garamond', serif; }
+
+    /* ── Gold rule ── */
+    .gold-rule {
+      height: 1px;
+      background: #E5B547;
+      transform-origin: left;
+    }
+
+    /* ── Nav link + social icon styles ── */
+    .nav-link {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.17rem;
+      font-weight: 500;
+      color: #8A7A69;
+      text-decoration: none;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: #F2E6C9; }
+    .social-icon {
+      color: #8A7A69;
+      display: flex;
+      align-items: center;
+      transition: color 0.2s;
+    }
+    .social-icon:hover { color: #E5B547; }
+
+    /* ── Nav ── */
+    #main-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      transition: background 0.4s ease, backdrop-filter 0.4s ease;
+      padding: 1.4rem 2.5rem;
+    }
+    #main-nav.scrolled {
+      background: rgba(13,10,7,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(229,181,71,0.15);
+    }
+
+    /* ── Mobile menu ── */
+    #mobile-menu {
+      position: fixed;
+      inset: 0;
+      background: #0A0A0A;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      transform: translateX(100%);
+      transition: transform 0.45s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+    #mobile-menu.open { transform: translateX(0); }
+    #mobile-menu a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      font-weight: 300;
+      color: #F2E6C9;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    #mobile-menu a:hover { color: #E5B547; }
+
+    /* ── Hero ── */
+    #hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 2.5rem 5rem;
+      background-color: #0A0A0A;
+      overflow: hidden;
+    }
+    #hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('brand%20assets/photos/chelo-8.jpg');
+      background-size: cover;
+      background-position: center top;
+      z-index: 0;
+    }
+    #hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(13,10,7,0.95) 0%, rgba(13,10,7,0.55) 50%, rgba(13,10,7,0.25) 100%);
+    }
+    /* Fallback texture shown until hero.jpg is added */
+    #hero-bg.no-image {
+      background-image: none;
+      background-color: #0A0A0A;
+    }
+    #hero-bg.no-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='28' height='28' viewBox='0 0 28 28' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='14,1 27,14 14,27 1,14' fill='none' stroke='%23C9922A' stroke-width='0.5' opacity='0.15'/%3E%3C/svg%3E");
+      background-size: 28px 28px;
+    }
+    #hero-bg.no-image::after {
+      background: radial-gradient(ellipse at 30% 60%, rgba(123,28,28,0.35) 0%, rgba(13,10,7,0) 70%),
+                  radial-gradient(ellipse at 80% 20%, rgba(229,181,71,0.12) 0%, rgba(13,10,7,0) 60%);
+    }
+
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(4rem, 11vw, 10rem);
+      font-weight: 700;
+      line-height: 0.88;
+      letter-spacing: -0.02em;
+      color: #F2E6C9;
+    }
+    .hero-name .letter { display: inline-block; }
+
+    /* ── Section base ── */
+    section { position: relative; overflow: hidden; }
+
+    /* ── Stat counter ── */
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 700;
+      color: #E5B547;
+      line-height: 1;
+    }
+
+    /* ── Gallery grid ── */
+    .gallery-grid {
+      columns: 3;
+      column-gap: 0.75rem;
+    }
+    @media (max-width: 768px) { .gallery-grid { columns: 2; column-gap: 0.5rem; } }
+    @media (max-width: 340px) { .gallery-grid { columns: 1; } }
+    @media (max-width: 768px) { .gallery-item { height: auto !important; min-height: 160px; } }
+    @media (max-width: 768px) { .gallery-item .gallery-placeholder { height: 160px !important; } }
+    .gallery-item {
+      break-inside: avoid;
+      margin-bottom: 0.75rem;
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+    }
+    .gallery-item img,
+    .gallery-item .gallery-placeholder {
+      width: 100%;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .gallery-item:hover img,
+    .gallery-item:hover .gallery-placeholder { transform: scale(1.04); }
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(229,181,71,0.0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s ease;
+    }
+    .gallery-item:hover .gallery-overlay { background: rgba(229,181,71,0.25); }
+    .gallery-overlay svg { opacity: 0; transition: opacity 0.3s ease; }
+    .gallery-item:hover .gallery-overlay svg { opacity: 1; }
+
+    /* ── Events ── */
+    .event-row {
+      display: grid;
+      grid-template-columns: 7rem 1fr auto;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid rgba(229,181,71,0.2);
+    }
+    @media (max-width: 640px) {
+      .event-row { grid-template-columns: 1fr; gap: 0.5rem; }
+    }
+
+    /* ── Form ── */
+    .form-field {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(229,181,71,0.2);
+      color: #F2E6C9;
+      padding: 0.875rem 1.25rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-field:focus { border-color: #E5B547; }
+    .form-field::placeholder { color: #8A7A69; }
+    select.form-field option { background: #1A1410; color: #F2E6C9; }
+
+    /* ── Scroll reveal base states (GSAP sets opacity/transform via JS) ── */
+    .reveal-up, .reveal-left, .reveal-scale { will-change: transform, opacity; }
+
+    /* ── Accessibility ── */
+    @media (prefers-reduced-motion: reduce) {
+      .hero-name .letter { clip-path: none !important; }
+    }
+  </style>
+</head>
+
+<body class="bg-site text-cream font-body">
+
+  <!-- ══════════════════════════════════════════
+       NAVIGATION
+  ══════════════════════════════════════════ -->
+  <nav id="main-nav" aria-label="Main navigation">
+    <div class="flex items-center justify-between max-w-7xl mx-auto">
+
+      <!-- Logo monogram -->
+      <!-- LEFT: Logo + nav links -->
+      <div class="flex items-center gap-6">
+        <a href="#hero" class="font-display text-3xl font-bold text-cream hover:text-gold transition-colors flex-shrink-0" style="letter-spacing:0.08em;">CR</a>
+
+        <div class="hidden md:flex items-center gap-5">
+          <a href="#about"   class="nav-link" data-i18n="nav-about">Bio</a>
+          <a href="#music"   class="nav-link" data-i18n="nav-music">Music</a>
+          <a href="#videos"  class="nav-link" data-i18n="nav-videos">Videos</a>
+          <a href="#gallery" class="nav-link" data-i18n="nav-gallery">Gallery</a>
+          <a href="#events"  class="nav-link" data-i18n="nav-shows">Shows</a>
+          <a href="#contact" class="font-body font-medium text-site bg-gold px-4 py-2 hover:bg-cream transition-colors" style="font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase;" data-i18n="nav-book">Book Now</a>
+        </div>
+      </div>
+
+      <!-- RIGHT: Social icons + language toggle -->
+      <div class="hidden md:flex items-center gap-3">
+
+        <!-- Spotify -->
+        <a href="[SPOTIFY_ARTIST_URL]" target="_blank" rel="noopener" aria-label="Spotify" class="social-icon">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+        </a>
+
+        <!-- Apple Music -->
+        <a href="#" aria-label="Apple Music" class="social-icon">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M23.994 6.124a9.23 9.23 0 0 0-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043a6.304 6.304 0 0 0-1.862-.81c-.603-.144-1.223-.201-1.843-.218-.39-.01-.779-.014-1.168-.013H7.304c-.39 0-.78.004-1.17.013-.62.017-1.24.074-1.842.218a6.3 6.3 0 0 0-1.862.81C1.312 1.624.567 2.624.25 3.934A9.23 9.23 0 0 0 .01 6.124C0 6.517-.005 6.91-.004 7.302v9.394c-.001.394.004.787.014 1.18.017.62.074 1.24.218 1.842.317 1.31 1.062 2.31 2.18 3.043a6.304 6.304 0 0 0 1.862.81c.603.144 1.223.201 1.843.218.39.01.779.014 1.168.013h9.394c.39 0 .779-.004 1.169-.013.62-.017 1.24-.074 1.842-.218a6.3 6.3 0 0 0 1.863-.81c1.118-.733 1.863-1.733 2.18-3.043.144-.603.201-1.223.218-1.843.01-.39.014-.78.013-1.169V7.302c.001-.392-.004-.785-.013-1.178zM12 18.769a6.769 6.769 0 1 1 0-13.538 6.769 6.769 0 0 1 0 13.538zm0-11.077a4.308 4.308 0 1 0 0 8.616 4.308 4.308 0 0 0 0-8.616zm6.923-1.23a1.538 1.538 0 1 1-3.077 0 1.538 1.538 0 0 1 3.077 0z"/></svg>
+        </a>
+
+        <!-- YouTube -->
+        <a href="[YOUTUBE_CHANNEL_URL]" target="_blank" rel="noopener" aria-label="YouTube" class="social-icon">
+          <svg width="33" height="33" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+        </a>
+
+        <!-- Instagram -->
+        <a href="[INSTAGRAM_URL]" target="_blank" rel="noopener" aria-label="Instagram" class="social-icon">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+
+        <!-- Facebook -->
+        <a href="[FACEBOOK_URL]" target="_blank" rel="noopener" aria-label="Facebook" class="social-icon">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+
+        <!-- TikTok -->
+        <a href="#" aria-label="TikTok" class="social-icon">
+          <svg width="29" height="29" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+        </a>
+
+        <!-- WhatsApp -->
+        <a href="#" aria-label="WhatsApp" class="social-icon">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+        </a>
+
+        <!-- Divider -->
+        <div style="width:1px; height:21px; background:rgba(229,181,71,0.35); margin:0 2px;"></div>
+
+        <!-- Language toggle -->
+        <a href="#" id="lang-toggle" class="font-body font-medium hover:text-cream transition-colors" style="font-size:1.17rem; letter-spacing:0.15em; text-transform:uppercase; text-decoration:none; white-space:nowrap;">
+          <span id="lang-es" style="color:#E5B547;">ES</span><span class="text-muted" style="margin:0 3px; opacity:0.5;">/</span><span id="lang-en" class="text-muted">EN</span>
+        </a>
+
+      </div>
+
+      <!-- Hamburger button (mobile) -->
+      <button id="hamburger" class="md:hidden flex flex-col gap-1.5 p-2 z-[201]" aria-label="Open menu" aria-expanded="false">
+        <span class="hamburger-line block w-6 h-px bg-cream transition-all duration-300"></span>
+        <span class="hamburger-line block w-6 h-px bg-cream transition-all duration-300"></span>
+        <span class="hamburger-line block w-4 h-px bg-cream transition-all duration-300"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu overlay -->
+  <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+    <a href="#about"   onclick="closeMenu()" data-i18n="nav-about">Bio</a>
+    <a href="#music"   onclick="closeMenu()" data-i18n="nav-music">Music</a>
+    <a href="#videos"  onclick="closeMenu()" data-i18n="nav-videos">Videos</a>
+    <a href="#gallery" onclick="closeMenu()" data-i18n="nav-gallery">Gallery</a>
+    <a href="#events"  onclick="closeMenu()" data-i18n="nav-shows">Shows</a>
+    <a href="#contact" onclick="closeMenu()" style="color:#E5B547;" data-i18n="nav-book">Book Now</a>
+    <div style="width:60px; height:1px; background:#E5B547; opacity:0.4; margin-top:1rem;"></div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════ -->
+  <section id="hero">
+    <div id="hero-bg"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto w-full">
+      <!-- Gold rule -->
+      <div class="gold-rule mb-8" id="hero-rule" style="width:80px;"></div>
+
+      <!-- Artist name -->
+      <h1 class="hero-name mb-4" id="hero-name" aria-label="Chelo Ramirez">
+        <span class="block">CHELO</span>
+        <span class="block" style="color:#E5B547;">RAMIREZ</span>
+      </h1>
+
+      <!-- Tagline -->
+      <p id="hero-tagline" class="font-display text-cream mb-2 reveal-up" style="font-size: clamp(1.2rem, 3vw, 1.8rem); font-style:italic; font-weight:300; letter-spacing:0.04em;" data-i18n="hero-tagline">
+        Colombia's Mariachi
+      </p>
+      <p id="hero-sub" class="text-muted mb-10 reveal-up" style="font-size:0.75rem; letter-spacing:0.2em; text-transform:uppercase;" data-i18n="hero-sub">
+        Mariachi &nbsp;·&nbsp; Regional Mexican Music &nbsp;·&nbsp; Colombia
+      </p>
+
+      <!-- CTA -->
+      <a id="hero-cta" href="#contact" class="reveal-up inline-block bg-gold text-site font-body font-semibold px-8 py-4 hover:bg-cream transition-colors" style="font-size:0.8rem; letter-spacing:0.15em; text-transform:uppercase; text-decoration:none;" data-i18n="nav-book">
+        Book a Show
+      </a>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 right-10 z-10 hidden md:flex flex-col items-center gap-2">
+      <span class="text-muted" style="font-size:0.6rem; letter-spacing:0.2em; writing-mode:vertical-rl;">SCROLL</span>
+      <div style="width:1px; height:40px; background: linear-gradient(to bottom, #E5B547, transparent);"></div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       ABOUT
+  ══════════════════════════════════════════ -->
+  <section id="about" class="py-28 px-6 md:px-10">
+    <div class="max-w-7xl mx-auto">
+
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+
+        <!-- Portrait -->
+        <div id="about-img" class="reveal-left">
+          <div style="
+            aspect-ratio: 3/4;
+            background: linear-gradient(160deg, #5A0A18 0%, #1A1410 60%, #0A0A0A 100%);
+            position: relative;
+            overflow: hidden;
+          ">
+            <img src="brand%20assets/photos/chelo-13.png" alt="Chelo Ramirez" style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0;" onerror="this.style.display='none'" />
+            <!-- Placeholder icon shown when no photo -->
+            <div class="about-placeholder-icon" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; opacity:0.15;">
+              <svg width="80" height="80" viewBox="0 0 24 24" fill="#E5B547"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+            </div>
+            <!-- Gold corner accent -->
+            <div style="position:absolute; top:0; left:0; width:40px; height:40px; border-top:2px solid #E5B547; border-left:2px solid #E5B547;"></div>
+            <div style="position:absolute; bottom:0; right:0; width:40px; height:40px; border-bottom:2px solid #E5B547; border-right:2px solid #E5B547;"></div>
+          </div>
+        </div>
+
+        <!-- Bio text -->
+        <div>
+          <p id="about-label" class="reveal-up text-gold font-body font-medium mb-4" style="font-size:0.7rem; letter-spacing:0.25em; text-transform:uppercase;" data-i18n="about-label">
+            About
+          </p>
+
+          <h2 id="about-heading" class="reveal-up font-display font-bold text-cream mb-6" style="font-size: clamp(2.5rem, 5vw, 3.8rem); line-height:1; letter-spacing:-0.01em;" data-i18n-html="about-heading">
+            A Mariachi<br /><em style="font-style:italic; color:#E5B547;">from the Heart</em>
+          </h2>
+
+          <div id="about-bio-en" class="reveal-up text-muted mb-10 leading-relaxed" style="font-size:0.95rem; max-width:52ch;" data-i18n-html="about-bio">
+            <p class="mb-5">Chelo Ramírez is a Latin musician from Medellin, Colombia, who specializes in regional Mexican music. Chelo Ramírez has established a reputation for himself in the Latin music sector over the course of a long career, enthralling audiences with his heartfelt performances and distinctive style.</p>
+            <p class="mb-5">Traditional Mexican music and contemporary Latin rhythms are combined in Chelo Ramírez's music to create a unique sound that is both recognizable and original. His songs are known for their upbeat energy, contagious beats, and heartfelt lyrics, which make them enticing to Latin music listeners around. Chelo Ramírez has established himself as one of the most revered and in-demand artists in the genre thanks to his strong voice and charismatic stage presence.</p>
+            <p>Chelo Ramírez's love of music is evident in every note he plays, whether he is performing live or in the studio. He has become a well-liked figure in the Latin music community as a result of his commitment to his art and affection for his fans, and his music continues to uplift and inspire audiences all around the world. Chelo Ramírez is a true pioneer of regional Mexican music with his distinctive fusion of traditional and contemporary sounds, and his music is proof of the ability of Latin music to inspire and unify people.</p>
+          </div>
+
+          <!-- Stats row -->
+          <div id="about-stats" class="reveal-up grid grid-cols-3 gap-6 pt-8" style="border-top:1px solid rgba(229,181,71,0.2);">
+            <div class="text-center">
+              <div class="stat-num" data-target="15">0</div>
+              <div class="text-gold font-display italic" style="font-size:1.5rem;">+</div>
+              <p class="text-muted mt-1" style="font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase;" data-i18n="stat-years">Years</p>
+            </div>
+            <div class="text-center">
+              <div class="stat-num" data-target="200">0</div>
+              <div class="text-gold font-display italic" style="font-size:1.5rem;">+</div>
+              <p class="text-muted mt-1" style="font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase;" data-i18n="stat-shows">Shows</p>
+            </div>
+            <div class="text-center">
+              <div class="stat-num" data-target="10">0</div>
+              <div class="text-gold font-display italic" style="font-size:1.5rem;">+</div>
+              <p class="text-muted mt-1" style="font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase;" data-i18n="stat-countries">Countries</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       MUSIC
+  ══════════════════════════════════════════ -->
+  <section id="music" style="background:#1A1410; padding: 7rem 1.5rem;">
+    <div class="max-w-4xl mx-auto text-center">
+
+      <p id="music-label" class="reveal-up text-gold font-body font-medium mb-4" style="font-size:0.7rem; letter-spacing:0.25em; text-transform:uppercase;" data-i18n="music-label">
+        My Music
+      </p>
+
+      <h2 id="music-heading" class="reveal-up font-display font-bold text-cream mb-12" style="font-size: clamp(2.5rem, 6vw, 4.5rem); line-height:0.95; letter-spacing:-0.01em;" data-i18n-html="music-heading">
+        Listen &amp; <em class="text-gold" style="font-style:italic;">Feel It</em>
+      </h2>
+
+      <!-- Spotify embed area -->
+      <div id="music-embed" class="reveal-scale mx-auto mb-12" style="max-width:680px;">
+        <!-- Replace this entire div with the Spotify iframe when ready:
+             <iframe src="[SPOTIFY_EMBED_SRC]" width="100%" height="352" frameBorder="0"
+               allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+               loading="lazy" style="border-radius:0;"></iframe>
+        -->
+        <div style="
+          width:100%; padding: 4rem 2rem; border: 1px solid rgba(229,181,71,0.25);
+          background: rgba(255,255,255,0.02); display:flex; flex-direction:column;
+          align-items:center; gap:1.5rem; position:relative;
+        ">
+          <!-- Spotify-like icon placeholder -->
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="#E5B547" opacity="0.7">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l7 4.5-7 4.5z"/>
+          </svg>
+          <p class="text-muted" style="font-size:0.8rem; letter-spacing:0.1em;">SPOTIFY EMBED — Replace with [SPOTIFY_EMBED_SRC]</p>
+          <p class="text-muted" style="font-size:0.7rem; opacity:0.6; max-width:30ch; text-align:center;">Replace this block with the Spotify iframe using [SPOTIFY_EMBED_SRC]</p>
+          <a href="#" class="font-body font-medium text-gold border border-gold px-6 py-2 hover:bg-gold hover:text-site transition-colors" style="font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; text-decoration:none; pointer-events:none; opacity:0.5;">
+            Listen on Spotify
+          </a>
+        </div>
+      </div>
+
+      <!-- Apple Music secondary link -->
+      <div class="reveal-up flex justify-center mb-10">
+        <a href="#" aria-label="Apple Music" target="_blank" rel="noopener"
+           class="inline-flex items-center gap-2 font-body font-medium hover:text-cream transition-colors"
+           style="font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; text-decoration:none; color:#8A7A69; border:1px solid rgba(138,122,105,0.3); padding:0.6rem 1.4rem;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M23.994 6.124a9.23 9.23 0 0 0-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043a6.304 6.304 0 0 0-1.862-.81c-.603-.144-1.223-.201-1.843-.218-.39-.01-.779-.014-1.168-.013H7.304c-.39 0-.78.004-1.17.013-.62.017-1.24.074-1.842.218a6.3 6.3 0 0 0-1.862.81C1.312 1.624.567 2.624.25 3.934A9.23 9.23 0 0 0 .01 6.124C0 6.517-.005 6.91-.004 7.302v9.394c-.001.394.004.787.014 1.18.017.62.074 1.24.218 1.842.317 1.31 1.062 2.31 2.18 3.043a6.304 6.304 0 0 0 1.862.81c.603.144 1.223.201 1.843.218.39.01.779.014 1.168.013h9.394c.39 0 .779-.004 1.169-.013.62-.017 1.24-.074 1.842-.218a6.3 6.3 0 0 0 1.863-.81c1.118-.733 1.863-1.733 2.18-3.043.144-.603.201-1.223.218-1.843.01-.39.014-.78.013-1.169V7.302c.001-.392-.004-.785-.013-1.178zM12 18.769a6.769 6.769 0 1 1 0-13.538 6.769 6.769 0 0 1 0 13.538zm0-11.077a4.308 4.308 0 1 0 0 8.616 4.308 4.308 0 0 0 0-8.616zm6.923-1.23a1.538 1.538 0 1 1-3.077 0 1.538 1.538 0 0 1 3.077 0z"/></svg>
+          <span data-i18n="music-apple">Also on Apple Music</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       VIDEOS
+  ══════════════════════════════════════════ -->
+  <section id="videos" class="py-28 px-6 md:px-10">
+    <div class="max-w-7xl mx-auto">
+
+      <!-- Heading left-aligned -->
+      <div class="mb-14">
+        <p id="videos-label" class="reveal-up text-gold font-body font-medium mb-3" style="font-size:0.7rem; letter-spacing:0.25em; text-transform:uppercase;" data-i18n="videos-label">
+          Videos &nbsp;/&nbsp; Live Performances
+        </p>
+        <h2 id="videos-heading" class="reveal-up font-display font-bold text-cream" style="font-size: clamp(3rem, 7vw, 5.5rem); line-height:0.9; letter-spacing:-0.02em;" data-i18n-html="videos-heading">
+          Experience<br /><em class="text-gold italic">Live</em>
+        </h2>
+      </div>
+
+      <!-- Primary embed -->
+      <div id="video-main" class="reveal-scale mb-10" style="border: 1px solid rgba(229,181,71,0.25); position:relative;">
+        <!-- Replace with: <iframe src="https://www.youtube.com/embed/[YOUTUBE_VIDEO_ID_1]" ...></iframe> -->
+        <div style="aspect-ratio:16/9; background: linear-gradient(135deg, #1A1410 0%, #5A0A18 50%, #0A0A0A 100%); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:1.5rem;">
+          <div style="width:72px; height:72px; background:rgba(229,181,71,0.15); border:1px solid rgba(229,181,71,0.4); border-radius:50%; display:flex; align-items:center; justify-content:center;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="#E5B547"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <p class="text-muted text-center" style="font-size:0.75rem; letter-spacing:0.1em;">MAIN VIDEO — Replace with [YOUTUBE_VIDEO_ID_1]</p>
+        </div>
+      </div>
+
+      <!-- Secondary thumbnails -->
+      <div class="grid grid-cols-2 gap-3 md:gap-6">
+        <div id="video-thumb-1" class="reveal-up" style="border: 1px solid rgba(229,181,71,0.15);">
+          <!-- Replace with: <a href="https://youtube.com/watch?v=[YOUTUBE_VIDEO_ID_2]" target="_blank" rel="noopener"> -->
+          <div style="aspect-ratio:16/9; background: linear-gradient(135deg, #1A1410 0%, #0A0A0A 100%); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:1rem; cursor:pointer;">
+            <div style="width:48px; height:48px; background:rgba(229,181,71,0.1); border:1px solid rgba(229,181,71,0.3); border-radius:50%; display:flex; align-items:center; justify-content:center;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="#E5B547"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <p class="text-muted" style="font-size:0.7rem; letter-spacing:0.08em;">[YOUTUBE_VIDEO_ID_2]</p>
+          </div>
+        </div>
+        <div id="video-thumb-2" class="reveal-up" style="border: 1px solid rgba(229,181,71,0.15);">
+          <div style="aspect-ratio:16/9; background: linear-gradient(135deg, #1A1410 0%, #0A0A0A 100%); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:1rem; cursor:pointer;">
+            <div style="width:48px; height:48px; background:rgba(229,181,71,0.1); border:1px solid rgba(229,181,71,0.3); border-radius:50%; display:flex; align-items:center; justify-content:center;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="#E5B547"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <p class="text-muted" style="font-size:0.7rem; letter-spacing:0.08em;">[YOUTUBE_VIDEO_ID_3]</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       GALLERY
+  ══════════════════════════════════════════ -->
+  <section id="gallery" style="background:#1A1410; padding:7rem 1.5rem;">
+    <div class="max-w-7xl mx-auto">
+
+      <div class="mb-14 flex items-end justify-between">
+        <h2 id="gallery-heading" class="font-display font-bold" style="font-size: clamp(3.5rem, 9vw, 7rem); line-height:0.88; letter-spacing:-0.02em; color:#F2E6C9;" data-i18n-html="gallery-heading">
+          Gal<em class="text-gold italic">ler</em>y
+        </h2>
+        <p id="gallery-sub" class="reveal-up text-muted hidden md:block" style="font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; padding-bottom:0.5rem;" data-i18n="gallery-sub">
+          Moments on stage
+        </p>
+      </div>
+
+      <div class="gallery-grid">
+
+        <!-- Gallery item 1 -->
+        <div class="gallery-item" style="height: 320px;">
+          <img src="brand%20assets/photos/chelo-10.jpg" alt="Chelo Ramirez" style="height:320px; object-fit:cover;">
+          <div class="gallery-overlay">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          </div>
+        </div>
+
+        <!-- Gallery item 2 (taller) -->
+        <div class="gallery-item" style="height: 480px;">
+          <img src="brand%20assets/photos/chelo-12.jpg" alt="Chelo Ramirez" style="height:480px; object-fit:cover;">
+          <div class="gallery-overlay">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          </div>
+        </div>
+
+        <!-- Gallery item 3 -->
+        <div class="gallery-item" style="height: 280px;">
+          <img src="brand%20assets/photos/chelo-1.jpg" alt="Chelo Ramirez" style="height:280px; object-fit:cover;">
+          <div class="gallery-overlay">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          </div>
+        </div>
+
+        <!-- Gallery item 4 -->
+        <div class="gallery-item" style="height: 400px;">
+          <img src="brand%20assets/photos/chelo-5.jpg" alt="Chelo Ramirez" style="height:400px; object-fit:cover;">
+          <div class="gallery-overlay">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          </div>
+        </div>
+
+        <!-- Gallery item 5 (taller) -->
+        <div class="gallery-item" style="height: 500px;">
+          <img src="brand%20assets/photos/chelo-2.jpg" alt="Chelo Ramirez" style="height:500px; object-fit:cover;">
+          <div class="gallery-overlay">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          </div>
+        </div>
+
+        <!-- Gallery item 6 -->
+        <div class="gallery-item" style="height: 260px;">
+          <img src="brand%20assets/photos/chelo-4.jpg" alt="Chelo Ramirez" style="height:260px; object-fit:cover;">
+          <div class="gallery-overlay">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       EVENTS
+  ══════════════════════════════════════════ -->
+  <section id="events" class="py-28 px-6 md:px-10">
+    <div class="max-w-7xl mx-auto">
+
+      <div class="grid md:grid-cols-[300px_1fr] gap-6 md:gap-16 items-start">
+
+        <!-- Left heading -->
+        <div>
+          <p class="reveal-up text-gold font-body font-medium mb-4" style="font-size:0.7rem; letter-spacing:0.25em; text-transform:uppercase;" data-i18n="events-label">Upcoming Shows</p>
+          <h2 class="reveal-up font-display font-bold text-cream" style="font-size: clamp(2.5rem, 5vw, 4rem); line-height:0.95; letter-spacing:-0.01em;" data-i18n-html="events-heading">
+            Upcoming<br /><em class="text-gold italic">Shows</em>
+          </h2>
+          <div class="gold-rule mt-8" style="width:60px;" id="events-rule"></div>
+        </div>
+
+        <!-- Events list -->
+        <div id="events-list">
+
+          <div class="event-row">
+            <div class="font-display font-bold text-gold" style="font-size:3rem; line-height:1;">DEC<br /><span style="font-size:1.5rem;">15</span></div>
+            <div>
+              <p class="font-display font-semibold text-cream" style="font-size:1.4rem; letter-spacing:-0.01em;">[EVENT_1_VENUE]</p>
+              <p class="text-muted" style="font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase; margin-top:0.25rem;">[EVENT_1_CITY], Colombia · 2026</p>
+            </div>
+            <a href="#contact" class="font-body font-medium text-gold border border-gold/40 px-5 py-2 hover:bg-gold hover:text-site transition-colors whitespace-nowrap self-center" style="font-size:0.7rem; letter-spacing:0.12em; text-decoration:none; text-transform:uppercase;" data-i18n="events-book">Book</a>
+          </div>
+
+          <div class="event-row">
+            <div class="font-display font-bold text-gold" style="font-size:3rem; line-height:1;">JAN<br /><span style="font-size:1.5rem;">10</span></div>
+            <div>
+              <p class="font-display font-semibold text-cream" style="font-size:1.4rem; letter-spacing:-0.01em;">[EVENT_2_VENUE]</p>
+              <p class="text-muted" style="font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase; margin-top:0.25rem;">[EVENT_2_CITY], USA · 2027</p>
+            </div>
+            <a href="#contact" class="font-body font-medium text-gold border border-gold/40 px-5 py-2 hover:bg-gold hover:text-site transition-colors whitespace-nowrap self-center" style="font-size:0.7rem; letter-spacing:0.12em; text-decoration:none; text-transform:uppercase;" data-i18n="events-tickets">Tickets</a>
+          </div>
+
+          <div class="event-row">
+            <div class="font-display font-bold text-gold" style="font-size:3rem; line-height:1;">FEB<br /><span style="font-size:1.5rem;">4</span></div>
+            <div>
+              <p class="font-display font-semibold text-cream" style="font-size:1.4rem; letter-spacing:-0.01em;">[EVENT_3_VENUE]</p>
+              <p class="text-muted" style="font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase; margin-top:0.25rem;">[EVENT_3_CITY], Mexico · 2027</p>
+            </div>
+            <a href="#contact" class="font-body font-medium text-gold border border-gold/40 px-5 py-2 hover:bg-gold hover:text-site transition-colors whitespace-nowrap self-center" style="font-size:0.7rem; letter-spacing:0.12em; text-decoration:none; text-transform:uppercase;" data-i18n="events-tickets">Tickets</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       NEWSLETTER STRIP
+  ══════════════════════════════════════════ -->
+  <section id="newsletter" style="background:#0A0A0A; padding:5rem 1.5rem; border-top:1px solid rgba(229,181,71,0.12); border-bottom:1px solid rgba(229,181,71,0.12);">
+    <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
+
+      <div class="text-center md:text-left">
+        <p class="text-gold font-body font-medium mb-3" style="font-size:0.7rem; letter-spacing:0.25em; text-transform:uppercase;" data-i18n="nl-label">Stay in the Loop</p>
+        <h3 class="font-display font-bold text-cream" style="font-size:clamp(1.8rem, 4vw, 2.6rem); line-height:1; letter-spacing:-0.01em;" data-i18n-html="nl-heading">
+          New shows. New music.<br /><em class="text-gold" style="font-style:italic;">First to know.</em>
+        </h3>
+      </div>
+
+      <form id="newsletter-form" action="[NEWSLETTER_ENDPOINT]" method="POST" class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+        <input type="email" name="email" placeholder="Your email address" required
+          style="background:rgba(255,255,255,0.04); border:1px solid rgba(229,181,71,0.3); color:#F2E6C9; padding:0.875rem 1.25rem; font-family:'Inter',sans-serif; font-size:0.875rem; outline:none; min-width:260px; transition:border-color 0.2s;"
+          onfocus="this.style.borderColor='#E5B547'" onblur="this.style.borderColor='rgba(229,181,71,0.3)'"
+          data-i18n-placeholder="nl-email" />
+        <button type="submit"
+          class="font-body font-medium text-site bg-gold hover:bg-cream transition-colors whitespace-nowrap"
+          style="padding:0.875rem 1.75rem; font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; border:none; cursor:pointer;"
+          data-i18n="nl-btn">
+          Subscribe
+        </button>
+      </form>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       CONTACT / BOOKING
+  ══════════════════════════════════════════ -->
+  <section id="contact" style="background:#1A1410; padding:4rem 1.5rem;" class="md:py-28">
+    <div class="max-w-3xl mx-auto">
+
+      <!-- Heading -->
+      <div class="text-center mb-8 md:mb-16">
+        <p id="contact-label" class="reveal-up text-gold font-body font-medium mb-4" style="font-size:0.7rem; letter-spacing:0.25em; text-transform:uppercase;" data-i18n="contact-label">
+          Book a Show
+        </p>
+        <h2 id="contact-heading" class="reveal-up font-display font-bold text-cream mb-6" style="font-size: clamp(2.8rem, 7vw, 5rem); line-height:0.92; letter-spacing:-0.01em;" data-i18n-html="contact-heading">
+          Bring the Mariachi<br /><em class="text-gold italic">to Your Event</em>
+        </h2>
+        <p id="contact-sub" class="reveal-up text-muted mx-auto leading-relaxed" style="font-size:0.9rem; max-width:44ch;" data-i18n="contact-sub">
+          Wedding, festival, corporate event, or private show? Fill out the form and we'll reply within 24 hours.
+        </p>
+      </div>
+
+      <!-- Booking form -->
+      <form id="contact-form" action="[FORMSPREE_ENDPOINT]" method="POST">
+
+        <div class="grid md:grid-cols-2 gap-4 mb-4">
+          <div class="form-field-wrap reveal-up">
+            <input type="text" name="name" placeholder="Name *" class="form-field" required data-i18n-placeholder="form-name" />
+          </div>
+          <div class="form-field-wrap reveal-up">
+            <input type="email" name="email" placeholder="Email *" class="form-field" required data-i18n-placeholder="form-email" />
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4 mb-4">
+          <div class="form-field-wrap reveal-up">
+            <input type="tel" name="phone" placeholder="Phone" class="form-field" data-i18n-placeholder="form-phone" />
+          </div>
+          <div class="form-field-wrap reveal-up">
+            <select name="event_type" class="form-field" required>
+              <option value="" disabled selected data-i18n="form-event-type">Event type *</option>
+              <option value="wedding" data-i18n="form-wedding">Wedding</option>
+              <option value="festival" data-i18n="form-festival">Festival</option>
+              <option value="corporate" data-i18n="form-corporate">Corporate</option>
+              <option value="private" data-i18n="form-private">Private</option>
+              <option value="other" data-i18n="form-other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-field-wrap reveal-up mb-6">
+          <textarea name="message" placeholder="Tell us about your event *" class="form-field" rows="5" required style="resize:vertical;" data-i18n-placeholder="form-message"></textarea>
+        </div>
+
+        <div id="contact-submit" class="reveal-up text-center">
+          <button type="submit" class="bg-gold text-site font-body font-semibold px-12 py-4 hover:bg-cream transition-colors w-full md:w-auto" style="font-size:0.8rem; letter-spacing:0.18em; text-transform:uppercase; cursor:pointer; border:none;" data-i18n="form-submit">
+            Send Request
+          </button>
+        </div>
+
+        <!-- Fallback email -->
+        <p class="text-center text-muted mt-6" style="font-size:0.75rem; letter-spacing:0.05em;">
+          <span data-i18n="form-email-cta">Or email us directly:</span><br />
+          <a href="mailto:[BOOKING_EMAIL]" class="text-gold hover:text-cream transition-colors">[BOOKING_EMAIL]</a>
+        </p>
+      </form>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════ -->
+  <footer style="background:#0A0A0A; padding:4rem 1.5rem 2.5rem; border-top:1px solid rgba(229,181,71,0.15);">
+    <div class="max-w-2xl mx-auto text-center">
+
+      <!-- Heading -->
+      <p class="text-cream font-body font-semibold mb-2" style="font-size:1.05rem;" data-i18n="footer-heading">Join the Chelo Ramírez mailing list</p>
+      <p class="text-muted mb-8" style="font-size:0.875rem;" data-i18n="footer-sub">Sign up and stay updated on new releases and shows</p>
+
+      <!-- Newsletter form -->
+      <form id="newsletter-footer-form" action="[NEWSLETTER_ENDPOINT]" method="POST" class="flex gap-0 justify-center mb-10" style="max-width:420px; margin-left:auto; margin-right:auto;">
+        <input type="email" name="email" placeholder="Your email" required
+          style="flex:1; background:rgba(255,255,255,0.06); border:1px solid rgba(229,181,71,0.25); border-right:none; color:#F2E6C9; padding:0.75rem 1.25rem; font-family:'Inter',sans-serif; font-size:0.85rem; outline:none; border-radius:9999px 0 0 9999px;"
+          data-i18n-placeholder="footer-email" />
+        <button type="submit"
+          class="font-body font-semibold text-site bg-gold hover:bg-cream transition-colors whitespace-nowrap"
+          style="padding:0.75rem 1.5rem; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; border:none; cursor:pointer; border-radius:0 9999px 9999px 0;"
+          data-i18n="footer-btn">
+          Sign Up
+        </button>
+      </form>
+
+      <!-- Social icons -->
+      <div class="flex items-center justify-center flex-wrap gap-7 mb-8">
+        <a href="#" target="_blank" rel="noopener" aria-label="Spotify" class="text-muted hover:text-gold transition-colors">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+        </a>
+        <a href="#" target="_blank" rel="noopener" aria-label="Apple Music" class="text-muted hover:text-gold transition-colors">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M23.994 6.124a9.23 9.23 0 0 0-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043a6.304 6.304 0 0 0-1.862-.81c-.603-.144-1.223-.201-1.843-.218-.39-.01-.779-.014-1.168-.013H7.304c-.39 0-.78.004-1.17.013-.62.017-1.24.074-1.842.218a6.3 6.3 0 0 0-1.862.81C1.312 1.624.567 2.624.25 3.934A9.23 9.23 0 0 0 .01 6.124C0 6.517-.005 6.91-.004 7.302v9.394c-.001.394.004.787.014 1.18.017.62.074 1.24.218 1.842.317 1.31 1.062 2.31 2.18 3.043a6.304 6.304 0 0 0 1.862.81c.603.144 1.223.201 1.843.218.39.01.779.014 1.168.013h9.394c.39 0 .779-.004 1.169-.013.62-.017 1.24-.074 1.842-.218a6.3 6.3 0 0 0 1.863-.81c1.118-.733 1.863-1.733 2.18-3.043.144-.603.201-1.223.218-1.843.01-.39.014-.78.013-1.169V7.302c.001-.392-.004-.785-.013-1.178zM12 18.769a6.769 6.769 0 1 1 0-13.538 6.769 6.769 0 0 1 0 13.538zm0-11.077a4.308 4.308 0 1 0 0 8.616 4.308 4.308 0 0 0 0-8.616zm6.923-1.23a1.538 1.538 0 1 1-3.077 0 1.538 1.538 0 0 1 3.077 0z"/></svg>
+        </a>
+        <a href="#" target="_blank" rel="noopener" aria-label="YouTube" class="text-muted hover:text-gold transition-colors">
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+        </a>
+        <a href="#" target="_blank" rel="noopener" aria-label="Instagram" class="text-muted hover:text-gold transition-colors">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="#" target="_blank" rel="noopener" aria-label="Facebook" class="text-muted hover:text-gold transition-colors">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="#" target="_blank" rel="noopener" aria-label="TikTok" class="text-muted hover:text-gold transition-colors">
+          <svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+        </a>
+        <a href="#" target="_blank" rel="noopener" aria-label="WhatsApp" class="text-muted hover:text-gold transition-colors">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+        </a>
+      </div>
+
+      <!-- Copyright -->
+      <p class="text-muted" style="font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase;" data-i18n="footer-copyright">© 2026 Chelo Ramírez · Colombia's Mariachi</p>
+
+      <!-- Legal links -->
+      <div style="margin-top:0.875rem; display:flex; align-items:center; justify-content:center; gap:1.5rem;">
+        <a href="#" class="font-body text-muted"
+          style="font-size:0.6rem; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; transition:color 0.2s;"
+          onmouseover="this.style.color='#E5B547'" onmouseout="this.style.color='#8A7A69'"
+          onfocus="this.style.color='#E5B547'" onblur="this.style.color='#8A7A69'"
+          data-i18n="footer-privacy">Privacy Policy</a>
+        <span style="color:rgba(138,122,105,0.35); font-size:0.6rem;">·</span>
+        <a href="#" class="font-body text-muted"
+          style="font-size:0.6rem; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; transition:color 0.2s;"
+          onmouseover="this.style.color='#E5B547'" onmouseout="this.style.color='#8A7A69'"
+          onfocus="this.style.color='#E5B547'" onblur="this.style.color='#8A7A69'"
+          data-i18n="footer-terms">Terms &amp; Conditions</a>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ══════════════════════════════════════════
+       SCRIPTS — CDNs
+  ══════════════════════════════════════════ -->
+  <!-- Site configuration -->
+  <script src="config.js"></script>
+
+  <!-- Lenis smooth scroll -->
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <script>
+    // ══ 1. Lenis + GSAP initialization (ORDER CRITICAL) ══
+    const lenis = new Lenis();
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+    gsap.ticker.lagSmoothing(0);
+    gsap.registerPlugin(ScrollTrigger);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.globalTimeline.timeScale(100);
+    }
+
+
+    // ══ 2. Mobile menu ══
+    const hamburger   = document.getElementById('hamburger');
+    const mobileMenu  = document.getElementById('mobile-menu');
+    const hamLines    = hamburger.querySelectorAll('.hamburger-line');
+    let menuOpen = false;
+
+    function openMenu() {
+      mobileMenu.classList.add('open');
+      hamburger.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+      menuOpen = true;
+      hamLines[0].style.transform = 'translateY(7px) rotate(45deg)';
+      hamLines[1].style.transform = 'translateY(-1px) rotate(-45deg)';
+      hamLines[2].style.opacity = '0';
+    }
+    function closeMenu() {
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      menuOpen = false;
+      hamLines[0].style.transform = '';
+      hamLines[1].style.transform = '';
+      hamLines[2].style.opacity = '1';
+    }
+    hamburger.addEventListener('click', () => menuOpen ? closeMenu() : openMenu());
+
+
+    // ══ 3. Nav scroll behavior ══
+    ScrollTrigger.create({
+      start: 80,
+      onEnter:      () => document.getElementById('main-nav').classList.add('scrolled'),
+      onLeaveBack:  () => document.getElementById('main-nav').classList.remove('scrolled'),
+    });
+
+
+    // ══ 4. Hero load animation ══
+    const heroName = document.getElementById('hero-name');
+    // Split text into spans for staggered animation
+    heroName.querySelectorAll('span').forEach(span => {
+      const text = span.textContent;
+      span.innerHTML = text.split('').map(c => c === ' ' ? ' ' : `<span class="letter" style="display:inline-block; clip-path:inset(0 100% 0 0);">${c}</span>`).join('');
+    });
+
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    tl
+      .from('#hero-rule', { scaleX: 0, duration: 0.7, ease: 'power2.inOut', transformOrigin: 'left' }, 0.3)
+      .to('#hero-name .letter', { clipPath: 'inset(0 0% 0 0)', duration: 0.6, stagger: 0.03 }, 0.6)
+      .to('#hero-tagline', { opacity: 1, y: 0, duration: 0.7 }, '-=0.2')
+      .to('#hero-sub',     { opacity: 1, y: 0, duration: 0.6 }, '-=0.45')
+      .to('#hero-cta',     { opacity: 1, y: 0, duration: 0.6 }, '-=0.35');
+
+    // Parallax on hero bg
+    gsap.to('#hero-bg', {
+      yPercent: 25,
+      ease: 'none',
+      scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true }
+    });
+
+
+    // ══ 5. Scroll reveal helper ══
+    function revealUp(selector, triggerEl, stagger = 0, delay = 0) {
+      gsap.from(selector, {
+        opacity: 0, y: 40, duration: 0.85, ease: 'power3.out',
+        stagger: stagger, delay: delay,
+        scrollTrigger: { trigger: triggerEl || selector, start: 'top 85%', toggleActions: 'play none none none' }
+      });
+    }
+
+
+    // ══ 6. About section ══
+    gsap.from('#about-img', {
+      opacity: 0, x: -60, duration: 1, ease: 'power3.out',
+      scrollTrigger: { trigger: '#about', start: 'top 80%' }
+    });
+    revealUp('#about-label',   '#about', 0, 0.1);
+    revealUp('#about-heading', '#about', 0, 0.2);
+    revealUp('#about-bio-en',  '#about', 0, 0.3);
+    revealUp('#about-stats',   '#about', 0, 0.4);
+
+    // Stat counters
+    document.querySelectorAll('.stat-num').forEach(el => {
+      const target = +el.dataset.target;
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top 88%',
+        once: true,
+        onEnter: () => {
+          gsap.to({ val: 0 }, {
+            val: target, duration: 1.8, ease: 'power2.out',
+            onUpdate: function() { el.textContent = Math.round(this.targets()[0].val); }
+          });
+        }
+      });
+    });
+
+
+    // ══ 7. Music section ══
+    revealUp('#music-label',   '#music');
+    revealUp('#music-heading', '#music', 0, 0.1);
+    gsap.from('#music-embed', {
+      opacity: 0, scale: 0.93, duration: 0.9, ease: 'power3.out',
+      scrollTrigger: { trigger: '#music-embed', start: 'top 85%' }
+    });
+    gsap.from('#music-tracks .track-row', {
+      opacity: 0, y: 20, duration: 0.6, ease: 'power2.out', stagger: 0.12,
+      scrollTrigger: { trigger: '#music-tracks', start: 'top 85%' }
+    });
+
+
+    // ══ 8. Videos section ══
+    revealUp('#videos-label',   '#videos');
+    revealUp('#videos-heading', '#videos', 0, 0.1);
+    gsap.from('#video-main', {
+      opacity: 0, scale: 0.95, duration: 1, ease: 'power3.out',
+      scrollTrigger: { trigger: '#video-main', start: 'top 85%' }
+    });
+    gsap.from('#video-thumb-1', {
+      opacity: 0, x: 40, duration: 0.8, ease: 'power3.out',
+      scrollTrigger: { trigger: '#video-thumb-1', start: 'top 88%' }
+    });
+    gsap.from('#video-thumb-2', {
+      opacity: 0, x: 40, duration: 0.8, ease: 'power3.out', delay: 0.12,
+      scrollTrigger: { trigger: '#video-thumb-2', start: 'top 88%' }
+    });
+
+
+    // ══ 9. Gallery section ══
+    gsap.from('#gallery-heading', {
+      opacity: 0, x: -50, duration: 1, ease: 'power3.out',
+      scrollTrigger: { trigger: '#gallery', start: 'top 80%' }
+    });
+    gsap.from('.gallery-item', {
+      opacity: 0, rotation: 2, duration: 0.8, ease: 'power3.out', stagger: 0.08,
+      scrollTrigger: { trigger: '.gallery-grid', start: 'top 85%' }
+    });
+
+
+    // ══ 10. Events section ══
+    gsap.from('#events-rule', {
+      scaleX: 0, duration: 0.8, ease: 'power2.inOut', transformOrigin: 'left',
+      scrollTrigger: { trigger: '#events-rule', start: 'top 85%' }
+    });
+    gsap.from('.event-row', {
+      opacity: 0, x: 50, duration: 0.75, ease: 'power3.out', stagger: 0.15,
+      scrollTrigger: { trigger: '#events-list', start: 'top 80%' }
+    });
+
+
+    // ══ 11. Contact section ══
+    revealUp('#contact-label',   '#contact');
+    revealUp('#contact-heading', '#contact', 0, 0.1);
+    revealUp('#contact-sub',     '#contact', 0, 0.2);
+    gsap.from('#contact-form .form-field-wrap', {
+      opacity: 0, y: 25, duration: 0.5, ease: 'power2.out', stagger: 0.06,
+      scrollTrigger: { trigger: '#contact-form', start: 'top 90%' }
+    });
+    revealUp('#contact-submit', '#contact-form', 0, 0.3);
+
+
+    // ══ Translations ══
+    const TRANSLATIONS = {
+      en: {
+        'nav-about':       'Bio',
+        'nav-music':       'Music',
+        'nav-videos':      'Videos',
+        'nav-gallery':     'Gallery',
+        'nav-shows':       'Shows',
+        'nav-book':        'Book Now',
+        'hero-tagline':    "Colombia's Mariachi",
+        'hero-sub':        'Mariachi · Regional Mexican Music · Colombia',
+        'about-label':     'About',
+        'about-heading':   'A Mariachi<br /><em style="font-style:italic; color:#E5B547;">from the Heart</em>',
+        'about-bio':       '<p class="mb-5">Chelo Ramírez is a Latin musician from Medellin, Colombia, who specializes in regional Mexican music. Chelo Ramírez has established a reputation for himself in the Latin music sector over the course of a long career, enthralling audiences with his heartfelt performances and distinctive style.</p><p class="mb-5">Traditional Mexican music and contemporary Latin rhythms are combined in Chelo Ramírez&rsquo;s music to create a unique sound that is both recognizable and original. His songs are known for their upbeat energy, contagious beats, and heartfelt lyrics, which make them enticing to Latin music listeners around. Chelo Ramírez has established himself as one of the most revered and in-demand artists in the genre thanks to his strong voice and charismatic stage presence.</p><p>Chelo Ramírez&rsquo;s love of music is evident in every note he plays, whether he is performing live or in the studio. He has become a well-liked figure in the Latin music community as a result of his commitment to his art and affection for his fans, and his music continues to uplift and inspire audiences all around the world. Chelo Ramírez is a true pioneer of regional Mexican music with his distinctive fusion of traditional and contemporary sounds, and his music is proof of the ability of Latin music to inspire and unify people.</p>',
+        'stat-years':      'Years',
+        'stat-shows':      'Shows',
+        'stat-countries':  'Countries',
+        'music-label':     'My Music',
+        'music-heading':   'Listen &amp; <em class="text-gold" style="font-style:italic;">Feel It</em>',
+        'music-apple':     'Also on Apple Music',
+        'videos-label':    'Videos / Live Performances',
+        'videos-heading':  'Experience<br /><em class="text-gold italic">Live</em>',
+        'gallery-heading': 'Gal<em class="text-gold italic">ler</em>y',
+        'gallery-sub':     'Moments on stage',
+        'events-label':    'Upcoming Shows',
+        'events-heading':  'Upcoming<br /><em class="text-gold italic">Shows</em>',
+        'events-book':     'Book',
+        'events-tickets':  'Tickets',
+        'nl-label':        'Stay in the Loop',
+        'nl-heading':      'New shows. New music.<br /><em class="text-gold" style="font-style:italic;">First to know.</em>',
+        'nl-email':        'Your email address',
+        'nl-btn':          'Subscribe',
+        'nl-popup-sub':    'Get updates on new shows and releases — straight to your inbox.',
+        'contact-label':   'Book a Show',
+        'contact-heading': 'Bring the Mariachi<br /><em class="text-gold italic">to Your Event</em>',
+        'contact-sub':     "Wedding, festival, corporate event, or private show? Fill out the form and we'll reply within 24 hours.",
+        'form-name':       'Name *',
+        'form-email':      'Email *',
+        'form-phone':      'Phone',
+        'form-event-type': 'Event type *',
+        'form-wedding':    'Wedding',
+        'form-festival':   'Festival',
+        'form-corporate':  'Corporate',
+        'form-private':    'Private',
+        'form-other':      'Other',
+        'form-message':    'Tell us about your event *',
+        'form-submit':     'Send Request',
+        'form-email-cta':  'Or email us directly:',
+        'footer-heading':  'Join the Chelo Ramírez mailing list',
+        'footer-sub':      'Sign up and stay updated on new releases and shows',
+        'footer-email':    'Your email',
+        'footer-btn':      'Sign Up',
+        'footer-copyright':"© 2026 Chelo Ramírez · Colombia's Mariachi",
+        'footer-privacy':  'Privacy Policy',
+        'footer-terms':    'Terms & Conditions',
+      },
+      es: {
+        'nav-about':       'Bio',
+        'nav-music':       'Música',
+        'nav-videos':      'Videos',
+        'nav-gallery':     'Galería',
+        'nav-shows':       'Conciertos',
+        'nav-book':        'Reservar',
+        'hero-tagline':    'El Mariachi de Colombia',
+        'hero-sub':        'Mariachi · Música Regional Mexicana · Colombia',
+        'about-label':     'Acerca de',
+        'about-heading':   'Un Mariachi<br /><em style="font-style:italic; color:#E5B547;">del Corazón</em>',
+        'about-bio':       '<p class="mb-5">Chelo Ramírez es un músico latino originario de Medellín, Colombia, especializado en música regional mexicana. A lo largo de una extensa carrera, se ha forjado una sólida reputación en el mundo de la música latina, cautivando al público con sus interpretaciones emotivas y su estilo inconfundible.</p><p class="mb-5">Su música fusiona la tradición mexicana con los ritmos latinos contemporáneos, creando un sonido único que es a la vez familiar y original. Sus canciones destacan por su energía vibrante, sus ritmos contagiosos y sus letras emotivas, que seducen a los amantes de la música latina alrededor del mundo. Gracias a su poderosa voz y su presencia escénica carismática, Chelo Ramírez se ha consolidado como uno de los artistas más admirados y solicitados del género.</p><p>La pasión de Chelo Ramírez por la música se refleja en cada nota que interpreta, ya sea en el escenario o en el estudio. Su entrega al arte y el cariño por sus seguidores lo han convertido en una figura querida dentro de la comunidad latina, y su música continúa elevando e inspirando a audiencias de todo el mundo. Con su singular fusión de sonidos tradicionales y contemporáneos, es un verdadero pionero de la música regional mexicana, y su obra es prueba del poder de la música latina para inspirar y unir a las personas.</p>',
+        'stat-years':      'Años',
+        'stat-shows':      'Shows',
+        'stat-countries':  'Países',
+        'music-label':     'Mi Música',
+        'music-heading':   'Escucha &amp; <em class="text-gold" style="font-style:italic;">Siéntelo</em>',
+        'music-apple':     'También en Apple Music',
+        'videos-label':    'Videos / Presentaciones en Vivo',
+        'videos-heading':  'Vívelo<br /><em class="text-gold italic">en Vivo</em>',
+        'gallery-heading': 'Gal<em class="text-gold italic">er</em>ía',
+        'gallery-sub':     'Momentos en el escenario',
+        'events-label':    'Próximos Conciertos',
+        'events-heading':  'Próximos<br /><em class="text-gold italic">Conciertos</em>',
+        'events-book':     'Reservar',
+        'events-tickets':  'Boletos',
+        'nl-label':        'Mantente Informado',
+        'nl-heading':      'Nuevos shows. Nueva música.<br /><em class="text-gold" style="font-style:italic;">Sé el primero en saber.</em>',
+        'nl-email':        'Tu correo electrónico',
+        'nl-btn':          'Suscribirse',
+        'nl-popup-sub':    'Recibe novedades sobre shows y lanzamientos directo a tu correo.',
+        'contact-label':   'Reservar un Show',
+        'contact-heading': 'Trae el Mariachi<br /><em class="text-gold italic">a Tu Evento</em>',
+        'contact-sub':     '¿Boda, festival, evento corporativo o show privado? Completa el formulario y te respondemos en 24 horas.',
+        'form-name':       'Nombre *',
+        'form-email':      'Correo *',
+        'form-phone':      'Teléfono',
+        'form-event-type': 'Tipo de evento *',
+        'form-wedding':    'Boda',
+        'form-festival':   'Festival',
+        'form-corporate':  'Corporativo',
+        'form-private':    'Privado',
+        'form-other':      'Otro',
+        'form-message':    'Cuéntanos sobre tu evento *',
+        'form-submit':     'Enviar Solicitud',
+        'form-email-cta':  'O escríbenos directamente:',
+        'footer-heading':  'Únete a la lista de Chelo Ramírez',
+        'footer-sub':      'Regístrate y mantente al día con nuevos lanzamientos y shows',
+        'footer-email':    'Tu correo',
+        'footer-btn':      'Registrarse',
+        'footer-copyright':'© 2026 Chelo Ramírez · El Mariachi de Colombia',
+        'footer-privacy':  'Política de Privacidad',
+        'footer-terms':    'Términos y Condiciones',
+      }
+    };
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+      localStorage.setItem('cr-lang', lang);
+      const t = TRANSLATIONS[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        if (t[el.dataset.i18n] !== undefined) el.textContent = t[el.dataset.i18n];
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        if (t[el.dataset.i18nHtml] !== undefined) el.innerHTML = t[el.dataset.i18nHtml];
+      });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        if (t[el.dataset.i18nPlaceholder] !== undefined) el.placeholder = t[el.dataset.i18nPlaceholder];
+      });
+      const esEl = document.getElementById('lang-es');
+      const enEl = document.getElementById('lang-en');
+      if (esEl) esEl.style.color = lang === 'es' ? '#E5B547' : '#8A7A69';
+      if (enEl) enEl.style.color = lang === 'en' ? '#E5B547' : '#8A7A69';
+    }
+
+    document.getElementById('lang-toggle').addEventListener('click', function(e) {
+      e.preventDefault();
+      const current = localStorage.getItem('cr-lang') || 'en';
+      setLanguage(current === 'en' ? 'es' : 'en');
+    });
+
+    // Init saved language on load
+    const _savedLang = localStorage.getItem('cr-lang');
+    if (_savedLang === 'es') setLanguage('es');
+
+    // ══ Apply config.js values to all links ══
+    (function applyConfig() {
+      const s = SITE_CONFIG.social;
+      const b = SITE_CONFIG.booking;
+      const m = SITE_CONFIG.media;
+
+      function setHref(selector, url) {
+        if (!url) return;
+        document.querySelectorAll(selector).forEach(el => el.href = url);
+      }
+
+      // Social links (nav + footer share the same aria-label selectors)
+      setHref('[aria-label="Spotify"]',     s.spotify);
+      setHref('[aria-label="Apple Music"]', s.appleMusic);
+      setHref('[aria-label="YouTube"]',     s.youtube);
+      setHref('[aria-label="Instagram"]',   s.instagram);
+      setHref('[aria-label="Facebook"]',    s.facebook);
+      setHref('[aria-label="TikTok"]',      s.tiktok);
+      setHref('[aria-label="WhatsApp"]',    s.whatsapp);
+
+      // Booking email
+      if (b.email) {
+        document.querySelectorAll('a[href="mailto:[BOOKING_EMAIL]"]').forEach(el => {
+          el.href = 'mailto:' + b.email;
+          el.textContent = b.email;
+        });
+      }
+
+      // Formspree — booking form
+      if (b.formspreeEndpoint) {
+        const form = document.getElementById('contact-form');
+        if (form) form.action = b.formspreeEndpoint;
+      }
+
+      // Newsletter forms (strip + footer)
+      if (b.newsletterEndpoint) {
+        ['newsletter-form', 'newsletter-footer-form', 'newsletter-popup-form'].forEach(id => {
+          const form = document.getElementById(id);
+          if (form) form.action = b.newsletterEndpoint;
+        });
+      }
+
+      // Spotify embed
+      if (m.spotifyEmbedSrc) {
+        const embedWrap = document.getElementById('music-embed');
+        if (embedWrap) {
+          embedWrap.innerHTML = `<iframe src="${m.spotifyEmbedSrc}" width="100%" height="352" frameBorder="0"
+            allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy" style="border-radius:0;"></iframe>`;
+        }
+      }
+
+      // YouTube videos
+      function setVideo(id, videoId) {
+        const el = document.getElementById(id);
+        if (!el || !videoId) return;
+        el.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}" width="100%" height="100%"
+          frameBorder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          style="position:absolute; inset:0; width:100%; height:100%;"></iframe>`;
+        el.style.position = 'relative';
+        el.style.paddingBottom = '56.25%';
+        el.style.height = '0';
+      }
+      setVideo('video-main',    m.youtubeVideoId1);
+      setVideo('video-thumb-1', m.youtubeVideoId2);
+      setVideo('video-thumb-2', m.youtubeVideoId3);
+    })();
+
+  </script>
+
+  <!-- Newsletter Popup -->
+  <div id="newsletter-popup" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(13,10,7,0.88); align-items:center; justify-content:center; padding:1.5rem;">
+    <div id="newsletter-popup-card" style="position:relative; background:#1A1410; border-top:2px solid #E5B547; max-width:480px; width:100%; padding:3rem 2.5rem 2.5rem;">
+
+      <!-- Close button -->
+      <button id="newsletter-popup-close" aria-label="Close"
+        style="position:absolute; top:1rem; right:1rem; background:none; border:none; color:#8A7A69; font-size:1.4rem; line-height:1; cursor:pointer; padding:0.25rem 0.5rem; transition:color 0.2s;"
+        onmouseover="this.style.color='#F2E6C9'" onmouseout="this.style.color='#8A7A69'"
+        onfocus="this.style.color='#F2E6C9'" onblur="this.style.color='#8A7A69'">&times;</button>
+
+      <!-- Eyebrow -->
+      <p class="font-body font-medium text-gold" style="font-size:0.65rem; letter-spacing:0.25em; text-transform:uppercase; margin-bottom:1rem;" data-i18n="nl-label">Stay in the Loop</p>
+
+      <!-- Heading -->
+      <h3 class="font-display font-bold text-cream" style="font-size:clamp(1.8rem, 5vw, 2.4rem); line-height:1.05; letter-spacing:-0.01em; margin-bottom:0.875rem;" data-i18n-html="nl-heading">
+        New shows. New music.<br /><em class="text-gold" style="font-style:italic;">First to know.</em>
+      </h3>
+
+      <!-- Subtitle -->
+      <p class="font-body text-muted" style="font-size:0.875rem; line-height:1.65; margin-bottom:1.75rem;" data-i18n="nl-popup-sub">Get updates on new shows and releases — straight to your inbox.</p>
+
+      <!-- Form -->
+      <form id="newsletter-popup-form" action="[NEWSLETTER_ENDPOINT]" method="POST" style="display:flex; flex-direction:column; gap:0.75rem;">
+        <input type="email" name="email" required
+          style="background:rgba(255,255,255,0.04); border:1px solid rgba(229,181,71,0.3); color:#F2E6C9; padding:0.875rem 1.25rem; font-family:'Inter',sans-serif; font-size:0.875rem; outline:none; width:100%; transition:border-color 0.2s;"
+          onfocus="this.style.borderColor='#E5B547'" onblur="this.style.borderColor='rgba(229,181,71,0.3)'"
+          data-i18n-placeholder="nl-email" placeholder="Your email address" />
+        <button type="submit"
+          class="font-body font-medium"
+          style="background:#E5B547; color:#0A0A0A; padding:0.875rem 1.75rem; font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; border:none; cursor:pointer; width:100%; transition:background 0.2s;"
+          onmouseover="this.style.background='#F2E6C9'" onmouseout="this.style.background='#E5B547'"
+          onfocus="this.style.background='#F2E6C9'" onblur="this.style.background='#E5B547'"
+          data-i18n="nl-btn">Subscribe</button>
+      </form>
+
+    </div>
+  </div>
+
+  <script>
+    // Newsletter popup — fires once, 3 s after page load
+    (function () {
+      const STORAGE_KEY = 'cr-newsletter-dismissed';
+      if (localStorage.getItem(STORAGE_KEY)) return;
+
+      const overlay = document.getElementById('newsletter-popup');
+      const card    = document.getElementById('newsletter-popup-card');
+
+      function dismiss() {
+        gsap.to(card,    { y: 30, opacity: 0, duration: 0.35, ease: 'power2.in' });
+        gsap.to(overlay, { opacity: 0, duration: 0.4, delay: 0.25,
+          onComplete: () => { overlay.style.display = 'none'; }
+        });
+        localStorage.setItem(STORAGE_KEY, '1');
+      }
+
+      setTimeout(() => {
+        overlay.style.display = 'flex';
+        gsap.fromTo(overlay, { opacity: 0 }, { opacity: 1, duration: 0.4 });
+        gsap.fromTo(card,    { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power3.out' });
+      }, 3000);
+
+      document.getElementById('newsletter-popup-close').addEventListener('click', dismiss);
+      overlay.addEventListener('click', (e) => { if (e.target === overlay) dismiss(); });
+      document.getElementById('newsletter-popup-form').addEventListener('submit', () => {
+        localStorage.setItem(STORAGE_KEY, '1');
+      });
+    })();
+  </script>
+
+</body>
+</html>

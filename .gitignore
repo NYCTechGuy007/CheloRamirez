@@ -1,0 +1,9 @@
+# Dev tooling
+_dev/node_modules/
+_dev/check-script.mjs
+
+# Local dev artifacts
+temporary screenshots/
+
+# Claude local config
+.claude/
