@@ -1170,13 +1170,13 @@
 
     document.getElementById('lang-toggle').addEventListener('click', function(e) {
       e.preventDefault();
-      const current = localStorage.getItem('cr-lang') || 'en';
+      const current = localStorage.getItem('cr-lang') || 'es';
       setLanguage(current === 'en' ? 'es' : 'en');
     });
 
-    // Init saved language on load
-    const _savedLang = localStorage.getItem('cr-lang');
-    if (_savedLang === 'es') setLanguage('es');
+    // Init saved language on load — default is Spanish
+    const _savedLang = localStorage.getItem('cr-lang') || 'es';
+    setLanguage(_savedLang);
 
     // ══ Apply config.js values to all links ══
     (function applyConfig() {

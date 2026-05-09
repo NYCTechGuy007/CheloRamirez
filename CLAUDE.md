@@ -165,7 +165,7 @@ The site has a working EN/ES language toggle. Key facts for future edits:
 
 - **Translation data:** `TRANSLATIONS` object in the `<script>` block of `index.html` — two keys (`en`, `es`), each with ~45 string entries.
 - **Swap function:** `setLanguage(lang)` — iterates `[data-i18n]` (textContent), `[data-i18n-html]` (innerHTML), and `[data-i18n-placeholder]` (placeholder attr).
-- **Persistence:** `localStorage` key `'cr-lang'`; restored on every page load.
+- **Persistence:** `localStorage` key `'cr-lang'`; restored on every page load. **Default language is Spanish (`es`)** — first-time visitors land on Spanish. Only override if user has a saved `'en'` preference.
 - **Toggle UI:** `#lang-toggle` click handler; `#lang-en` and `#lang-es` spans turn gold when active.
 - **Adding new translatable text:** add a `data-i18n="key"` attribute to the element, then add the key to both `en` and `es` objects in `TRANSLATIONS`.
 
