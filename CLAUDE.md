@@ -70,10 +70,19 @@ tailwind.config = {
 ## Nav Sizing (locked)
 The nav header is ~80px tall. Do not increase any nav element without checking this constraint.
 - **Padding:** `1.4rem 2.5rem` (top/bottom × left/right)
-- **Nav links:** `1.17rem` (BIO, MUSIC, VIDEOS, GALLERY, SHOWS)
+- **Nav links:** `1.17rem` desktop / `0.95rem` tablet (letter-spacing `0.18em` desktop, `0.07em` tablet via CSS media query `768px–1023px`)
 - **Social icons:** 30px (Spotify, Apple Music, Instagram, Facebook, WhatsApp), 33px (YouTube), 29px (TikTok)
 - **EN/ES toggle:** `1.17rem`
 - **Height limiter:** CR logo (`text-3xl`, line-height `2.25rem` ≈ 36px) is the tallest element. Nothing in the nav row should exceed ~35px rendered height or the header will grow taller than 80px.
+
+### Nav responsive visibility rules
+| Viewport | Nav links | Social icons | Lang toggle | Hamburger |
+|---|---|---|---|---|
+| < 768px (phone) | hidden | hidden | hidden | visible |
+| 768–1023px (tablet) | visible | **hidden** | visible | hidden |
+| ≥ 1024px (desktop) | visible | visible (all 7) | visible | hidden |
+
+Social icons live in `hidden lg:flex` — do not move them to `hidden md:flex` or they will overflow the tablet nav. The lang toggle is outside that wrapper and uses the parent `hidden md:flex` to show at tablet. Run the tablet screenshot check after any nav changes.
 
 ## GSAP + Lenis Init Order (critical)
 ```js
@@ -142,6 +151,13 @@ Two modes — choose based on intent:
 - Deletes previous `screenshot-mobile-*` files before running
 - Saves 7 files: `screenshot-mobile-hero.png`, `screenshot-mobile-about.png`, etc.
 - Use after any layout change to verify responsiveness at 390px width
+
+**Tablet check:** `node _dev/screenshot-tablet.mjs http://localhost:3000`
+- Simulates iPad Air portrait (820×1180, deviceScaleFactor 2, touch enabled)
+- Deletes previous `screenshot-tablet-*` files before running
+- Saves 7 files: `screenshot-tablet-hero.png`, `screenshot-tablet-about.png`, etc.
+- Use after any nav or layout change to verify the tablet breakpoint (768–1024px)
+- Expected nav behavior: nav links visible, lang toggle visible, social icons hidden, no hamburger
 
 ## Brand Assets
 - Always check the `brand assets/` folder before designing. It may contain photos, logos, color guides, or style references.
