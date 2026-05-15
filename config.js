@@ -19,8 +19,8 @@ const SITE_CONFIG = {
   // ── Booking ───────────────────────────────────────────
   booking: {
     email:             'alejandro.hincapie.c@gmail.com',
-    formspreeEndpoint: '',   // e.g. https://formspree.io/f/xxxxxxxx
-    newsletterEndpoint: '',  // e.g. https://formspree.io/f/yyyyyyyy (separate Formspree form)
+    web3formsKey: 'c13d3326-7662-4205-9451-b5e401959e14',
+    newsletterEndpoint: '',  // Newsletter forms — not yet configured
   },
 
   // ── Music & Video ─────────────────────────────────────

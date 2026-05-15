@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -1204,7 +1204,10 @@
         'form-private':    'Private',
         'form-other':      'Other',
         'form-message':    'Tell us about your event *',
-        'form-submit':     'Send Request',
+        'form-submit':      'Send Request',
+        'form-submitting':  'Sending…',
+        'form-success':     "Thank you — we'll be in touch soon.",
+        'form-error':       'Something went wrong. Please try again.',
         'form-email-cta':  'Or email us directly:',
         'footer-heading':  'Join the Chelo Ramírez mailing list',
         'footer-sub':      'Sign up and stay updated on new releases and shows',
@@ -1258,7 +1261,10 @@
         'form-private':    'Privado',
         'form-other':      'Otro',
         'form-message':    'Cuéntanos sobre tu evento *',
-        'form-submit':     'Enviar Solicitud',
+        'form-submit':      'Enviar Solicitud',
+        'form-submitting':  'Enviando…',
+        'form-success':     'Gracias — nos pondremos en contacto pronto.',
+        'form-error':       'Algo salió mal. Por favor inténtalo de nuevo.',
         'form-email-cta':  'O escríbenos directamente:',
         'footer-heading':  'Únete a la lista de Chelo Ramírez',
         'footer-sub':      'Regístrate y mantente al día con nuevos lanzamientos y shows',
@@ -1331,19 +1337,67 @@
         });
       }
 
-      // Formspree — booking form
-      if (b.formspreeEndpoint) {
+      // Web3Forms — booking form
+      if (b.web3formsKey) {
         const form = document.getElementById('contact-form');
-        if (form) form.action = b.formspreeEndpoint;
+        if (form) {
+          form.action = 'https://api.web3forms.com/submit';
+          [
+            { name: 'access_key', value: b.web3formsKey },
+            { name: 'subject',    value: 'Booking Request — Chelo Ramírez' },
+          ].forEach(({ name, value }) => {
+            const inp = document.createElement('input');
+            inp.type = 'hidden'; inp.name = name; inp.value = value;
+            form.prepend(inp);
+          });
+          const bot = document.createElement('input');
+          bot.type = 'checkbox'; bot.name = 'botcheck'; bot.style.display = 'none';
+          form.prepend(bot);
+        }
       }
 
-      // Newsletter forms (strip + footer)
+      // Newsletter forms — not yet configured
       if (b.newsletterEndpoint) {
         ['newsletter-form', 'newsletter-footer-form', 'newsletter-popup-form'].forEach(id => {
           const form = document.getElementById(id);
           if (form) form.action = b.newsletterEndpoint;
         });
       }
+
+      // Booking form — AJAX submission with inline success/error feedback
+      document.getElementById('contact-form')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const btn = form.querySelector('[type="submit"]');
+        const originalText = btn.textContent;
+        const lang = localStorage.getItem('cr-lang') || 'es';
+        btn.disabled = true;
+        btn.textContent = TRANSLATIONS[lang]['form-submitting'];
+
+        let ok = false;
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { Accept: 'application/json' },
+          });
+          ok = res.ok && (await res.json()).success;
+        } catch (_) {}
+
+        if (ok) {
+          form.innerHTML = '<p class="text-center text-gold font-display italic text-2xl py-16" data-i18n="form-success"></p>';
+          setLanguage(localStorage.getItem('cr-lang') || 'es');
+        } else {
+          btn.disabled = false;
+          btn.textContent = originalText;
+          const err = document.createElement('p');
+          err.className = 'text-center text-copper mt-4 text-sm';
+          err.setAttribute('data-i18n', 'form-error');
+          form.appendChild(err);
+          setLanguage(localStorage.getItem('cr-lang') || 'es');
+          setTimeout(() => err.remove(), 5000);
+        }
+      });
 
       // Spotify embed
       if (m.spotifyEmbedSrc) {
