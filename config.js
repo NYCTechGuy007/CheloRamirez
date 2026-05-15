@@ -13,7 +13,7 @@ const SITE_CONFIG = {
     instagram:  'https://www.instagram.com/cheloramirezmusic/',
     facebook:   'https://www.facebook.com/cheloramirezmusic/',
     tiktok:     'https://www.tiktok.com/@cheloramirezmusic',
-    whatsapp:   '',   // e.g. https://wa.me/1234567890
+    whatsapp:   'https://chat.whatsapp.com/Hpr6YHdB8VX72DJheMAGIX?mode=gi_t',
   },
 
   // ── Booking ───────────────────────────────────────────
