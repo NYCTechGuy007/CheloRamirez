@@ -50,16 +50,11 @@ Always init: Lenis → `lenis.on('scroll', ScrollTrigger.update)` → `gsap.tick
 
 ## Placeholder Token Registry
 
-### Still needed (edit `index.html` directly)
-| Token | Location | How to Replace |
-|---|---|---|
-| `brand assets/photos/` | Hero bg | Choose a performance photo from this folder |
-| `[EVENT_1_DATE]` etc. | Events section | Real show dates, venues, cities |
-| Gallery images | `#gallery` | Replace placeholder `<img>` srcs with real photos |
+All visual placeholders are resolved. The one remaining gap:
 
-### Already wired via `config.js`
-Social links, media embeds, `[BOOKING_EMAIL]`, and Web3Forms key are all in `config.js` — edit there only, never hardcode in `index.html`.
-Remaining: `booking.newsletterEndpoint` — newsletter signup endpoint.
+**`booking.newsletterEndpoint`** in `config.js` — newsletter forms are rendered but submissions go nowhere until this is set.
+
+Everything else (social links, media embeds, booking email, Web3Forms key, hero photo, gallery photos, event dates) is live.
 
 ## Reference Images
 - If provided: match layout, spacing, typography, color exactly. Use `https://placehold.co/` for images. Do not improve or add to the design.
