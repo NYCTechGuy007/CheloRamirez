@@ -18,7 +18,7 @@ const SITE_CONFIG = {
 
   // ── Booking ───────────────────────────────────────────
   booking: {
-    email:             'alejandro.hincapie.c@gmail.com',
+    email:             'cheloramirezmusic@gmail.com',
     web3formsKey: 'c13d3326-7662-4205-9451-b5e401959e14',
     newsletterEndpoint: '',  // Newsletter forms — not yet configured
   },
