@@ -24,9 +24,8 @@ Full color table, brand names, and Tailwind config block: `_dev/design-system.md
 4. `#music` — Spotify embed + Apple Music button
 5. `#videos` — YouTube embed + thumbnails
 6. `#gallery` — Masonry photo grid with lightbox. Clicking any `.gallery-item` opens `#lightbox` (full-screen overlay). Visibility toggled via `.is-open` class — do not re-implement.
-7. `#events` — Upcoming shows list
-8. `#newsletter` — Slim email signup strip (between Events and Contact)
-9. `#contact` — Booking form + footer (footer contains second newsletter form)
+7. `#events` — Upcoming shows list + embedded newsletter signup strip
+8. `#contact` — Booking form + footer (footer contains second newsletter form)
 
 ## Nav Sizing (locked)
 The nav header is ~80px tall. Do not increase any nav element without checking this constraint.
@@ -54,7 +53,9 @@ All visual placeholders are resolved. The one remaining gap:
 
 **`booking.newsletterEndpoint`** in `config.js` — newsletter forms are rendered but submissions go nowhere until this is set.
 
-Everything else (social links, media embeds, booking email, Web3Forms key, hero photo, gallery photos, event dates) is live.
+Everything else is live: social links, media embeds, booking email (`cheloramirezmusic@gmail.com`), hero photo, gallery photos, event dates.
+
+**Booking form** submits via Web3Forms (AJAX). Key: `web3formsKey` in `config.js`.
 
 ## Reference Images
 - If provided: match layout, spacing, typography, color exactly. Use `https://placehold.co/` for images. Do not improve or add to the design.

@@ -277,6 +277,138 @@
     #lightbox-close:focus-visible { color: #E5B547; outline: none; }
     #lightbox-close:active { color: #F5D078; }
 
+    /* ── Legal Modals ── */
+    .legal-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 10002;
+      background: rgba(10,10,10,0.92);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      padding: 2rem 1.25rem;
+    }
+    .legal-modal.is-open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .legal-modal-inner {
+      background: #1A1410;
+      border: 1px solid rgba(229,181,71,0.15);
+      max-width: 760px;
+      width: 100%;
+      max-height: calc(100vh - 4rem);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
+      padding: 4rem;
+      position: relative;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(229,181,71,0.08);
+    }
+    .legal-modal.is-open .legal-modal-inner {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .legal-modal-inner::-webkit-scrollbar { width: 5px; }
+    .legal-modal-inner::-webkit-scrollbar-track { background: rgba(255,255,255,0.03); }
+    .legal-modal-inner::-webkit-scrollbar-thumb { background: rgba(229,181,71,0.3); border-radius: 3px; }
+    .legal-modal-inner::-webkit-scrollbar-thumb:hover { background: rgba(229,181,71,0.55); }
+    .legal-modal-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      color: #8A7A69;
+      font-size: 1.75rem;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0.25rem 0.5rem;
+      transition: color 0.2s ease;
+    }
+    .legal-modal-close:hover,
+    .legal-modal-close:focus-visible { color: #E5B547; outline: none; }
+    .legal-modal-close:active { color: #F5D078; }
+    .legal-modal h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: #F2E6C9;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+    .legal-modal-meta {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      color: #8A7A69;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.75rem;
+      border-bottom: 1px solid rgba(229,181,71,0.12);
+    }
+    .legal-modal h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #E5B547;
+      letter-spacing: -0.01em;
+      margin-top: 2.25rem;
+      margin-bottom: 0.75rem;
+    }
+    .legal-modal h4 {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #F2E6C9;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .legal-modal p {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      line-height: 1.8;
+      color: #C4B49A;
+      margin-bottom: 0.875rem;
+    }
+    .legal-modal strong { color: #F2E6C9; font-weight: 600; }
+    .legal-modal ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1rem 0;
+    }
+    .legal-modal ul li {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      line-height: 1.8;
+      color: #C4B49A;
+      padding-left: 1.5rem;
+      position: relative;
+      margin-bottom: 0.5rem;
+    }
+    .legal-modal ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: rgba(229,181,71,0.45);
+    }
+    .legal-modal a { color: #E5B547; text-decoration: none; transition: color 0.2s ease; }
+    .legal-modal a:hover { color: #F5D078; }
+    @media (max-width: 640px) {
+      .legal-modal { padding: 1rem 0.5rem; }
+      .legal-modal-inner { padding: 2.5rem 1.5rem; max-height: calc(100vh - 2rem); }
+      .legal-modal h2 { font-size: 1.75rem; }
+    }
+
     /* ── Events ── */
     .event-row {
       display: grid;
@@ -327,7 +459,7 @@
       <!-- Logo monogram -->
       <!-- LEFT: Logo + nav links -->
       <div class="flex items-center gap-6">
-        <a href="#hero" class="font-display text-3xl font-bold text-cream hover:text-gold transition-colors flex-shrink-0" style="letter-spacing:0.08em;">CR</a>
+        <a href="#hero" class="font-display text-3xl font-bold text-cream hover:text-gold transition-colors flex-shrink-0" style="letter-spacing:0.08em;">CHR</a>
 
         <div class="hidden md:flex items-center gap-3 lg:gap-5">
           <a href="#about"   class="nav-link" data-i18n="nav-about">Bio</a>
@@ -542,26 +674,19 @@
           </h2>
 
           <div id="about-bio-en" class="reveal-up text-muted mb-10 leading-relaxed" style="font-size:0.95rem; max-width:52ch;" data-i18n-html="about-bio">
-            <p class="mb-5">Chelo Ramírez is a Latin musician from Medellin, Colombia, who specializes in regional Mexican music. Chelo Ramírez has established a reputation for himself in the Latin music sector over the course of a long career, enthralling audiences with his heartfelt performances and distinctive style.</p>
-            <p class="mb-5">Traditional Mexican music and contemporary Latin rhythms are combined in Chelo Ramírez's music to create a unique sound that is both recognizable and original. His songs are known for their upbeat energy, contagious beats, and heartfelt lyrics, which make them enticing to Latin music listeners around. Chelo Ramírez has established himself as one of the most revered and in-demand artists in the genre thanks to his strong voice and charismatic stage presence.</p>
-            <p>Chelo Ramírez's love of music is evident in every note he plays, whether he is performing live or in the studio. He has become a well-liked figure in the Latin music community as a result of his commitment to his art and affection for his fans, and his music continues to uplift and inspire audiences all around the world. Chelo Ramírez is a true pioneer of regional Mexican music with his distinctive fusion of traditional and contemporary sounds, and his music is proof of the ability of Latin music to inspire and unify people.</p>
+            <p class="mb-5">Chelo Ramirez es un músico latino, cantautor e intérprete del acordeón, originario de Medellin, Colombia, especializado en música regional mexicana, cumbia y música popular. A lo largo de una extensa carrera, se ha forjado una sólida reputación en el mundo de la música latina, cautivando al público con sus interpretaciones emotivas y su estilo inconfundible.</p>
+            <p class="mb-5">Su música fusiona la tradición mexicana con los ritmos latinos, vallenatos y contemporáneos, creando un sonido único que es a la vez familiar y original. Sus canciones destacan por su energía vibrante, sus ritmos contagiosos y sus letras emotivas, que seducen a los amantes de la música latina alrededor del mundo. Gracias a su poderosa voz y su presencia escénica carismática, Chelo Ramírez se ha consolidado como uno de los artistas más admirados y solicitados del género.</p>
+            <p>La pasión de Chelo Ramirez por la música se refleja en cada nota que interpreta, ya sea en el escenario o en el estudio. Su entrega al arte y el cariño por sus seguidores lo han convertido en una figura querida dentro de la comunidad latina, y su música continúa elevando e inspirando a audiencias de todo el mundo. Con su singular fusión de sonidos tradicionales y contemporáneos, es un verdadero pionero de la música latina, y su obra es prueba del poder de la música para inspirar y unir a las personas.</p>
           </div>
 
           <!-- Stats row -->
-          <div id="about-stats" class="reveal-up grid grid-cols-3 gap-6 pt-8" style="border-top:1px solid rgba(229,181,71,0.2);">
-            <div class="text-center">
-              <div class="stat-num" data-target="15">0</div>
-              <div class="text-gold font-display italic" style="font-size:1.5rem;">+</div>
-              <p class="text-muted mt-1" style="font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase;" data-i18n="stat-years">Years</p>
-            </div>
+          <div id="about-stats" class="reveal-up grid grid-cols-2 gap-6 pt-8" style="border-top:1px solid rgba(229,181,71,0.2);">
             <div class="text-center">
               <div class="stat-num" data-target="200">0</div>
-              <div class="text-gold font-display italic" style="font-size:1.5rem;">+</div>
               <p class="text-muted mt-1" style="font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase;" data-i18n="stat-shows">Shows</p>
             </div>
             <div class="text-center">
-              <div class="stat-num" data-target="10">0</div>
-              <div class="text-gold font-display italic" style="font-size:1.5rem;">+</div>
+              <div class="stat-num" data-target="4">0</div>
               <p class="text-muted mt-1" style="font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase;" data-i18n="stat-countries">Countries</p>
             </div>
           </div>
@@ -765,6 +890,79 @@
 
       </div>
 
+      <!-- Past Performances -->
+      <div id="past-performances" class="reveal-up" style="margin-top:4rem; padding-top:3rem; border-top:1px solid rgba(229,181,71,0.15);">
+
+        <h3 class="font-display font-bold text-cream" style="font-size:clamp(1.6rem,3vw,2.4rem); letter-spacing:-0.01em; margin-bottom:3rem;" data-i18n="past-heading">Donde Hemos Tocado</h3>
+
+        <!-- Internacional -->
+        <div style="margin-bottom:3rem;">
+          <p class="text-gold" style="font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; margin-bottom:0.75rem;" data-i18n="past-intl-label">Internacional</p>
+          <div style="height:1px; background:rgba(229,181,71,0.18); margin-bottom:1.5rem;"></div>
+          <div class="grid grid-cols-2 gap-x-12 gap-y-5">
+            <div>
+              <p class="font-display text-cream" style="font-size:1.25rem; line-height:1.15;">Miami</p>
+              <p class="text-muted" style="font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; margin-top:0.2rem;">Florida</p>
+            </div>
+            <div>
+              <p class="font-display text-cream" style="font-size:1.25rem; line-height:1.15;">Boston</p>
+              <p class="text-muted" style="font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; margin-top:0.2rem;">Massachusetts</p>
+            </div>
+            <div>
+              <p class="font-display text-cream" style="font-size:1.25rem; line-height:1.15;">Monterrey</p>
+              <p class="text-muted" style="font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; margin-top:0.2rem;">México</p>
+            </div>
+            <div>
+              <p class="font-display text-cream" style="font-size:1.25rem; line-height:1.15;">Ciudad de México</p>
+              <p class="text-muted" style="font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; margin-top:0.2rem;">México</p>
+            </div>
+            <div>
+              <p class="font-display text-cream" style="font-size:1.25rem; line-height:1.15;">Aguascalientes</p>
+              <p class="text-muted" style="font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; margin-top:0.2rem;">México</p>
+            </div>
+            <div>
+              <p class="font-display text-cream" style="font-size:1.25rem; line-height:1.15;">Estadio Atahualpa</p>
+              <p class="text-muted" style="font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; margin-top:0.2rem;">Ecuador</p>
+            </div>
+            <div>
+              <p class="font-display text-cream" style="font-size:1.25rem; line-height:1.15;">Loja · Catamayo</p>
+              <p class="text-muted" style="font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; margin-top:0.2rem;">Ecuador</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Antioquia -->
+        <div>
+          <p class="text-gold" style="font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; margin-bottom:0.75rem;" data-i18n="past-antioquia-label">Antioquia</p>
+          <div style="height:1px; background:rgba(229,181,71,0.18); margin-bottom:1.5rem;"></div>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-3">
+            <p class="font-display text-cream" style="font-size:1.1rem; line-height:1.3;">Angelópolis</p>
+            <p class="font-display text-cream" style="font-size:1.1rem; line-height:1.3;">Armenia Mantequilla</p>
+            <p class="font-display text-cream" style="font-size:1.1rem; line-height:1.3;">Ciudad Bolívar</p>
+            <p class="font-display text-cream" style="font-size:1.1rem; line-height:1.3;">Concepción</p>
+            <p class="font-display text-cream" style="font-size:1.1rem; line-height:1.3;">Dabeiba</p>
+            <p class="font-display text-cream" style="font-size:1.1rem; line-height:1.3;">El Santuario</p>
+            <p class="font-display text-cream" style="font-size:1.1rem; line-height:1.3;">Entrerríos</p>
+            <p class="font-display text-cream" style="font-size:1.1rem; line-height:1.3;">Frontino</p>
+            <p class="font-display text-cream" style="font-size:1.1rem; line-height:1.3;">Heliconia</p>
+            <p class="font-display text-cream" style="font-size:1.1rem; line-height:1.3;">Hispania</p>
+            <p class="font-display text-cream" style="font-size:1.1rem; line-height:1.3;">Ituango</p>
+            <p class="font-display text-cream" style="font-size:1.1rem; line-height:1.3;">Liborina</p>
+            <p class="font-display text-cream" style="font-size:1.1rem; line-height:1.3;">Medellín</p>
+            <p class="font-display text-cream" style="font-size:1.1rem; line-height:1.3;">Mutatá</p>
+            <p class="font-display text-cream" style="font-size:1.1rem; line-height:1.3;">Nariño</p>
+            <p class="font-display text-cream" style="font-size:1.1rem; line-height:1.3;">Puerto Triunfo</p>
+            <p class="font-display text-cream" style="font-size:1.1rem; line-height:1.3;">Sabaneta</p>
+            <p class="font-display text-cream" style="font-size:1.1rem; line-height:1.3;">San Antonio de Pereira</p>
+            <p class="font-display text-cream" style="font-size:1.1rem; line-height:1.3;">San Luis</p>
+            <p class="font-display text-cream" style="font-size:1.1rem; line-height:1.3;">San Roque</p>
+            <p class="font-display text-cream" style="font-size:1.1rem; line-height:1.3;">Tarso</p>
+            <p class="font-display text-cream" style="font-size:1.1rem; line-height:1.3;">Turbo</p>
+          </div>
+        </div>
+
+      </div>
+
       <!-- Newsletter strip merged into Shows section -->
       <div id="newsletter" style="margin-top:4rem; padding-top:3rem; border-top:1px solid rgba(229,181,71,0.12);">
         <div class="flex flex-col md:flex-row items-center justify-between gap-10">
@@ -808,7 +1006,7 @@
           Book a Show
         </p>
         <h2 id="contact-heading" class="reveal-up font-display font-bold text-cream mb-6" style="font-size: clamp(2.8rem, 7vw, 5rem); line-height:0.92; letter-spacing:-0.01em;" data-i18n-html="contact-heading">
-          Bring the Mariachi<br /><em class="text-gold italic">to Your Event</em>
+          Bring the Mariachelo<br /><em class="text-gold italic">to Your Event</em>
         </h2>
         <p id="contact-sub" class="reveal-up text-muted mx-auto leading-relaxed" style="font-size:0.9rem; max-width:44ch;" data-i18n="contact-sub">
           Wedding, festival, corporate event, or private show? Fill out the form and we'll reply within 24 hours.
@@ -917,13 +1115,13 @@
 
       <!-- Legal links -->
       <div style="margin-top:0.875rem; display:flex; align-items:center; justify-content:center; gap:1.5rem;">
-        <a href="#" class="font-body text-muted"
+        <a href="#" onclick="event.preventDefault(); openLegalModal('privacy-modal');" class="font-body text-muted"
           style="font-size:0.6rem; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; transition:color 0.2s;"
           onmouseover="this.style.color='#E5B547'" onmouseout="this.style.color='#8A7A69'"
           onfocus="this.style.color='#E5B547'" onblur="this.style.color='#8A7A69'"
           data-i18n="footer-privacy">Privacy Policy</a>
         <span style="color:rgba(138,122,105,0.35); font-size:0.6rem;">·</span>
-        <a href="#" class="font-body text-muted"
+        <a href="#" onclick="event.preventDefault(); openLegalModal('terms-modal');" class="font-body text-muted"
           style="font-size:0.6rem; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; transition:color 0.2s;"
           onmouseover="this.style.color='#E5B547'" onmouseout="this.style.color='#8A7A69'"
           onfocus="this.style.color='#E5B547'" onblur="this.style.color='#8A7A69'"
@@ -1053,7 +1251,8 @@
         onEnter: () => {
           gsap.to({ val: 0 }, {
             val: target, duration: 1.8, ease: 'power2.out',
-            onUpdate: function() { el.textContent = Math.round(this.targets()[0].val); }
+            onUpdate: function() { el.textContent = Math.round(this.targets()[0].val); },
+            onComplete: function() { if (target === 200) el.textContent = '200+'; }
           });
         }
       });
@@ -1136,7 +1335,7 @@
         'hero-sub':        'Mariachi · Regional Mexican Music · Colombia',
         'about-label':     'About',
         'about-heading':   'A Mariachi<br /><em style="font-style:italic; color:#E5B547;">from the Heart</em>',
-        'about-bio':       '<p class="mb-5">Chelo Ramírez is a Latin musician from Medellin, Colombia, who specializes in regional Mexican music. Chelo Ramírez has established a reputation for himself in the Latin music sector over the course of a long career, enthralling audiences with his heartfelt performances and distinctive style.</p><p class="mb-5">Traditional Mexican music and contemporary Latin rhythms are combined in Chelo Ramírez&rsquo;s music to create a unique sound that is both recognizable and original. His songs are known for their upbeat energy, contagious beats, and heartfelt lyrics, which make them enticing to Latin music listeners around. Chelo Ramírez has established himself as one of the most revered and in-demand artists in the genre thanks to his strong voice and charismatic stage presence.</p><p>Chelo Ramírez&rsquo;s love of music is evident in every note he plays, whether he is performing live or in the studio. He has become a well-liked figure in the Latin music community as a result of his commitment to his art and affection for his fans, and his music continues to uplift and inspire audiences all around the world. Chelo Ramírez is a true pioneer of regional Mexican music with his distinctive fusion of traditional and contemporary sounds, and his music is proof of the ability of Latin music to inspire and unify people.</p>',
+        'about-bio':       '<p class="mb-5">Chelo Ramirez is a Latin musician, singer-songwriter and accordion player, originally from Medellín, Colombia, specializing in regional Mexican music, cumbia, and popular music. Over the course of an extensive career, he has built a solid reputation in the Latin music world, captivating audiences with his heartfelt performances and unmistakable style.</p><p class="mb-5">His music blends Mexican tradition with Latin, vallenato, and contemporary rhythms, creating a unique sound that is both familiar and original. His songs stand out for their vibrant energy, infectious beats, and emotional lyrics, which captivate Latin music lovers around the world. Thanks to his powerful voice and charismatic stage presence, Chelo Ramírez has established himself as one of the most admired and sought-after artists in the genre.</p><p>Chelo Ramirez&rsquo;s passion for music is reflected in every note he performs, whether on stage or in the studio. His dedication to his art and his love for his fans have made him a beloved figure within the Latin community, and his music continues to uplift and inspire audiences around the world. With his unique fusion of traditional and contemporary sounds, he is a true pioneer of Latin music, and his work is proof of the power of music to inspire and unite people.</p>',
         'stat-years':      'Years',
         'stat-shows':      'Shows',
         'stat-countries':  'Countries',
@@ -1151,13 +1350,16 @@
         'events-heading':  'Upcoming<br /><em class="text-gold italic">Shows</em>',
         'events-book':     'Book',
         'events-tickets':  'Tickets',
+        'past-heading':         "Where We've Played",
+        'past-intl-label':      'International',
+        'past-antioquia-label': 'Antioquia',
         'nl-label':        'Stay in the Loop',
         'nl-heading':      'New shows. New music.<br /><em class="text-gold" style="font-style:italic;">First to know.</em>',
         'nl-email':        'Your email address',
         'nl-btn':          'Subscribe',
         'nl-popup-sub':    'Get updates on new shows and releases — straight to your inbox.',
         'contact-label':   'Book a Show',
-        'contact-heading': 'Bring the Mariachi<br /><em class="text-gold italic">to Your Event</em>',
+        'contact-heading': 'Bring the Mariachelo<br /><em class="text-gold italic">to Your Event</em>',
         'contact-sub':     "Wedding, festival, corporate event, or private show? Fill out the form and we'll reply within 24 hours.",
         'form-name':       'Name *',
         'form-email':      'Email *',
@@ -1193,7 +1395,7 @@
         'hero-sub':        'Mariachi · Música Regional Mexicana · Colombia',
         'about-label':     'Acerca de',
         'about-heading':   'Un Mariachi<br /><em style="font-style:italic; color:#E5B547;">del Corazón</em>',
-        'about-bio':       '<p class="mb-5">Chelo Ramírez es un músico latino originario de Medellín, Colombia, especializado en música regional mexicana. A lo largo de una extensa carrera, se ha forjado una sólida reputación en el mundo de la música latina, cautivando al público con sus interpretaciones emotivas y su estilo inconfundible.</p><p class="mb-5">Su música fusiona la tradición mexicana con los ritmos latinos contemporáneos, creando un sonido único que es a la vez familiar y original. Sus canciones destacan por su energía vibrante, sus ritmos contagiosos y sus letras emotivas, que seducen a los amantes de la música latina alrededor del mundo. Gracias a su poderosa voz y su presencia escénica carismática, Chelo Ramírez se ha consolidado como uno de los artistas más admirados y solicitados del género.</p><p>La pasión de Chelo Ramírez por la música se refleja en cada nota que interpreta, ya sea en el escenario o en el estudio. Su entrega al arte y el cariño por sus seguidores lo han convertido en una figura querida dentro de la comunidad latina, y su música continúa elevando e inspirando a audiencias de todo el mundo. Con su singular fusión de sonidos tradicionales y contemporáneos, es un verdadero pionero de la música regional mexicana, y su obra es prueba del poder de la música latina para inspirar y unir a las personas.</p>',
+        'about-bio':       '<p class="mb-5">Chelo Ramirez es un músico latino, cantautor e intérprete del acordeón, originario de Medellin, Colombia, especializado en música regional mexicana, cumbia y música popular. A lo largo de una extensa carrera, se ha forjado una sólida reputación en el mundo de la música latina, cautivando al público con sus interpretaciones emotivas y su estilo inconfundible.</p><p class="mb-5">Su música fusiona la tradición mexicana con los ritmos latinos, vallenatos y contemporáneos, creando un sonido único que es a la vez familiar y original. Sus canciones destacan por su energía vibrante, sus ritmos contagiosos y sus letras emotivas, que seducen a los amantes de la música latina alrededor del mundo. Gracias a su poderosa voz y su presencia escénica carismática, Chelo Ramírez se ha consolidado como uno de los artistas más admirados y solicitados del género.</p><p>La pasión de Chelo Ramirez por la música se refleja en cada nota que interpreta, ya sea en el escenario o en el estudio. Su entrega al arte y el cariño por sus seguidores lo han convertido en una figura querida dentro de la comunidad latina, y su música continúa elevando e inspirando a audiencias de todo el mundo. Con su singular fusión de sonidos tradicionales y contemporáneos, es un verdadero pionero de la música latina, y su obra es prueba del poder de la música para inspirar y unir a las personas.</p>',
         'stat-years':      'Años',
         'stat-shows':      'Shows',
         'stat-countries':  'Países',
@@ -1208,13 +1410,16 @@
         'events-heading':  'Próximos<br /><em class="text-gold italic">Conciertos</em>',
         'events-book':     'Reservar',
         'events-tickets':  'Boletos',
+        'past-heading':         'Donde Hemos Tocado',
+        'past-intl-label':      'Internacional',
+        'past-antioquia-label': 'Antioquia',
         'nl-label':        'Mantente Informado',
         'nl-heading':      'Nuevos shows. Nueva música.<br /><em class="text-gold" style="font-style:italic;">Sé el primero en saber.</em>',
         'nl-email':        'Tu correo electrónico',
         'nl-btn':          'Suscribirse',
         'nl-popup-sub':    'Recibe novedades sobre shows y lanzamientos directo a tu correo.',
         'contact-label':   'Reservar un Show',
-        'contact-heading': 'Trae el Mariachi<br /><em class="text-gold italic">a Tu Evento</em>',
+        'contact-heading': 'Trae el Mariachelo<br /><em class="text-gold italic">a Tu Evento</em>',
         'contact-sub':     '¿Boda, festival, evento corporativo o show privado? Completa el formulario y te respondemos en 24 horas.',
         'form-name':       'Nombre *',
         'form-email':      'Correo *',
@@ -1511,6 +1716,336 @@
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
       });
+    })();
+  </script>
+
+  <!-- ══════════════════════════════════════════
+       PRIVACY POLICY MODAL
+  ══════════════════════════════════════════ -->
+  <div id="privacy-modal" class="legal-modal" role="dialog" aria-modal="true" aria-labelledby="privacy-modal-title">
+    <div class="legal-modal-inner">
+      <button class="legal-modal-close" aria-label="Close privacy policy">&times;</button>
+
+      <h2 id="privacy-modal-title">Privacy Policy</h2>
+      <p class="legal-modal-meta">Effective Date: October 22, 2026 &nbsp;·&nbsp; Last Updated: October 22, 2026</p>
+
+      <h3>1. Introduction</h3>
+      <p>This Privacy Policy describes how Chelo Ramirez Company ("Chelo Ramirez," "we," "us," or "our"), as the business for the recording artist Chelo Ramírez, collects, uses, and protects information when you visit the official Chelo Ramírez website (the "Site") and subscribe to our email newsletter.</p>
+      <p>We are committed to protecting the privacy of our fans across the United States, Mexico, Colombia, and other countries where Chelo Ramírez performs and engages with audiences. This Privacy Policy is designed to comply with applicable data protection laws, including the General Data Protection Regulation (GDPR) for visitors from the European Economic Area, the California Consumer Privacy Act as amended by the California Privacy Rights Act (CCPA/CPRA), Mexico's Federal Law on the Protection of Personal Data Held by Private Parties (LFPDPPP), and Colombia's Statutory Law 1581 of 2012 on the Protection of Personal Data.</p>
+      <p>By using the Site or subscribing to our newsletter, you acknowledge that you have read and understood this Privacy Policy.</p>
+
+      <h3>2. Information We Collect</h3>
+      <h4>2.1 Information You Provide Directly</h4>
+      <p>The Site is informational in nature and does not require account creation. We collect personal information only when you voluntarily provide it through one of the following channels:</p>
+      <ul>
+        <li><strong>Newsletter Subscription:</strong> When you subscribe to the Chelo Ramírez email newsletter, we collect your email address.</li>
+        <li><strong>Contact Form:</strong> When you submit a message through our contact form, we collect any information you choose to include, such as your name, email address, and the content of your message.</li>
+      </ul>
+      <h4>2.2 Information Collected Automatically</h4>
+      <p>When you visit the Site, certain information may be collected automatically by our hosting provider and third-party services, including:</p>
+      <ul>
+        <li>IP address and general geographic location (country or region level)</li>
+        <li>Browser type, operating system, and device identifiers</li>
+        <li>Pages visited, time spent on pages, and referring website</li>
+        <li>Date and time of your visit</li>
+      </ul>
+      <p>This information is collected for security, performance, and basic analytics purposes.</p>
+      <h4>2.3 Information from Embedded Content</h4>
+      <p>The Site embeds video content hosted on YouTube. When you interact with embedded YouTube videos, YouTube and its parent company, Google LLC, may collect information about your interaction in accordance with their own privacy policies. We do not control and are not responsible for the data practices of YouTube or Google.</p>
+
+      <h3>3. How We Use Your Information</h3>
+      <p>We use the information we collect for the following purposes:</p>
+      <ul>
+        <li><strong>To send you the newsletter:</strong> We use your email address to send you periodic updates about Chelo Ramírez, including new music releases, tour announcements, exclusive content, and related communications.</li>
+        <li><strong>To respond to inquiries:</strong> We use the information submitted through the contact form to respond to your questions, comments, or business inquiries.</li>
+        <li><strong>To operate and improve the Site:</strong> We use automatically collected information to maintain the security of the Site, analyze traffic patterns, and improve user experience.</li>
+        <li><strong>To comply with legal obligations:</strong> We may process your information as required to comply with applicable laws, regulations, or legal requests.</li>
+      </ul>
+      <p>We do not sell, rent, or trade your personal information to third parties for their marketing purposes.</p>
+
+      <h3>4. Legal Basis for Processing (EEA and UK Visitors)</h3>
+      <p>If you are located in the European Economic Area, the United Kingdom, or Switzerland, our processing of your personal information is governed by the EU General Data Protection Regulation (GDPR), the UK General Data Protection Regulation (UK GDPR) as supplemented by the Data Protection Act 2018, or the Swiss Federal Act on Data Protection (FADP), as applicable. Our legal basis for processing depends on the specific information and the context in which we collect it:</p>
+      <ul>
+        <li><strong>Consent:</strong> We rely on your consent when you subscribe to our newsletter. You may withdraw your consent at any time by unsubscribing.</li>
+        <li><strong>Legitimate interests:</strong> We process automatically collected information based on our legitimate interest in operating, securing, and improving the Site.</li>
+        <li><strong>Legal obligation:</strong> We process information when required to comply with applicable law.</li>
+      </ul>
+
+      <h3>5. Third-Party Service Providers</h3>
+      <p>We rely on the following third-party service providers to operate the Site and deliver our newsletter. Each provider processes your information in accordance with its own privacy policy:</p>
+      <h4>5.1 Kit (Email Newsletter)</h4>
+      <p>Our email newsletter is delivered through Kit (kit.com), operated by Kit Inc. When you subscribe, your email address is stored and processed by Kit for the purpose of delivering newsletter communications. Kit's privacy practices are governed by their privacy policy, available at <a href="https://kit.com/privacy" target="_blank" rel="noopener noreferrer">https://kit.com/privacy</a>.</p>
+      <h4>5.2 Web3Forms (Contact Form)</h4>
+      <p>Our contact form is powered by Web3Forms (web3forms.com). When you submit the form, the information you provide is transmitted through Web3Forms' service to reach our team. Web3Forms' privacy practices are governed by their privacy policy, available at <a href="https://web3forms.com/privacy" target="_blank" rel="noopener noreferrer">https://web3forms.com/privacy</a>.</p>
+      <h4>5.3 YouTube (Embedded Video)</h4>
+      <p>Videos on the Site are hosted and embedded from YouTube, operated by Google LLC. YouTube may set cookies and collect data about your interaction with embedded videos. Google's privacy practices are governed by the Google Privacy Policy, available at <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a>.</p>
+      <p>These third-party providers act as independent data controllers or processors with respect to the information they collect. We encourage you to review their privacy policies.</p>
+
+      <h3>6. Cookies and Similar Technologies</h3>
+      <p>The Site and the embedded YouTube content may use cookies and similar tracking technologies. Cookies are small text files stored on your device that help websites function and collect information about your activity.</p>
+      <p>You can control cookies through your browser settings, including blocking or deleting them. Please note that disabling cookies may affect certain features of the Site, particularly embedded video playback.</p>
+
+      <h3>7. Data Retention</h3>
+      <p>We retain your personal information only for as long as necessary to fulfill the purposes for which it was collected:</p>
+      <ul>
+        <li><strong>Newsletter subscribers:</strong> We retain your email address for as long as you remain subscribed. If you unsubscribe, your email address will be removed from our active mailing list, though it may be retained in suppression records to ensure we honor your unsubscribe request.</li>
+        <li><strong>Contact form submissions:</strong> We retain contact form messages for the period necessary to respond to your inquiry and for a reasonable period thereafter for recordkeeping purposes.</li>
+        <li><strong>Automatically collected data:</strong> Server logs and analytics data are typically retained for a limited period in accordance with our hosting provider's retention practices.</li>
+      </ul>
+
+      <h3>8. International Data Transfers</h3>
+      <p>Chelo Ramirez Company is based in Colombia, and our service providers may store and process your information in the United States or other countries. If you are located outside the United States, please be aware that your information may be transferred to, stored, and processed in countries whose data protection laws may differ from those of your country of residence.</p>
+      <p>Where required by applicable law, we rely on appropriate safeguards for such transfers, such as the European Commission's Standard Contractual Clauses, the UK International Data Transfer Agreement or UK Addendum to the EU SCCs, or equivalent mechanisms recognized under Swiss law.</p>
+
+      <h3>9. Your Privacy Rights</h3>
+      <h4>9.1 General Rights</h4>
+      <ul>
+        <li><strong>Access:</strong> Request a copy of the personal information we hold about you.</li>
+        <li><strong>Correction:</strong> Request that we correct inaccurate or incomplete information.</li>
+        <li><strong>Deletion:</strong> Request that we delete your personal information, subject to certain legal exceptions.</li>
+        <li><strong>Withdraw Consent:</strong> Withdraw your consent to receive newsletter communications at any time by clicking the unsubscribe link in any newsletter email.</li>
+        <li><strong>Object or Restrict:</strong> Object to or request restriction of certain processing activities.</li>
+      </ul>
+      <h4>9.2 European Economic Area, United Kingdom, and Switzerland (GDPR / UK GDPR / FADP)</h4>
+      <p>If you are located in the European Economic Area, the United Kingdom, or Switzerland, in addition to the general rights listed in Section 9.1, you have the following rights under the GDPR, the UK GDPR, or the Swiss FADP, as applicable:</p>
+      <ul>
+        <li><strong>Right of Access:</strong> Obtain confirmation of whether we process your personal data and request a copy of that data.</li>
+        <li><strong>Right to Rectification:</strong> Request correction of inaccurate or incomplete personal data.</li>
+        <li><strong>Right to Erasure ("Right to Be Forgotten"):</strong> Request deletion of your personal data under certain conditions.</li>
+        <li><strong>Right to Restriction of Processing:</strong> Request that we limit how we use your personal data in specified circumstances.</li>
+        <li><strong>Right to Data Portability:</strong> Receive personal data you provided to us in a structured, commonly used, machine-readable format, and request transmission to another controller where technically feasible.</li>
+        <li><strong>Right to Object:</strong> Object to processing based on legitimate interests, and object at any time to processing of your personal data for direct marketing purposes.</li>
+        <li><strong>Right to Withdraw Consent:</strong> Where processing is based on consent, withdraw your consent at any time without affecting the lawfulness of processing carried out before the withdrawal.</li>
+      </ul>
+      <p>You also have the right to lodge a complaint with the data protection supervisory authority in your country of residence, place of work, or place of the alleged infringement. The lead authorities are:</p>
+      <ul>
+        <li><strong>EEA:</strong> Your national data protection authority. A directory is maintained by the European Data Protection Board at <a href="https://edpb.europa.eu" target="_blank" rel="noopener noreferrer">https://edpb.europa.eu</a>.</li>
+        <li><strong>United Kingdom:</strong> The Information Commissioner's Office (ICO), <a href="https://ico.org.uk" target="_blank" rel="noopener noreferrer">https://ico.org.uk</a>.</li>
+        <li><strong>Switzerland:</strong> The Federal Data Protection and Information Commissioner (FDPIC), <a href="https://www.edoeb.admin.ch" target="_blank" rel="noopener noreferrer">https://www.edoeb.admin.ch</a>.</li>
+      </ul>
+      <p>Chelo Ramirez Company is based in Colombia. If our processing is subject to the GDPR or UK GDPR and a representative is required under Article 27, we will appoint and identify such a representative as required by applicable law.</p>
+      <h4>9.3 California (CCPA/CPRA)</h4>
+      <p>This section provides additional disclosures required by the California Consumer Privacy Act, as amended by the California Privacy Rights Act (collectively, the "CCPA/CPRA"), for California residents.</p>
+      <p><strong>Categories of Personal Information Collected</strong></p>
+      <p>In the preceding twelve (12) months, we have collected the following categories of personal information, as defined under the CCPA/CPRA:</p>
+      <ul>
+        <li><strong>Identifiers:</strong> Email address (newsletter signup and contact form), name (contact form, if provided), and IP address (collected automatically).</li>
+        <li><strong>Internet or Other Electronic Network Activity Information:</strong> Browsing information, pages visited, referring website, and interactions with embedded YouTube content.</li>
+        <li><strong>Geolocation Data:</strong> General geographic location (country or region level) derived from IP address.</li>
+        <li><strong>Commercial Information:</strong> The content of any message you submit through our contact form, to the extent it relates to inquiries about Chelo Ramírez.</li>
+      </ul>
+      <p>We do not collect sensitive personal information as defined under the CPRA (such as government identifiers, financial account information, precise geolocation, racial or ethnic origin, religious beliefs, genetic data, or biometric information).</p>
+      <p><strong>Sources of Personal Information</strong></p>
+      <ul>
+        <li>Directly from you, when you subscribe to the newsletter or submit a contact form.</li>
+        <li>Automatically from your device and browser when you visit the Site or interact with embedded content.</li>
+      </ul>
+      <p><strong>Business or Commercial Purposes for Collection</strong></p>
+      <p>We collect personal information for the purposes described in Section 3 of this Privacy Policy, including delivering the newsletter, responding to inquiries, operating and securing the Site, and complying with legal obligations.</p>
+      <p><strong>Categories of Third Parties with Whom Information Is Disclosed</strong></p>
+      <p>We disclose personal information only to service providers acting on our behalf, as described in Section 5: Kit (for newsletter delivery), Web3Forms (for contact form transmission), and Google LLC / YouTube (for embedded video hosting). These service providers are contractually limited in how they may use the information they receive.</p>
+      <p><strong>Sale and Sharing of Personal Information</strong></p>
+      <p>We do not sell personal information for monetary or other valuable consideration, and we do not share personal information for cross-context behavioral advertising, as those terms are defined under the CCPA/CPRA. We have not sold or shared personal information in the preceding twelve (12) months and have no actual knowledge of selling or sharing the personal information of consumers under sixteen (16) years of age.</p>
+      <p><strong>Retention</strong></p>
+      <p>We retain each category of personal information only for as long as reasonably necessary to fulfill the purposes for which it was collected, as described in Section 7 (Data Retention). We do not retain personal information for longer than is reasonably necessary in light of the disclosed purposes.</p>
+      <p><strong>Your California Privacy Rights</strong></p>
+      <p>As a California resident, you have the following rights:</p>
+      <ul>
+        <li><strong>Right to Know:</strong> The right to request that we disclose the categories and specific pieces of personal information we have collected about you, the categories of sources, the business or commercial purposes for collection, and the categories of third parties with whom we disclose personal information.</li>
+        <li><strong>Right to Delete:</strong> The right to request deletion of personal information we have collected about you, subject to certain legal exceptions.</li>
+        <li><strong>Right to Correct:</strong> The right to request correction of inaccurate personal information we maintain about you.</li>
+        <li><strong>Right to Opt Out of Sale or Sharing:</strong> As stated above, we do not sell or share personal information. If our practices change, we will update this Privacy Policy and provide an appropriate opt-out mechanism, including a "Do Not Sell or Share My Personal Information" link on the Site.</li>
+        <li><strong>Right to Limit Use of Sensitive Personal Information:</strong> As stated above, we do not collect sensitive personal information. If our practices change, we will provide an appropriate mechanism to exercise this right.</li>
+        <li><strong>Right to Non-Discrimination:</strong> We will not discriminate against you for exercising any of your CCPA/CPRA rights. We will not deny you services, charge you different prices, or provide you with a different level or quality of service because you exercised your rights.</li>
+      </ul>
+      <p><strong>How to Submit a Request</strong></p>
+      <p>To exercise your California privacy rights, please contact us using the information in Section 12. We will need to verify your identity before processing your request, which may include confirming the email address associated with your subscription or contact form submission. We will respond to verifiable consumer requests within forty-five (45) days, with the possibility of an additional forty-five (45) day extension as permitted by law.</p>
+      <p><strong>Authorized Agents</strong></p>
+      <p>You may designate an authorized agent to submit a request on your behalf. The authorized agent must provide written permission signed by you, and we may require you to verify your identity directly with us before fulfilling the request.</p>
+      <p><strong>Notice at Collection</strong></p>
+      <p>At or before the point of collection (for example, at the newsletter signup form and contact form), the Site provides a notice identifying the categories of personal information collected and the purposes for which the information will be used, with a link to this Privacy Policy.</p>
+      <h4>9.4 California Online Privacy Protection Act (CalOPPA)</h4>
+      <p>In addition to the rights described in Section 9.3, this section provides disclosures required by the California Online Privacy Protection Act (CalOPPA) for any operator of a commercial website that collects personally identifiable information from California residents.</p>
+      <p><strong>Do Not Track Signals</strong></p>
+      <p>Some web browsers offer a "Do Not Track" ("DNT") signal that allows users to indicate a preference not to be tracked across websites. Because there is no commonly accepted industry or legal standard for how to interpret or respond to DNT signals, the Site does not currently respond to DNT signals. We will update this disclosure if a generally accepted standard for DNT signals is adopted.</p>
+      <p><strong>Third-Party Tracking</strong></p>
+      <p>Third parties, including operators of embedded content such as YouTube (Google LLC), may collect personally identifiable information about your online activities over time and across different websites when you use the Site. We do not control the tracking practices of these third parties and do not authorize them to collect such information for their own use beyond what is described in Section 5 of this Privacy Policy. Their response to DNT signals is governed by their own policies.</p>
+      <p><strong>Additional CalOPPA Disclosures</strong></p>
+      <p>CalOPPA also requires disclosure of the categories of personally identifiable information collected, the categories of third parties with whom such information is shared, the process by which a consumer may review and request changes to their information, the process by which we notify consumers of material changes to this Privacy Policy, and the effective date of this policy. These disclosures are provided in Sections 2, 5, 9.1, 13, and at the top of this Privacy Policy, respectively.</p>
+      <h4>9.5 Mexico (LFPDPPP)</h4>
+      <p>Under Mexican law, you have ARCO rights: Access, Rectification, Cancellation, and Opposition with respect to your personal data. You may also revoke any consent you have previously granted.</p>
+      <h4>9.6 Colombia (Law 1581 of 2012)</h4>
+      <p>Colombian residents have the right to know, update, and rectify their personal data; to request proof of consent; to be informed about how their data is used; to file complaints with the Superintendencia de Industria y Comercio (SIC); to revoke consent or request deletion when appropriate; and to access their personal data free of charge.</p>
+      <h4>9.7 How to Exercise Your Rights</h4>
+      <p>To exercise any of these rights, please contact us using the information in Section 12. We will respond to verifiable requests within the timeframes required by applicable law. We may need to verify your identity before processing your request.</p>
+
+      <h3>10. Data Security</h3>
+      <p>We take reasonable administrative, technical, and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. We also rely on the security measures implemented by our third-party service providers.</p>
+      <p>However, no method of transmission over the internet or electronic storage is completely secure. While we strive to protect your information, we cannot guarantee absolute security.</p>
+
+      <h3>11. Children's Privacy</h3>
+      <p>The Site is not directed to children under the age of 13 (or the equivalent minimum age in the relevant jurisdiction, such as 16 in certain EEA countries). We do not knowingly collect personal information from children. If you believe that a child has provided us with personal information, please contact us, and we will take steps to delete that information.</p>
+
+      <h3>12. Contact Us</h3>
+      <p>If you have questions about this Privacy Policy or wish to exercise your privacy rights, please contact us:</p>
+      <p><strong>Chelo Ramirez Company</strong><br>
+      Email: <a href="mailto:cheloramirezmusic@gmail.com">cheloramirezmusic@gmail.com</a><br>
+      Mailing Address: Calle 49 DD #81 C – 04 Medellin, Antioquia Colombia</p>
+
+      <h3>13. Changes to This Privacy Policy</h3>
+      <p>We may update this Privacy Policy from time to time to reflect changes in our practices, technology, legal requirements, or other factors. When we make material changes, we will update the "Last Updated" date at the top of this policy and, where appropriate, notify newsletter subscribers by email. We encourage you to review this Privacy Policy periodically.</p>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       TERMS & CONDITIONS MODAL (placeholder)
+  ══════════════════════════════════════════ -->
+  <div id="terms-modal" class="legal-modal" role="dialog" aria-modal="true" aria-labelledby="terms-modal-title">
+    <div class="legal-modal-inner">
+      <button class="legal-modal-close" aria-label="Close terms and conditions">&times;</button>
+
+      <h2 id="terms-modal-title">Terms &amp; Conditions</h2>
+      <p class="legal-modal-meta">Effective Date: October 22, 2026 &nbsp;·&nbsp; Last Updated: October 22, 2026</p>
+      <p class="legal-modal-meta" style="margin-top:0.25rem;">Official Website of Chelo Ramírez</p>
+
+      <h3>1. Introduction and Acceptance of Terms</h3>
+      <p>Welcome to the official website of Chelo Ramírez (the "Site"), operated by Chelo Ramirez Company ("Chelo Ramirez," "we," "us," or "our") on behalf of the recording artist Chelo Ramírez (the "Artist"). These Terms and Conditions ("Terms") govern your access to and use of the Site, including any content, functionality, and services offered on or through the Site.</p>
+      <p>By accessing or using the Site, you acknowledge that you have read, understood, and agree to be bound by these Terms and our Privacy Policy, which is incorporated herein by reference. If you do not agree to these Terms, you must not access or use the Site.</p>
+
+      <h3>2. Eligibility</h3>
+      <p>The Site is intended for users who are at least thirteen (13) years of age. By using the Site, you represent and warrant that you are at least 13 years old. If you are between the ages of 13 and the age of majority in your jurisdiction (typically 18), you may only use the Site under the supervision of a parent or legal guardian who agrees to be bound by these Terms on your behalf.</p>
+      <p>To subscribe to our newsletter or join the fan club, you must be at least sixteen (16) years of age, or have verifiable parental or guardian consent. We do not knowingly collect personal information from children under 13. If we learn that we have collected personal information from a child under 13, we will delete that information promptly.</p>
+
+      <h3>3. Intellectual Property Rights</h3>
+      <h4>3.1 Ownership of Content</h4>
+      <p>All content on the Site — including but not limited to text, graphics, images, photographs, audio recordings, video recordings, musical compositions, sound recordings, logos, designs, the name "Chelo Ramírez," the Artist's name, likeness, voice, image, and signature, and all related trademarks, service marks, and trade dress (collectively, the "Content") — is the exclusive property of Chelo Ramirez Company, the Artist, or their respective licensors, and is protected by United States and international copyright, trademark, publicity rights, and other intellectual property laws.</p>
+      <h4>3.2 Limited License to Users</h4>
+      <p>Subject to your compliance with these Terms, we grant you a limited, non-exclusive, non-transferable, non-sublicensable, revocable license to access and view the Content on the Site solely for your personal, non-commercial use. This license does not permit you to:</p>
+      <ul>
+        <li>Reproduce, distribute, modify, create derivative works of, publicly display, publicly perform, republish, download, store, or transmit any Content, except as expressly permitted by us in writing;</li>
+        <li>Use any Content for any commercial purpose, including but not limited to advertising, merchandise, promotional materials, or any monetized platform;</li>
+        <li>Use the Artist's name, likeness, voice, or image in any manner that suggests endorsement, sponsorship, or affiliation without prior written authorization from Chelo Ramirez Company;</li>
+        <li>Remove, alter, or obscure any copyright, trademark, or other proprietary notices;</li>
+        <li>Use any data mining, robots, scraping, or similar data gathering and extraction tools.</li>
+      </ul>
+      <h4>3.3 Trademarks</h4>
+      <p>"Chelo Ramírez," the Chelo Ramírez logo, and all related names, logos, product and service names, designs, and slogans are trademarks of Chelo Ramirez Company and/or its affiliates. You may not use such marks without our prior written permission.</p>
+
+      <h3>4. User-Generated Content and Fan Submissions</h3>
+      <h4>4.1 Submissions</h4>
+      <p>The Site may allow you to submit comments, fan art, photographs, videos, messages, or other materials ("User Content"). You retain ownership of any intellectual property rights you hold in your User Content.</p>
+      <h4>4.2 License Grant to Chelo Ramirez Company</h4>
+      <p>By submitting User Content to the Site or to any official channel associated with the Artist (including fan club submissions, newsletter replies, or tagged social media content directed at official accounts), you grant Chelo Ramirez Company and the Artist a worldwide, perpetual, irrevocable, royalty-free, fully paid-up, sublicensable, and transferable license to use, reproduce, distribute, modify, adapt, publicly perform, publicly display, and create derivative works from your User Content in any media now known or hereafter developed, for any purpose related to the Artist's career, promotion, marketing, and commercial activities, without compensation, notice, or attribution to you.</p>
+      <h4>4.3 Representations and Warranties</h4>
+      <p>You represent and warrant that: (a) you own or have all necessary rights to submit the User Content and grant the license above; (b) the User Content does not infringe any third party's intellectual property, privacy, or publicity rights; and (c) the User Content complies with these Terms and all applicable laws.</p>
+      <h4>4.4 No Obligation to Use</h4>
+      <p>We are under no obligation to use, display, or retain any User Content, and we reserve the right to remove or refuse any User Content at our sole discretion, without notice.</p>
+
+      <h3>5. Newsletter and Electronic Communications</h3>
+      <p>By subscribing to our newsletter, you consent to receive periodic email communications from Chelo Ramirez Company regarding the Artist, including news, tour announcements, music releases, merchandise, sponsorship partnerships, and related promotional content.</p>
+      <p>You may unsubscribe at any time by clicking the "unsubscribe" link included in every newsletter email, or by contacting us at the address provided in Section 14. Unsubscribing will not affect communications related to transactions you have initiated with us, such as fan club membership confirmations.</p>
+      <p>Our handling of your email address and any associated personal information is governed by our Privacy Policy. We comply with the U.S. CAN-SPAM Act and applicable data protection laws in the jurisdictions where we operate.</p>
+
+      <h3>6. Fan Club Participation</h3>
+      <p>The Site may offer fan club features that allow users to register, receive exclusive content, and participate in community activities. Fan club membership is subject to additional terms that may be presented at the time of registration.</p>
+      <p>You are responsible for maintaining the confidentiality of any account credentials and for all activities that occur under your account. You agree to notify us immediately of any unauthorized access or use. We reserve the right to suspend or terminate any fan club account for violation of these Terms, abusive behavior, or any conduct we deem inconsistent with the community standards of the Artist's brand.</p>
+
+      <h3>7. Prohibited Conduct</h3>
+      <p>When using the Site, you agree not to:</p>
+      <ul>
+        <li>Use the Site in any manner that violates any applicable federal, state, local, or international law or regulation;</li>
+        <li>Impersonate or attempt to impersonate the Artist, Chelo Ramirez Company, our employees, or any other person or entity;</li>
+        <li>Engage in any harassing, threatening, defamatory, hateful, obscene, or otherwise objectionable conduct toward the Artist, Chelo Ramirez Company personnel, or other users;</li>
+        <li>Upload, post, or transmit any material that contains viruses, worms, malware, or other harmful computer code;</li>
+        <li>Attempt to gain unauthorized access to any portion of the Site, other accounts, or any systems or networks connected to the Site;</li>
+        <li>Use the Site to advertise, solicit, or transmit any unauthorized commercial communications, spam, or chain letters;</li>
+        <li>Frame, mirror, scrape, or otherwise systematically extract data or content from the Site without our express written consent;</li>
+        <li>Interfere with the proper working of the Site or any servers or networks connected to it.</li>
+      </ul>
+
+      <h3>8. Third-Party Links and Services</h3>
+      <p>The Site may contain links to third-party websites, services, or resources, including but not limited to streaming platforms (Spotify, Apple Music, YouTube), social media (Instagram, TikTok, Facebook), and ticketing or merchandise providers. These third-party services are not under our control, and we are not responsible for their content, privacy practices, or any transactions you conduct through them.</p>
+      <p>Your interactions with any third-party service are governed solely by the terms and policies of that third party. We strongly encourage you to review those terms before engaging with any third-party service.</p>
+
+      <h3>9. Disclaimers</h3>
+      <p>THE SITE AND ALL CONTENT ARE PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, CHELO RAMIREZ COMPANY, THE ARTIST, AND THEIR RESPECTIVE AFFILIATES, OFFICERS, EMPLOYEES, AGENTS, AND LICENSORS DISCLAIM ALL WARRANTIES, INCLUDING IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, AND ANY WARRANTIES ARISING OUT OF COURSE OF DEALING OR USAGE OF TRADE.</p>
+      <p>We do not warrant that the Site will be uninterrupted, secure, or error-free; that defects will be corrected; or that the Site or the servers that make it available are free of viruses or other harmful components. Tour dates, event information, release dates, and other forward-looking content are subject to change without notice and are not guaranteed.</p>
+
+      <h3>10. Limitation of Liability</h3>
+      <p>TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL CHELO RAMIREZ COMPANY, THE ARTIST, OR THEIR RESPECTIVE AFFILIATES, OFFICERS, DIRECTORS, EMPLOYEES, AGENTS, OR LICENSORS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING WITHOUT LIMITATION LOSS OF PROFITS, DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES, ARISING OUT OF OR RELATING TO YOUR ACCESS TO OR USE OF, OR INABILITY TO ACCESS OR USE, THE SITE.</p>
+      <p>OUR TOTAL AGGREGATE LIABILITY TO YOU FOR ALL CLAIMS ARISING OUT OF OR RELATING TO THESE TERMS OR THE SITE SHALL NOT EXCEED ONE HUNDRED U.S. DOLLARS (USD $100.00). SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OR LIMITATION OF CERTAIN DAMAGES, SO SOME OF THE ABOVE LIMITATIONS MAY NOT APPLY TO YOU.</p>
+
+      <h3>11. Indemnification</h3>
+      <p>You agree to indemnify, defend, and hold harmless Chelo Ramirez Company, the Artist, and their respective affiliates, officers, directors, employees, agents, and licensors from and against any and all claims, liabilities, damages, losses, costs, and expenses (including reasonable attorneys' fees) arising out of or related to: (a) your use of the Site; (b) your violation of these Terms; (c) your User Content; or (d) your violation of any rights of any third party.</p>
+
+      <h3>12. Governing Law and Dispute Resolution</h3>
+      <p>These Terms shall be governed by and construed in accordance with the laws of Medellin, Colombia, without regard to its conflict of laws principles. Any dispute arising out of or relating to these Terms or the Site shall be brought exclusively in the state or federal courts located in Medellin, Colombia, and you consent to the personal jurisdiction of such courts.</p>
+      <p>If you are accessing the Site from outside Colombia, you do so on your own initiative and are responsible for compliance with local laws. Nothing in these Terms shall limit any non-waivable consumer protection rights you may have under the laws of your country of residence, including consumer rights under the laws of the United States or Mexico where applicable.</p>
+      <h4>12.1 Informal Resolution</h4>
+      <p>Before filing any formal claim, you agree to first attempt to resolve the dispute informally by contacting us in writing at the address listed in Section 14. We will attempt in good faith to resolve any dispute within sixty (60) days of receiving such notice.</p>
+
+      <h3>13. Modifications to the Terms and the Site</h3>
+      <p>We reserve the right to modify these Terms at any time at our sole discretion. When we make material changes, we will update the "Last Updated" date at the top of this document and, where appropriate, provide additional notice through the Site or by email. Your continued use of the Site after any such modification constitutes your acceptance of the revised Terms.</p>
+      <p>We also reserve the right to modify, suspend, or discontinue any aspect of the Site at any time, without notice or liability to you.</p>
+
+      <h3>14. Contact Information</h3>
+      <p>If you have any questions, concerns, or requests regarding these Terms, please contact us:</p>
+      <p><strong>Chelo Ramirez Company</strong><br>
+      Attn: Chelo Ramírez — Legal &amp; Compliance<br>
+      Calle 49 DD #81 C – 04 Medellin, Antioquia Colombia<br>
+      Email: <a href="mailto:cheloramirezmusic@gmail.com">cheloramirezmusic@gmail.com</a><br>
+      Website: www.cheloramirez.co</p>
+
+      <h3>15. Miscellaneous</h3>
+      <h4>15.1 Entire Agreement</h4>
+      <p>These Terms, together with our Privacy Policy and any additional terms applicable to specific features of the Site, constitute the entire agreement between you and Chelo Ramirez Company concerning the Site, and supersede all prior agreements and understandings.</p>
+      <h4>15.2 Severability</h4>
+      <p>If any provision of these Terms is found to be unlawful, void, or unenforceable, such provision shall be severed from the remaining provisions, which shall remain in full force and effect.</p>
+      <h4>15.3 No Waiver</h4>
+      <p>Our failure to enforce any right or provision of these Terms shall not constitute a waiver of that right or provision.</p>
+      <h4>15.4 Assignment</h4>
+      <p>You may not assign or transfer these Terms without our prior written consent. We may assign these Terms at any time without notice to you.</p>
+      <h4>15.5 Language</h4>
+      <p>These Terms have been prepared in the English language. Any translation provided is for convenience only; in the event of any conflict between the English version and any translation, the English version shall prevail.</p>
+
+      <p style="margin-top:2rem; padding-top:1.5rem; border-top:1px solid rgba(229,181,71,0.2); font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase; color:#8A7A69;">© 2026 Chelo Ramirez Company &nbsp;·&nbsp; All Rights Reserved</p>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      function openLegalModal(id) {
+        var modal = document.getElementById(id);
+        if (!modal) return;
+        modal.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+        var closeBtn = modal.querySelector('.legal-modal-close');
+        if (closeBtn) closeBtn.focus();
+      }
+
+      function closeLegalModal(modal) {
+        modal.classList.remove('is-open');
+        var anyOpen = document.querySelector('.legal-modal.is-open');
+        if (!anyOpen) document.body.style.overflow = '';
+      }
+
+      document.querySelectorAll('.legal-modal').forEach(function (modal) {
+        var closeBtn = modal.querySelector('.legal-modal-close');
+        if (closeBtn) closeBtn.addEventListener('click', function () { closeLegalModal(modal); });
+        modal.addEventListener('click', function (e) {
+          if (e.target === modal) closeLegalModal(modal);
+        });
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          document.querySelectorAll('.legal-modal.is-open').forEach(function (modal) {
+            closeLegalModal(modal);
+          });
+        }
+      });
+
+      window.openLegalModal = openLegalModal;
     })();
   </script>
 
