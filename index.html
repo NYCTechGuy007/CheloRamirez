@@ -1459,6 +1459,9 @@
       document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
         if (t[el.dataset.i18nPlaceholder] !== undefined) el.placeholder = t[el.dataset.i18nPlaceholder];
       });
+      document.querySelectorAll('[data-lang-content]').forEach(el => {
+        el.style.display = el.dataset.langContent === lang ? '' : 'none';
+      });
       const esEl = document.getElementById('lang-es');
       const enEl = document.getElementById('lang-en');
       if (esEl) esEl.style.color = lang === 'es' ? '#E5B547' : '#8A7A69';
@@ -1726,6 +1729,7 @@
     <div class="legal-modal-inner">
       <button class="legal-modal-close" aria-label="Close privacy policy">&times;</button>
 
+      <div data-lang-content="en">
       <h2 id="privacy-modal-title">Privacy Policy</h2>
       <p class="legal-modal-meta">Effective Date: October 22, 2026 &nbsp;·&nbsp; Last Updated: October 22, 2026</p>
 
@@ -1894,6 +1898,178 @@
 
       <h3>13. Changes to This Privacy Policy</h3>
       <p>We may update this Privacy Policy from time to time to reflect changes in our practices, technology, legal requirements, or other factors. When we make material changes, we will update the "Last Updated" date at the top of this policy and, where appropriate, notify newsletter subscribers by email. We encourage you to review this Privacy Policy periodically.</p>
+      </div><!-- /en -->
+
+      <div data-lang-content="es" style="display:none;">
+      <h2 id="privacy-modal-title-es">Política de Privacidad</h2>
+      <p class="legal-modal-meta">Fecha de Vigencia: 22 de octubre de 2026 &nbsp;·&nbsp; Última Actualización: 22 de octubre de 2026</p>
+
+      <h3>1. Introducción</h3>
+      <p>Esta Política de Privacidad describe cómo Chelo Ramirez Company ("Chelo Ramirez", "nosotros", "nos" o "nuestro"), como empresa representante del artista Chelo Ramírez, recopila, utiliza y protege la información cuando usted visita el sitio web oficial de Chelo Ramírez (el "Sitio") y se suscribe a nuestro boletín de noticias por correo electrónico.</p>
+      <p>Nos comprometemos a proteger la privacidad de nuestros fanáticos en los Estados Unidos, México, Colombia y otros países donde Chelo Ramírez se presenta y se relaciona con el público. Esta Política de Privacidad está diseñada para cumplir con las leyes de protección de datos aplicables, incluido el Reglamento General de Protección de Datos (RGPD) para visitantes del Espacio Económico Europeo, la Ley de Privacidad del Consumidor de California enmendada por la Ley de Derechos de Privacidad de California (CCPA/CPRA), la Ley Federal de Protección de Datos Personales en Posesión de los Particulares de México (LFPDPPP) y la Ley Estatutaria 1581 de 2012 de Colombia sobre Protección de Datos Personales.</p>
+      <p>Al utilizar el Sitio o suscribirse a nuestro boletín, usted reconoce que ha leído y comprendido esta Política de Privacidad.</p>
+
+      <h3>2. Información que Recopilamos</h3>
+      <h4>2.1 Información que Usted Proporciona Directamente</h4>
+      <p>El Sitio es de carácter informativo y no requiere la creación de una cuenta. Solo recopilamos información personal cuando usted la proporciona voluntariamente a través de uno de los siguientes canales:</p>
+      <ul>
+        <li><strong>Suscripción al Boletín:</strong> Cuando se suscribe al boletín de correo electrónico de Chelo Ramírez, recopilamos su dirección de correo electrónico.</li>
+        <li><strong>Formulario de Contacto:</strong> Cuando envía un mensaje a través de nuestro formulario de contacto, recopilamos cualquier información que elija incluir, como su nombre, dirección de correo electrónico y el contenido de su mensaje.</li>
+      </ul>
+      <h4>2.2 Información Recopilada Automáticamente</h4>
+      <p>Cuando visita el Sitio, cierta información puede ser recopilada automáticamente por nuestro proveedor de alojamiento y servicios de terceros, incluidos:</p>
+      <ul>
+        <li>Dirección IP y ubicación geográfica general (a nivel de país o región)</li>
+        <li>Tipo de navegador, sistema operativo e identificadores del dispositivo</li>
+        <li>Páginas visitadas, tiempo en las páginas y sitio web de referencia</li>
+        <li>Fecha y hora de su visita</li>
+      </ul>
+      <p>Esta información se recopila con fines de seguridad, rendimiento y análisis básico.</p>
+      <h4>2.3 Información de Contenido Integrado</h4>
+      <p>El Sitio integra contenido de video alojado en YouTube. Cuando interactúa con videos de YouTube integrados, YouTube y su empresa matriz, Google LLC, pueden recopilar información sobre su interacción de acuerdo con sus propias políticas de privacidad. No controlamos ni somos responsables de las prácticas de datos de YouTube o Google.</p>
+
+      <h3>3. Cómo Usamos Su Información</h3>
+      <p>Utilizamos la información que recopilamos para los siguientes propósitos:</p>
+      <ul>
+        <li><strong>Para enviarle el boletín:</strong> Usamos su dirección de correo electrónico para enviarle actualizaciones periódicas sobre Chelo Ramírez, incluyendo nuevos lanzamientos musicales, anuncios de giras, contenido exclusivo y comunicaciones relacionadas.</li>
+        <li><strong>Para responder a consultas:</strong> Usamos la información enviada a través del formulario de contacto para responder a sus preguntas, comentarios o consultas comerciales.</li>
+        <li><strong>Para operar y mejorar el Sitio:</strong> Usamos la información recopilada automáticamente para mantener la seguridad del Sitio, analizar patrones de tráfico y mejorar la experiencia del usuario.</li>
+        <li><strong>Para cumplir con obligaciones legales:</strong> Podemos procesar su información según lo requiera el cumplimiento de leyes, reglamentos o solicitudes legales aplicables.</li>
+      </ul>
+      <p>No vendemos, alquilamos ni intercambiamos su información personal con terceros para sus propósitos de marketing.</p>
+
+      <h3>4. Base Legal para el Procesamiento (Visitantes del EEE y Reino Unido)</h3>
+      <p>Si usted se encuentra en el Espacio Económico Europeo, el Reino Unido o Suiza, el procesamiento de su información personal se rige por el Reglamento General de Protección de Datos de la UE (RGPD), el RGPD del Reino Unido complementado por la Ley de Protección de Datos de 2018, o la Ley Federal Suiza de Protección de Datos (FADP), según corresponda. La base legal para el procesamiento depende de la información específica y del contexto en que la recopilamos:</p>
+      <ul>
+        <li><strong>Consentimiento:</strong> Nos basamos en su consentimiento cuando se suscribe a nuestro boletín. Puede retirar su consentimiento en cualquier momento cancelando la suscripción.</li>
+        <li><strong>Intereses legítimos:</strong> Procesamos la información recopilada automáticamente basándonos en nuestro interés legítimo en operar, asegurar y mejorar el Sitio.</li>
+        <li><strong>Obligación legal:</strong> Procesamos información cuando así lo exige la ley aplicable.</li>
+      </ul>
+
+      <h3>5. Proveedores de Servicios de Terceros</h3>
+      <p>Dependemos de los siguientes proveedores de servicios de terceros para operar el Sitio y entregar nuestro boletín. Cada proveedor procesa su información de acuerdo con su propia política de privacidad:</p>
+      <h4>5.1 Kit (Boletín por Correo Electrónico)</h4>
+      <p>Nuestro boletín se entrega a través de Kit (kit.com), operado por Kit Inc. Cuando se suscribe, su dirección de correo electrónico es almacenada y procesada por Kit con el propósito de entregar las comunicaciones del boletín. Las prácticas de privacidad de Kit se rigen por su política de privacidad, disponible en <a href="https://kit.com/privacy" target="_blank" rel="noopener noreferrer">https://kit.com/privacy</a>.</p>
+      <h4>5.2 Web3Forms (Formulario de Contacto)</h4>
+      <p>Nuestro formulario de contacto está impulsado por Web3Forms (web3forms.com). Cuando envía el formulario, la información que proporciona es transmitida a través del servicio de Web3Forms para llegar a nuestro equipo. Las prácticas de privacidad de Web3Forms se rigen por su política de privacidad, disponible en <a href="https://web3forms.com/privacy" target="_blank" rel="noopener noreferrer">https://web3forms.com/privacy</a>.</p>
+      <h4>5.3 YouTube (Video Integrado)</h4>
+      <p>Los videos del Sitio están alojados e integrados desde YouTube, operado por Google LLC. YouTube puede establecer cookies y recopilar datos sobre su interacción con los videos integrados. Las prácticas de privacidad de Google se rigen por la Política de Privacidad de Google, disponible en <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a>.</p>
+      <p>Estos proveedores de terceros actúan como controladores o procesadores de datos independientes con respecto a la información que recopilan. Le recomendamos revisar sus políticas de privacidad.</p>
+
+      <h3>6. Cookies y Tecnologías Similares</h3>
+      <p>El Sitio y el contenido integrado de YouTube pueden utilizar cookies y tecnologías de seguimiento similares. Las cookies son pequeños archivos de texto almacenados en su dispositivo que ayudan a que los sitios web funcionen y recopilan información sobre su actividad.</p>
+      <p>Puede controlar las cookies a través de la configuración de su navegador, incluyendo bloquearlas o eliminarlas. Tenga en cuenta que deshabilitar las cookies puede afectar ciertas funciones del Sitio, especialmente la reproducción de video integrado.</p>
+
+      <h3>7. Retención de Datos</h3>
+      <p>Conservamos su información personal solo durante el tiempo necesario para cumplir los propósitos para los que fue recopilada:</p>
+      <ul>
+        <li><strong>Suscriptores del boletín:</strong> Conservamos su dirección de correo electrónico mientras permanezca suscrito. Si cancela la suscripción, su dirección de correo electrónico será eliminada de nuestra lista de correo activa, aunque puede conservarse en registros de supresión para garantizar que respetemos su solicitud de cancelación.</li>
+        <li><strong>Envíos del formulario de contacto:</strong> Conservamos los mensajes del formulario de contacto durante el período necesario para responder a su consulta y por un período razonable posterior para fines de registro.</li>
+        <li><strong>Datos recopilados automáticamente:</strong> Los registros del servidor y los datos de análisis generalmente se conservan por un período limitado de acuerdo con las prácticas de retención de nuestro proveedor de alojamiento.</li>
+      </ul>
+
+      <h3>8. Transferencias Internacionales de Datos</h3>
+      <p>Chelo Ramirez Company tiene su sede en Colombia, y nuestros proveedores de servicios pueden almacenar y procesar su información en los Estados Unidos u otros países. Si se encuentra fuera de los Estados Unidos, tenga en cuenta que su información puede ser transferida, almacenada y procesada en países cuyas leyes de protección de datos pueden diferir de las de su país de residencia.</p>
+      <p>Cuando lo exija la ley aplicable, nos basamos en salvaguardias apropiadas para tales transferencias, como las Cláusulas Contractuales Estándar de la Comisión Europea, el Acuerdo de Transferencia Internacional de Datos del Reino Unido o el Anexo del Reino Unido a las SCC de la UE, o mecanismos equivalentes reconocidos bajo la ley suiza.</p>
+
+      <h3>9. Sus Derechos de Privacidad</h3>
+      <h4>9.1 Derechos Generales</h4>
+      <ul>
+        <li><strong>Acceso:</strong> Solicitar una copia de la información personal que tenemos sobre usted.</li>
+        <li><strong>Corrección:</strong> Solicitar que corrijamos información inexacta o incompleta.</li>
+        <li><strong>Eliminación:</strong> Solicitar que eliminemos su información personal, sujeto a ciertas excepciones legales.</li>
+        <li><strong>Retirar el Consentimiento:</strong> Retirar su consentimiento para recibir comunicaciones del boletín en cualquier momento haciendo clic en el enlace de cancelación de suscripción en cualquier correo electrónico del boletín.</li>
+        <li><strong>Objetar o Restringir:</strong> Objetar o solicitar la restricción de ciertas actividades de procesamiento.</li>
+      </ul>
+      <h4>9.2 Espacio Económico Europeo, Reino Unido y Suiza (RGPD / UK RGPD / FADP)</h4>
+      <p>Si se encuentra en el Espacio Económico Europeo, el Reino Unido o Suiza, además de los derechos generales enumerados en la Sección 9.1, tiene los siguientes derechos bajo el RGPD, el UK RGPD o el FADP suizo, según corresponda:</p>
+      <ul>
+        <li><strong>Derecho de Acceso:</strong> Obtener confirmación de si procesamos sus datos personales y solicitar una copia de dichos datos.</li>
+        <li><strong>Derecho de Rectificación:</strong> Solicitar la corrección de datos personales inexactos o incompletos.</li>
+        <li><strong>Derecho de Supresión ("Derecho al Olvido"):</strong> Solicitar la eliminación de sus datos personales bajo ciertas condiciones.</li>
+        <li><strong>Derecho a la Restricción del Procesamiento:</strong> Solicitar que limitemos el uso de sus datos personales en circunstancias específicas.</li>
+        <li><strong>Derecho a la Portabilidad de los Datos:</strong> Recibir los datos personales que nos proporcionó en un formato estructurado, comúnmente utilizado y legible por máquina, y solicitar su transmisión a otro responsable donde sea técnicamente factible.</li>
+        <li><strong>Derecho de Oposición:</strong> Oponerse al procesamiento basado en intereses legítimos y oponerse en cualquier momento al procesamiento de sus datos personales con fines de marketing directo.</li>
+        <li><strong>Derecho a Retirar el Consentimiento:</strong> Cuando el procesamiento se basa en el consentimiento, retirar su consentimiento en cualquier momento sin afectar la legalidad del procesamiento realizado antes de la retirada.</li>
+      </ul>
+      <p>También tiene derecho a presentar una queja ante la autoridad supervisora de protección de datos de su país de residencia, lugar de trabajo o lugar de la supuesta infracción. Las autoridades principales son:</p>
+      <ul>
+        <li><strong>EEE:</strong> Su autoridad nacional de protección de datos. El Comité Europeo de Protección de Datos mantiene un directorio en <a href="https://edpb.europa.eu" target="_blank" rel="noopener noreferrer">https://edpb.europa.eu</a>.</li>
+        <li><strong>Reino Unido:</strong> La Oficina del Comisionado de Información (ICO), <a href="https://ico.org.uk" target="_blank" rel="noopener noreferrer">https://ico.org.uk</a>.</li>
+        <li><strong>Suiza:</strong> El Comisionado Federal de Protección de Datos e Información (FDPIC), <a href="https://www.edoeb.admin.ch" target="_blank" rel="noopener noreferrer">https://www.edoeb.admin.ch</a>.</li>
+      </ul>
+      <p>Chelo Ramirez Company tiene su sede en Colombia. Si nuestro procesamiento está sujeto al RGPD o al UK RGPD y se requiere un representante según el Artículo 27, designaremos e identificaremos dicho representante según lo exija la ley aplicable.</p>
+      <h4>9.3 California (CCPA/CPRA)</h4>
+      <p>Esta sección proporciona divulgaciones adicionales requeridas por la Ley de Privacidad del Consumidor de California, enmendada por la Ley de Derechos de Privacidad de California (colectivamente, "CCPA/CPRA"), para residentes de California.</p>
+      <p><strong>Categorías de Información Personal Recopilada</strong></p>
+      <p>En los doce (12) meses anteriores, hemos recopilado las siguientes categorías de información personal, tal como se definen en la CCPA/CPRA:</p>
+      <ul>
+        <li><strong>Identificadores:</strong> Dirección de correo electrónico (registro al boletín y formulario de contacto), nombre (formulario de contacto, si se proporciona) y dirección IP (recopilada automáticamente).</li>
+        <li><strong>Actividad de Internet u Otra Red Electrónica:</strong> Información de navegación, páginas visitadas, sitio web de referencia e interacciones con contenido integrado de YouTube.</li>
+        <li><strong>Datos de Geolocalización:</strong> Ubicación geográfica general (a nivel de país o región) derivada de la dirección IP.</li>
+        <li><strong>Información Comercial:</strong> El contenido de cualquier mensaje que envíe a través de nuestro formulario de contacto, en la medida en que se relacione con consultas sobre Chelo Ramírez.</li>
+      </ul>
+      <p>No recopilamos información personal sensible tal como se define en la CPRA (como identificadores gubernamentales, información de cuentas financieras, geolocalización precisa, origen racial o étnico, creencias religiosas, datos genéticos o información biométrica).</p>
+      <p><strong>Fuentes de Información Personal</strong></p>
+      <ul>
+        <li>Directamente de usted, cuando se suscribe al boletín o envía un formulario de contacto.</li>
+        <li>Automáticamente desde su dispositivo y navegador cuando visita el Sitio o interactúa con contenido integrado.</li>
+      </ul>
+      <p><strong>Propósitos Comerciales para la Recopilación</strong></p>
+      <p>Recopilamos información personal para los propósitos descritos en la Sección 3 de esta Política de Privacidad, incluida la entrega del boletín, la respuesta a consultas, la operación y seguridad del Sitio, y el cumplimiento de obligaciones legales.</p>
+      <p><strong>Categorías de Terceros con Quienes se Divulga la Información</strong></p>
+      <p>Divulgamos información personal solo a proveedores de servicios que actúan en nuestro nombre, como se describe en la Sección 5: Kit (para la entrega del boletín), Web3Forms (para la transmisión del formulario de contacto) y Google LLC / YouTube (para el alojamiento de video integrado). Estos proveedores de servicios tienen limitaciones contractuales sobre cómo pueden usar la información que reciben.</p>
+      <p><strong>Venta e Intercambio de Información Personal</strong></p>
+      <p>No vendemos información personal por contraprestación monetaria u otro valor, y no compartimos información personal para publicidad conductual entre contextos, tal como se definen esos términos en la CCPA/CPRA. No hemos vendido ni compartido información personal en los doce (12) meses anteriores y no tenemos conocimiento real de vender o compartir información personal de consumidores menores de dieciséis (16) años.</p>
+      <p><strong>Retención</strong></p>
+      <p>Conservamos cada categoría de información personal solo durante el tiempo razonablemente necesario para cumplir los propósitos para los que fue recopilada, como se describe en la Sección 7 (Retención de Datos). No conservamos información personal más tiempo del razonablemente necesario en función de los propósitos divulgados.</p>
+      <p><strong>Sus Derechos de Privacidad de California</strong></p>
+      <p>Como residente de California, tiene los siguientes derechos:</p>
+      <ul>
+        <li><strong>Derecho a Conocer:</strong> El derecho a solicitar que divulguemos las categorías y piezas específicas de información personal que hemos recopilado sobre usted, las categorías de fuentes, los propósitos comerciales para la recopilación y las categorías de terceros con quienes divulgamos información personal.</li>
+        <li><strong>Derecho a Eliminar:</strong> El derecho a solicitar la eliminación de información personal que hemos recopilado sobre usted, sujeto a ciertas excepciones legales.</li>
+        <li><strong>Derecho a Corregir:</strong> El derecho a solicitar la corrección de información personal inexacta que mantenemos sobre usted.</li>
+        <li><strong>Derecho a Opt Out de Venta o Intercambio:</strong> Como se indicó anteriormente, no vendemos ni compartimos información personal. Si nuestras prácticas cambian, actualizaremos esta Política de Privacidad y proporcionaremos un mecanismo de exclusión apropiado, incluido un enlace "No Vender ni Compartir Mi Información Personal" en el Sitio.</li>
+        <li><strong>Derecho a Limitar el Uso de Información Personal Sensible:</strong> Como se indicó anteriormente, no recopilamos información personal sensible. Si nuestras prácticas cambian, proporcionaremos un mecanismo apropiado para ejercer este derecho.</li>
+        <li><strong>Derecho a la No Discriminación:</strong> No discriminaremos contra usted por ejercer cualquiera de sus derechos bajo la CCPA/CPRA. No le negaremos servicios, le cobraremos precios diferentes ni le proporcionaremos un nivel o calidad de servicio diferente porque ejerció sus derechos.</li>
+      </ul>
+      <p><strong>Cómo Presentar una Solicitud</strong></p>
+      <p>Para ejercer sus derechos de privacidad de California, comuníquese con nosotros usando la información en la Sección 12. Necesitaremos verificar su identidad antes de procesar su solicitud, lo que puede incluir confirmar la dirección de correo electrónico asociada con su suscripción o envío del formulario de contacto. Responderemos a las solicitudes verificables de consumidores dentro de cuarenta y cinco (45) días, con la posibilidad de una extensión adicional de cuarenta y cinco (45) días según lo permita la ley.</p>
+      <p><strong>Agentes Autorizados</strong></p>
+      <p>Puede designar a un agente autorizado para presentar una solicitud en su nombre. El agente autorizado debe proporcionar un permiso por escrito firmado por usted, y podemos requerirle que verifique su identidad directamente con nosotros antes de cumplir con la solicitud.</p>
+      <p><strong>Aviso en el Momento de la Recopilación</strong></p>
+      <p>En el momento de la recopilación o antes (por ejemplo, en el formulario de suscripción al boletín y el formulario de contacto), el Sitio proporciona un aviso que identifica las categorías de información personal recopilada y los propósitos para los que se utilizará la información, con un enlace a esta Política de Privacidad.</p>
+      <h4>9.4 Ley de Protección de la Privacidad en Línea de California (CalOPPA)</h4>
+      <p>Además de los derechos descritos en la Sección 9.3, esta sección proporciona las divulgaciones requeridas por la Ley de Protección de la Privacidad en Línea de California (CalOPPA) para cualquier operador de un sitio web comercial que recopile información de identificación personal de residentes de California.</p>
+      <p><strong>Señales de No Rastrear (Do Not Track)</strong></p>
+      <p>Algunos navegadores web ofrecen una señal de "No Rastrear" ("DNT") que permite a los usuarios indicar una preferencia de no ser rastreados en todos los sitios web. Debido a que no existe un estándar de la industria ni legal comúnmente aceptado sobre cómo interpretar o responder a las señales DNT, el Sitio actualmente no responde a las señales DNT. Actualizaremos esta divulgación si se adopta un estándar generalmente aceptado para las señales DNT.</p>
+      <p><strong>Seguimiento por Terceros</strong></p>
+      <p>Los terceros, incluidos los operadores de contenido integrado como YouTube (Google LLC), pueden recopilar información de identificación personal sobre sus actividades en línea a lo largo del tiempo y en diferentes sitios web cuando utiliza el Sitio. No controlamos las prácticas de seguimiento de estos terceros y no los autorizamos a recopilar dicha información para su propio uso más allá de lo descrito en la Sección 5 de esta Política de Privacidad. Su respuesta a las señales DNT se rige por sus propias políticas.</p>
+      <p><strong>Divulgaciones Adicionales de CalOPPA</strong></p>
+      <p>CalOPPA también requiere la divulgación de las categorías de información de identificación personal recopilada, las categorías de terceros con quienes se comparte dicha información, el proceso mediante el cual un consumidor puede revisar y solicitar cambios en su información, el proceso mediante el cual notificamos a los consumidores sobre cambios materiales en esta Política de Privacidad y la fecha de vigencia de esta política. Estas divulgaciones se proporcionan en las Secciones 2, 5, 9.1, 13 y en la parte superior de esta Política de Privacidad, respectivamente.</p>
+      <h4>9.5 México (LFPDPPP)</h4>
+      <p>Bajo la ley mexicana, usted tiene derechos ARCO: Acceso, Rectificación, Cancelación y Oposición con respecto a sus datos personales. También puede revocar cualquier consentimiento que haya otorgado anteriormente.</p>
+      <h4>9.6 Colombia (Ley 1581 de 2012)</h4>
+      <p>Los residentes colombianos tienen el derecho de conocer, actualizar y rectificar sus datos personales; solicitar prueba del consentimiento; ser informados sobre cómo se utilizan sus datos; presentar quejas ante la Superintendencia de Industria y Comercio (SIC); revocar el consentimiento o solicitar la eliminación cuando sea apropiado; y acceder a sus datos personales de forma gratuita.</p>
+      <h4>9.7 Cómo Ejercer Sus Derechos</h4>
+      <p>Para ejercer cualquiera de estos derechos, comuníquese con nosotros usando la información en la Sección 12. Responderemos a las solicitudes verificables dentro de los plazos requeridos por la ley aplicable. Es posible que necesitemos verificar su identidad antes de procesar su solicitud.</p>
+
+      <h3>10. Seguridad de los Datos</h3>
+      <p>Adoptamos medidas administrativas, técnicas y organizativas razonables para proteger su información personal contra el acceso no autorizado, la alteración, la divulgación o la destrucción. También nos apoyamos en las medidas de seguridad implementadas por nuestros proveedores de servicios de terceros.</p>
+      <p>Sin embargo, ningún método de transmisión por internet o almacenamiento electrónico es completamente seguro. Si bien nos esforzamos por proteger su información, no podemos garantizar una seguridad absoluta.</p>
+
+      <h3>11. Privacidad de los Menores</h3>
+      <p>El Sitio no está dirigido a menores de 13 años (o la edad mínima equivalente en la jurisdicción correspondiente, como 16 años en ciertos países del EEE). No recopilamos deliberadamente información personal de menores. Si cree que un menor nos ha proporcionado información personal, comuníquese con nosotros y tomaremos medidas para eliminar esa información.</p>
+
+      <h3>12. Contáctenos</h3>
+      <p>Si tiene preguntas sobre esta Política de Privacidad o desea ejercer sus derechos de privacidad, comuníquese con nosotros:</p>
+      <p><strong>Chelo Ramirez Company</strong><br>
+      Correo electrónico: <a href="mailto:cheloramirezmusic@gmail.com">cheloramirezmusic@gmail.com</a><br>
+      Dirección postal: Calle 49 DD #81 C – 04 Medellín, Antioquia Colombia</p>
+
+      <h3>13. Cambios a Esta Política de Privacidad</h3>
+      <p>Podemos actualizar esta Política de Privacidad de vez en cuando para reflejar cambios en nuestras prácticas, tecnología, requisitos legales u otros factores. Cuando realicemos cambios materiales, actualizaremos la fecha de "Última Actualización" en la parte superior de esta política y, cuando sea apropiado, notificaremos a los suscriptores del boletín por correo electrónico. Le recomendamos revisar esta Política de Privacidad periódicamente.</p>
+      </div><!-- /es -->
     </div>
   </div>
 
@@ -1904,6 +2080,7 @@
     <div class="legal-modal-inner">
       <button class="legal-modal-close" aria-label="Close terms and conditions">&times;</button>
 
+      <div data-lang-content="en">
       <h2 id="terms-modal-title">Terms &amp; Conditions</h2>
       <p class="legal-modal-meta">Effective Date: October 22, 2026 &nbsp;·&nbsp; Last Updated: October 22, 2026</p>
       <p class="legal-modal-meta" style="margin-top:0.25rem;">Official Website of Chelo Ramírez</p>
@@ -2009,6 +2186,115 @@
       <p>These Terms have been prepared in the English language. Any translation provided is for convenience only; in the event of any conflict between the English version and any translation, the English version shall prevail.</p>
 
       <p style="margin-top:2rem; padding-top:1.5rem; border-top:1px solid rgba(229,181,71,0.2); font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase; color:#8A7A69;">© 2026 Chelo Ramirez Company &nbsp;·&nbsp; All Rights Reserved</p>
+      </div><!-- /en -->
+
+      <div data-lang-content="es" style="display:none;">
+      <h2 id="terms-modal-title-es">Términos y Condiciones</h2>
+      <p class="legal-modal-meta">Fecha de Vigencia: 22 de octubre de 2026 &nbsp;·&nbsp; Última Actualización: 22 de octubre de 2026</p>
+      <p class="legal-modal-meta" style="margin-top:0.25rem;">Sitio Web Oficial de Chelo Ramírez</p>
+
+      <h3>1. Introducción y Aceptación de los Términos</h3>
+      <p>Bienvenido al sitio web oficial de Chelo Ramírez (el "Sitio"), operado por Chelo Ramirez Company ("Chelo Ramirez", "nosotros", "nos" o "nuestro") en nombre del artista discográfico Chelo Ramírez (el "Artista"). Estos Términos y Condiciones ("Términos") rigen su acceso y uso del Sitio, incluido cualquier contenido, funcionalidad y servicios ofrecidos en o a través del Sitio.</p>
+      <p>Al acceder o utilizar el Sitio, usted reconoce que ha leído, comprendido y acepta quedar vinculado por estos Términos y nuestra Política de Privacidad, que se incorpora aquí como referencia. Si no está de acuerdo con estos Términos, no debe acceder ni utilizar el Sitio.</p>
+
+      <h3>2. Elegibilidad</h3>
+      <p>El Sitio está destinado a usuarios que tengan al menos trece (13) años de edad. Al usar el Sitio, usted declara y garantiza que tiene al menos 13 años. Si tiene entre 13 años y la mayoría de edad en su jurisdicción (generalmente 18), solo puede usar el Sitio bajo la supervisión de un padre o tutor legal que acepte quedar vinculado por estos Términos en su nombre.</p>
+      <p>Para suscribirse a nuestro boletín o unirse al fan club, debe tener al menos dieciséis (16) años, o tener el consentimiento verificable de un padre o tutor. No recopilamos deliberadamente información personal de menores de 13 años. Si nos enteramos de que hemos recopilado información personal de un menor de 13 años, eliminaremos esa información de inmediato.</p>
+
+      <h3>3. Derechos de Propiedad Intelectual</h3>
+      <h4>3.1 Titularidad del Contenido</h4>
+      <p>Todo el contenido del Sitio — incluidos, entre otros, textos, gráficos, imágenes, fotografías, grabaciones de audio, grabaciones de video, composiciones musicales, grabaciones sonoras, logotipos, diseños, el nombre "Chelo Ramírez", el nombre, imagen, voz, figura y firma del Artista, y todas las marcas comerciales, marcas de servicio y presentación comercial relacionadas (colectivamente, el "Contenido") — es propiedad exclusiva de Chelo Ramirez Company, el Artista o sus respectivos licenciantes, y está protegido por las leyes de derechos de autor, marcas comerciales, derechos de publicidad y otras leyes de propiedad intelectual de los Estados Unidos e internacionales.</p>
+      <h4>3.2 Licencia Limitada a los Usuarios</h4>
+      <p>Sujeto al cumplimiento de estos Términos, le otorgamos una licencia limitada, no exclusiva, intransferible, no sublicenciable y revocable para acceder y ver el Contenido del Sitio únicamente para su uso personal y no comercial. Esta licencia no le permite:</p>
+      <ul>
+        <li>Reproducir, distribuir, modificar, crear obras derivadas, mostrar públicamente, ejecutar públicamente, republicar, descargar, almacenar o transmitir cualquier Contenido, excepto lo expresamente permitido por nosotros por escrito;</li>
+        <li>Usar cualquier Contenido con fines comerciales, incluidos, entre otros, publicidad, mercancía, materiales promocionales o cualquier plataforma monetizada;</li>
+        <li>Usar el nombre, imagen, voz o figura del Artista de cualquier manera que sugiera respaldo, patrocinio o afiliación sin autorización escrita previa de Chelo Ramirez Company;</li>
+        <li>Eliminar, alterar u ocultar cualquier aviso de derechos de autor, marca comercial u otro aviso de propiedad;</li>
+        <li>Usar minería de datos, robots, scraping u herramientas similares de recopilación y extracción de datos.</li>
+      </ul>
+      <h4>3.3 Marcas Comerciales</h4>
+      <p>"Chelo Ramírez", el logotipo de Chelo Ramírez y todos los nombres, logotipos, nombres de productos y servicios, diseños y eslóganes relacionados son marcas comerciales de Chelo Ramirez Company y/o sus afiliadas. No puede usar dichas marcas sin nuestro permiso previo por escrito.</p>
+
+      <h3>4. Contenido Generado por el Usuario y Envíos de Fans</h3>
+      <h4>4.1 Envíos</h4>
+      <p>El Sitio puede permitirle enviar comentarios, arte de fans, fotografías, videos, mensajes u otros materiales ("Contenido del Usuario"). Usted conserva la titularidad de cualquier derecho de propiedad intelectual que posea en su Contenido del Usuario.</p>
+      <h4>4.2 Licencia Otorgada a Chelo Ramirez Company</h4>
+      <p>Al enviar Contenido del Usuario al Sitio o a cualquier canal oficial asociado con el Artista (incluidos los envíos del fan club, respuestas al boletín o contenido de redes sociales etiquetado dirigido a cuentas oficiales), usted otorga a Chelo Ramirez Company y al Artista una licencia mundial, perpetua, irrevocable, libre de regalías, totalmente pagada, sublicenciable y transferible para usar, reproducir, distribuir, modificar, adaptar, ejecutar públicamente, mostrar públicamente y crear obras derivadas de su Contenido del Usuario en cualquier medio conocido actualmente o desarrollado en el futuro, para cualquier propósito relacionado con la carrera, promoción, marketing y actividades comerciales del Artista, sin compensación, aviso o atribución a usted.</p>
+      <h4>4.3 Declaraciones y Garantías</h4>
+      <p>Usted declara y garantiza que: (a) es propietario o tiene todos los derechos necesarios para enviar el Contenido del Usuario y otorgar la licencia anterior; (b) el Contenido del Usuario no infringe los derechos de propiedad intelectual, privacidad o publicidad de ningún tercero; y (c) el Contenido del Usuario cumple con estos Términos y todas las leyes aplicables.</p>
+      <h4>4.4 Sin Obligación de Uso</h4>
+      <p>No estamos obligados a usar, mostrar ni conservar ningún Contenido del Usuario, y nos reservamos el derecho de eliminar o rechazar cualquier Contenido del Usuario a nuestra entera discreción, sin previo aviso.</p>
+
+      <h3>5. Boletín y Comunicaciones Electrónicas</h3>
+      <p>Al suscribirse a nuestro boletín, usted consiente recibir comunicaciones periódicas por correo electrónico de Chelo Ramirez Company sobre el Artista, incluidas noticias, anuncios de giras, lanzamientos de música, mercancía, asociaciones de patrocinio y contenido promocional relacionado.</p>
+      <p>Puede cancelar su suscripción en cualquier momento haciendo clic en el enlace "cancelar suscripción" incluido en cada correo electrónico del boletín, o comunicándose con nosotros en la dirección proporcionada en la Sección 14. La cancelación de la suscripción no afectará las comunicaciones relacionadas con transacciones que haya iniciado con nosotros, como confirmaciones de membresía del fan club.</p>
+      <p>El tratamiento de su dirección de correo electrónico y cualquier información personal asociada se rige por nuestra Política de Privacidad. Cumplimos con la Ley CAN-SPAM de EE. UU. y las leyes de protección de datos aplicables en las jurisdicciones donde operamos.</p>
+
+      <h3>6. Participación en el Fan Club</h3>
+      <p>El Sitio puede ofrecer funciones de fan club que permitan a los usuarios registrarse, recibir contenido exclusivo y participar en actividades comunitarias. La membresía del fan club está sujeta a términos adicionales que pueden presentarse en el momento del registro.</p>
+      <p>Usted es responsable de mantener la confidencialidad de cualquier credencial de cuenta y de todas las actividades que ocurran bajo su cuenta. Acepta notificarnos de inmediato cualquier acceso o uso no autorizado. Nos reservamos el derecho de suspender o cancelar cualquier cuenta del fan club por violación de estos Términos, comportamiento abusivo o cualquier conducta que consideremos inconsistente con los estándares comunitarios de la marca del Artista.</p>
+
+      <h3>7. Conducta Prohibida</h3>
+      <p>Al usar el Sitio, usted se compromete a no:</p>
+      <ul>
+        <li>Usar el Sitio de cualquier manera que viole cualquier ley o reglamento federal, estatal, local o internacional aplicable;</li>
+        <li>Hacerse pasar por el Artista, Chelo Ramirez Company, nuestros empleados o cualquier otra persona o entidad;</li>
+        <li>Participar en cualquier conducta acosadora, amenazante, difamatoria, odiosa, obscena o de otro modo objetable hacia el Artista, el personal de Chelo Ramirez Company u otros usuarios;</li>
+        <li>Cargar, publicar o transmitir cualquier material que contenga virus, gusanos, malware u otro código informático dañino;</li>
+        <li>Intentar obtener acceso no autorizado a cualquier parte del Sitio, otras cuentas o cualquier sistema o red conectado al Sitio;</li>
+        <li>Usar el Sitio para publicitar, solicitar o transmitir cualquier comunicación comercial no autorizada, spam o cartas en cadena;</li>
+        <li>Enmarcar, reflejar, raspar o extraer sistemáticamente datos o contenido del Sitio sin nuestro consentimiento expreso por escrito;</li>
+        <li>Interferir con el correcto funcionamiento del Sitio o de cualquier servidor o red conectado a él.</li>
+      </ul>
+
+      <h3>8. Servicios y Enlaces de Terceros</h3>
+      <p>El Sitio puede contener enlaces a sitios web, servicios o recursos de terceros, incluidos, entre otros, plataformas de streaming (Spotify, Apple Music, YouTube), redes sociales (Instagram, TikTok, Facebook) y proveedores de entradas o mercancía. Estos servicios de terceros no están bajo nuestro control, y no somos responsables de su contenido, prácticas de privacidad o transacciones que realice a través de ellos.</p>
+      <p>Sus interacciones con cualquier servicio de terceros se rigen únicamente por los términos y políticas de ese tercero. Le recomendamos encarecidamente revisar esos términos antes de relacionarse con cualquier servicio de terceros.</p>
+
+      <h3>9. Descargos de Responsabilidad</h3>
+      <p>EL SITIO Y TODO EL CONTENIDO SE PROPORCIONAN TAL CUAL ("AS IS") Y SEGÚN DISPONIBILIDAD ("AS AVAILABLE"), SIN GARANTÍAS DE NINGÚN TIPO, YA SEAN EXPRESAS O IMPLÍCITAS. EN LA MÁXIMA MEDIDA PERMITIDA POR LA LEY APLICABLE, CHELO RAMIREZ COMPANY, EL ARTISTA Y SUS RESPECTIVOS AFILIADOS, DIRECTIVOS, EMPLEADOS, AGENTES Y LICENCIANTES RENUNCIAN A TODAS LAS GARANTÍAS, INCLUIDAS LAS GARANTÍAS IMPLÍCITAS DE COMERCIABILIDAD, IDONEIDAD PARA UN FIN PARTICULAR, NO INFRACCIÓN Y CUALQUIER GARANTÍA QUE SURJA DEL CURSO DE LOS NEGOCIOS O DE LOS USOS COMERCIALES.</p>
+      <p>No garantizamos que el Sitio sea ininterrumpido, seguro o libre de errores; que los defectos se corrijan; ni que el Sitio o los servidores que lo hacen disponible estén libres de virus u otros componentes dañinos. Las fechas de giras, la información de eventos, las fechas de lanzamiento y otro contenido prospectivo están sujetos a cambios sin previo aviso y no están garantizados.</p>
+
+      <h3>10. Limitación de Responsabilidad</h3>
+      <p>EN LA MÁXIMA MEDIDA PERMITIDA POR LA LEY APLICABLE, EN NINGÚN CASO CHELO RAMIREZ COMPANY, EL ARTISTA NI SUS RESPECTIVOS AFILIADOS, DIRECTIVOS, DIRECTORES, EMPLEADOS, AGENTES O LICENCIANTES SERÁN RESPONSABLES DE NINGÚN DAÑO INDIRECTO, INCIDENTAL, ESPECIAL, CONSECUENTE O PUNITIVO, INCLUIDA, SIN LIMITACIÓN, LA PÉRDIDA DE BENEFICIOS, DATOS, USO, FONDO DE COMERCIO U OTRAS PÉRDIDAS INTANGIBLES, QUE SURJAN DE O SE RELACIONEN CON SU ACCESO O USO, O INCAPACIDAD PARA ACCEDER O USAR, EL SITIO.</p>
+      <p>NUESTRA RESPONSABILIDAD TOTAL AGREGADA ANTE USTED POR TODAS LAS RECLAMACIONES QUE SURJAN DE O SE RELACIONEN CON ESTOS TÉRMINOS O EL SITIO NO EXCEDERÁ CIEN DÓLARES ESTADOUNIDENSES (USD $100.00). ALGUNAS JURISDICCIONES NO PERMITEN LA EXCLUSIÓN O LIMITACIÓN DE CIERTOS DAÑOS, POR LO QUE ALGUNAS DE LAS LIMITACIONES ANTERIORES PUEDEN NO APLICARSE A USTED.</p>
+
+      <h3>11. Indemnización</h3>
+      <p>Usted acepta indemnizar, defender y eximir de responsabilidad a Chelo Ramirez Company, al Artista y a sus respectivos afiliados, directivos, directores, empleados, agentes y licenciantes de y contra todas y cada una de las reclamaciones, responsabilidades, daños, pérdidas, costos y gastos (incluidos los honorarios razonables de abogados) que surjan de o estén relacionados con: (a) su uso del Sitio; (b) su violación de estos Términos; (c) su Contenido del Usuario; o (d) su violación de cualquier derecho de terceros.</p>
+
+      <h3>12. Ley Aplicable y Resolución de Disputas</h3>
+      <p>Estos Términos se regirán e interpretarán de acuerdo con las leyes de Medellín, Colombia, sin tener en cuenta sus principios de conflicto de leyes. Cualquier disputa que surja de o se relacione con estos Términos o el Sitio se presentará exclusivamente en los tribunales ubicados en Medellín, Colombia, y usted consiente la jurisdicción personal de dichos tribunales.</p>
+      <p>Si accede al Sitio desde fuera de Colombia, lo hace por su propia iniciativa y es responsable del cumplimiento de las leyes locales. Nada en estos Términos limitará los derechos de protección al consumidor no renunciables que pueda tener bajo las leyes de su país de residencia, incluidos los derechos del consumidor bajo las leyes de los Estados Unidos o México donde corresponda.</p>
+      <h4>12.1 Resolución Informal</h4>
+      <p>Antes de presentar cualquier reclamación formal, usted acepta primero intentar resolver la disputa de manera informal contactándonos por escrito en la dirección indicada en la Sección 14. Intentaremos de buena fe resolver cualquier disputa dentro de sesenta (60) días de recibir dicho aviso.</p>
+
+      <h3>13. Modificaciones a los Términos y al Sitio</h3>
+      <p>Nos reservamos el derecho de modificar estos Términos en cualquier momento a nuestra entera discreción. Cuando realicemos cambios materiales, actualizaremos la fecha de "Última Actualización" en la parte superior de este documento y, cuando sea apropiado, proporcionaremos aviso adicional a través del Sitio o por correo electrónico. Su uso continuado del Sitio después de cualquier modificación constituye su aceptación de los Términos revisados.</p>
+      <p>También nos reservamos el derecho de modificar, suspender o discontinuar cualquier aspecto del Sitio en cualquier momento, sin previo aviso ni responsabilidad ante usted.</p>
+
+      <h3>14. Información de Contacto</h3>
+      <p>Si tiene alguna pregunta, inquietud o solicitud sobre estos Términos, comuníquese con nosotros:</p>
+      <p><strong>Chelo Ramirez Company</strong><br>
+      Attn: Chelo Ramírez — Legal y Cumplimiento<br>
+      Calle 49 DD #81 C – 04 Medellín, Antioquia Colombia<br>
+      Correo electrónico: <a href="mailto:cheloramirezmusic@gmail.com">cheloramirezmusic@gmail.com</a><br>
+      Sitio web: www.cheloramirez.co</p>
+
+      <h3>15. Disposiciones Generales</h3>
+      <h4>15.1 Acuerdo Completo</h4>
+      <p>Estos Términos, junto con nuestra Política de Privacidad y cualquier término adicional aplicable a funciones específicas del Sitio, constituyen el acuerdo completo entre usted y Chelo Ramirez Company con respecto al Sitio, y reemplazan todos los acuerdos y entendimientos anteriores.</p>
+      <h4>15.2 Divisibilidad</h4>
+      <p>Si alguna disposición de estos Términos se considera ilícita, nula o inaplicable, dicha disposición se separará de las disposiciones restantes, que permanecerán en plena vigencia y efecto.</p>
+      <h4>15.3 Sin Renuncia</h4>
+      <p>Nuestro incumplimiento en hacer cumplir cualquier derecho o disposición de estos Términos no constituirá una renuncia a ese derecho o disposición.</p>
+      <h4>15.4 Cesión</h4>
+      <p>No puede ceder ni transferir estos Términos sin nuestro consentimiento previo por escrito. Podemos ceder estos Términos en cualquier momento sin previo aviso.</p>
+      <h4>15.5 Idioma</h4>
+      <p>Estos Términos han sido preparados en inglés. Cualquier traducción proporcionada es solo para conveniencia; en caso de cualquier conflicto entre la versión en inglés y cualquier traducción, prevalecerá la versión en inglés.</p>
+
+      <p style="margin-top:2rem; padding-top:1.5rem; border-top:1px solid rgba(229,181,71,0.2); font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase; color:#8A7A69;">© 2026 Chelo Ramirez Company &nbsp;·&nbsp; Todos los Derechos Reservados</p>
+      </div><!-- /es -->
     </div>
   </div>
 
