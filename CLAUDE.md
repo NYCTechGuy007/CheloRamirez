@@ -52,6 +52,13 @@ The nav header is ~80px tall. Do not increase any nav element without checking t
 - The hamburger dropdown already contains all nav links, social icons, and ES/EN — so no functionality is lost below 1280px.
 - Run tablet and 1024px screenshot checks after any nav changes.
 
+### Mobile menu short-screen behavior (do not remove)
+`#mobile-menu` has `overflow-y: auto` always. Two `@media (max-height)` blocks compress the menu for landscape phones and short viewports:
+- `max-height: 600px` — `justify-content: flex-start`, `padding: 3.5rem 2rem 2rem`, `gap: 0.75rem`, font `clamp(1.5rem, 5vw, 2rem)`
+- `max-height: 420px` — further compression: `padding: 3rem 2rem 1.5rem`, `gap: 0.5rem`, font `clamp(1.25rem, 4vw, 1.6rem)`
+
+The close button is `position: absolute` so it stays pinned in the top-right corner regardless of scroll position.
+
 ## GSAP + Lenis Init Order (critical)
 Always init: Lenis → `lenis.on('scroll', ScrollTrigger.update)` → `gsap.ticker.add` → `lagSmoothing(0)` → `registerPlugin(ScrollTrigger)`. All ScrollTrigger animations go after. Exact code block: `_dev/animation-setup.md`
 
