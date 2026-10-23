@@ -137,6 +137,9 @@
       background-color: #0A0A0A;
       overflow: hidden;
     }
+    @media (max-width: 480px) {
+      #hero { padding: 0 1.25rem 3.5rem; }
+    }
     #hero-bg {
       position: absolute;
       inset: 0;
@@ -170,7 +173,7 @@
 
     .hero-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(4rem, 11vw, 10rem);
+      font-size: clamp(2.8rem, 11vw, 10rem);
       font-weight: 700;
       line-height: 0.88;
       letter-spacing: -0.02em;
@@ -461,7 +464,7 @@
       <div class="flex items-center gap-6">
         <a href="#hero" class="font-display text-3xl font-bold text-cream hover:text-gold transition-colors flex-shrink-0" style="letter-spacing:0.08em;">CHR</a>
 
-        <div class="hidden md:flex items-center gap-3 lg:gap-5">
+        <div class="hidden xl:flex items-center gap-3 xl:gap-5">
           <a href="#about"   class="nav-link" data-i18n="nav-about">Bio</a>
           <a href="#music"   class="nav-link" data-i18n="nav-music">Music</a>
           <a href="#videos"  class="nav-link" data-i18n="nav-videos">Videos</a>
@@ -471,11 +474,11 @@
         </div>
       </div>
 
-      <!-- RIGHT: Social icons (desktop only) + language toggle (tablet+) -->
-      <div class="hidden md:flex items-center gap-3">
+      <!-- RIGHT: Social icons (xl+) + language toggle (md+) + hamburger (below xl) -->
+      <div class="flex items-center gap-3">
 
-        <!-- Social icons: desktop (lg+) only -->
-        <div class="hidden lg:flex items-center gap-3">
+        <!-- Social icons: xl+ only -->
+        <div class="hidden xl:flex items-center gap-3">
 
           <!-- Spotify -->
           <a href="[SPOTIFY_ARTIST_URL]" target="_blank" rel="noopener" aria-label="Spotify" class="social-icon">
@@ -517,15 +520,15 @@
 
         </div>
 
-        <!-- Language toggle: tablet + desktop (md+) -->
-        <a href="#" id="lang-toggle" class="font-body font-medium hover:text-cream transition-colors" style="font-size:1.17rem; letter-spacing:0.15em; text-transform:uppercase; text-decoration:none; white-space:nowrap;">
+        <!-- Language toggle: md+ -->
+        <a href="#" id="lang-toggle" class="hidden md:block font-body font-medium hover:text-cream transition-colors" style="font-size:1.17rem; letter-spacing:0.15em; text-transform:uppercase; text-decoration:none; white-space:nowrap;">
           <span id="lang-es" style="color:#E5B547;">ES</span><span class="text-muted" style="margin:0 3px; opacity:0.5;">/</span><span id="lang-en" class="text-muted">EN</span>
         </a>
 
       </div>
 
-      <!-- Hamburger button (mobile) -->
-      <button id="hamburger" class="md:hidden flex flex-col gap-1.5 p-2 z-[201]" aria-label="Open menu" aria-expanded="false">
+      <!-- Hamburger button (below xl) -->
+      <button id="hamburger" class="xl:hidden flex flex-col gap-1.5 p-2 z-[201]" aria-label="Open menu" aria-expanded="false">
         <span class="hamburger-line block w-6 h-px bg-cream transition-all duration-300"></span>
         <span class="hamburger-line block w-6 h-px bg-cream transition-all duration-300"></span>
         <span class="hamburger-line block w-4 h-px bg-cream transition-all duration-300"></span>

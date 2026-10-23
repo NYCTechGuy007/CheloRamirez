@@ -19,7 +19,7 @@ Standalone landing pages (like `private-events.html`) are allowed when they serv
 
 ## Design System
 Colors: `wine #5A0A18` · `gold #E5B547` · `goldHigh #F5D078` · `copper #C25028` · `cream #F2E6C9` · `muted #8A7A69` · `surface #1A1410` · `site #0A0A0A`
-Typography: Cormorant Garamond (display, italic 300 taglines / bold 700 hero) + Inter (body 400/500). Hero name 8–10rem, section headings min 4rem.
+Typography: Cormorant Garamond (display, italic 300 taglines / bold 700 hero) + Inter (body 400/500). Hero name `clamp(2.8rem, 11vw, 10rem)`, section headings min 4rem.
 Full color table, brand names, and Tailwind config block: `_dev/design-system.md`
 
 ## Sections (in order)
@@ -36,7 +36,7 @@ Full color table, brand names, and Tailwind config block: `_dev/design-system.md
 ## Nav Sizing (locked)
 The nav header is ~80px tall. Do not increase any nav element without checking this constraint.
 - **Padding:** `1.4rem 2.5rem` (top/bottom × left/right)
-- **Nav links:** `1.17rem` desktop / `0.95rem` tablet (letter-spacing `0.18em` desktop, `0.07em` tablet via CSS media query `768px–1023px`)
+- **Nav links:** `1.17rem`, letter-spacing `0.18em` (desktop only — hidden below 1280px)
 - **Social icons:** 30px (Spotify, Apple Music, Instagram, Facebook, WhatsApp), 33px (YouTube), 29px (TikTok)
 - **EN/ES toggle:** `1.17rem`
 - **Height limiter:** CHR logo (`text-3xl`, line-height `2.25rem` ≈ 36px) is the tallest element. Nothing in the nav row should exceed ~35px rendered height.
@@ -45,10 +45,12 @@ The nav header is ~80px tall. Do not increase any nav element without checking t
 | Viewport | Nav links | Social icons | Lang toggle | Hamburger |
 |---|---|---|---|---|
 | < 768px (phone) | hidden | hidden | hidden | visible |
-| 768–1023px (tablet) | visible | **hidden** | visible | hidden |
-| ≥ 1024px (desktop) | visible | visible (all 7) | visible | hidden |
+| 768–1279px (tablet + small desktop) | hidden | hidden | visible | visible |
+| ≥ 1280px (desktop) | visible | visible (all 7) | visible | hidden |
 
-Social icons live in `hidden lg:flex` — do not move to `hidden md:flex`. Run tablet screenshot check after any nav changes.
+- Nav links wrapper: `hidden xl:flex` · Social icons: `hidden xl:flex` · Lang toggle: `hidden md:block` · Hamburger: `xl:hidden`
+- The hamburger dropdown already contains all nav links, social icons, and ES/EN — so no functionality is lost below 1280px.
+- Run tablet and 1024px screenshot checks after any nav changes.
 
 ## GSAP + Lenis Init Order (critical)
 Always init: Lenis → `lenis.on('scroll', ScrollTrigger.update)` → `gsap.ticker.add` → `lagSmoothing(0)` → `registerPlugin(ScrollTrigger)`. All ScrollTrigger animations go after. Exact code block: `_dev/animation-setup.md`
