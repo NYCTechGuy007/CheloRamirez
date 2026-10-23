@@ -4,7 +4,12 @@
 - **Invoke the `frontend-design` skill** before writing any frontend code, every session, no exceptions.
 
 ## Project Type
-Single-file static website (`index.html` only). No build tools, no framework.
+Static website. No build tools, no framework. Three core files:
+- `index.html` — main fan-facing site (single file, never split into components)
+- `private-events.html` — standalone B2B landing page for private event prospects
+- `config.js` — all social links, booking email, Web3Forms key, and media embed IDs. Always update here, never hardcode in HTML.
+
+Standalone landing pages (like `private-events.html`) are allowed when they serve a distinct audience or purpose. They share the same CDN stack, Tailwind config, and design system as `index.html` but are self-contained with their own `<script>` block and TRANSLATIONS object.
 
 ## Tech Stack
 - Tailwind CSS via Play CDN (`https://cdn.tailwindcss.com`)
@@ -24,7 +29,8 @@ Full color table, brand names, and Tailwind config block: `_dev/design-system.md
 4. `#music` — Spotify embed + Apple Music button
 5. `#videos` — YouTube embed + thumbnails
 6. `#gallery` — Masonry photo grid with lightbox. Clicking any `.gallery-item` opens `#lightbox` (full-screen overlay). Visibility toggled via `.is-open` class — do not re-implement.
-7. `#events` — Upcoming shows list + embedded newsletter signup strip
+   Legal modals: `#privacy-modal` and `#terms-modal` use the same `.is-open` pattern, triggered by `openLegalModal('modal-id')`. Linked from footer. Do not re-implement.
+7. `#events` — Upcoming shows list + Past Performances subsection (`#past-performances`) + embedded newsletter signup strip
 8. `#contact` — Booking form + footer (footer contains second newsletter form)
 
 ## Nav Sizing (locked)
@@ -33,7 +39,7 @@ The nav header is ~80px tall. Do not increase any nav element without checking t
 - **Nav links:** `1.17rem` desktop / `0.95rem` tablet (letter-spacing `0.18em` desktop, `0.07em` tablet via CSS media query `768px–1023px`)
 - **Social icons:** 30px (Spotify, Apple Music, Instagram, Facebook, WhatsApp), 33px (YouTube), 29px (TikTok)
 - **EN/ES toggle:** `1.17rem`
-- **Height limiter:** CR logo (`text-3xl`, line-height `2.25rem` ≈ 36px) is the tallest element. Nothing in the nav row should exceed ~35px rendered height.
+- **Height limiter:** CHR logo (`text-3xl`, line-height `2.25rem` ≈ 36px) is the tallest element. Nothing in the nav row should exceed ~35px rendered height.
 
 ### Nav responsive visibility rules
 | Viewport | Nav links | Social icons | Lang toggle | Hamburger |
@@ -46,6 +52,8 @@ Social icons live in `hidden lg:flex` — do not move to `hidden md:flex`. Run t
 
 ## GSAP + Lenis Init Order (critical)
 Always init: Lenis → `lenis.on('scroll', ScrollTrigger.update)` → `gsap.ticker.add` → `lagSmoothing(0)` → `registerPlugin(ScrollTrigger)`. All ScrollTrigger animations go after. Exact code block: `_dev/animation-setup.md`
+
+**Lenis + ScrollTrigger gotcha:** Lenis intercepts programmatic scroll (`scrollIntoView`, `window.scrollTo`), so ScrollTrigger's `start` threshold may never fire for elements deep in the page when a user navigates directly to a section. Only apply `gsap.from()` entrance animations to **headings and key structural elements** — never to dense content lists (venue grids, step cards, list items). Those should render visible by default.
 
 ## Placeholder Token Registry
 
@@ -88,14 +96,20 @@ Photos: `brand assets/photos/` · Logos: `brand assets/logos/`
 - **Depth:** Base `#0D0A07` → elevated `#1A1410` → floating. Never all at the same z-plane.
 
 ## Internationalisation (EN/ES)
-`TRANSLATIONS` object in `index.html` script block. `setLanguage(lang)` swaps `[data-i18n]`, `[data-i18n-html]`, `[data-i18n-placeholder]`. Default: **Spanish (`es`)**. Elements added after the main `<script>` block must hardcode Spanish as default text.
+`TRANSLATIONS` object in each page's `<script>` block. `setLanguage(lang)` swaps `[data-i18n]`, `[data-i18n-html]`, `[data-i18n-placeholder]`. Default: **Spanish (`es`)**. Elements added after the main `<script>` block must hardcode Spanish as default text. Language preference persists across pages via `localStorage` key `cr-lang`.
+
+**Key naming convention:**
+- `index.html` keys: plain names (`nav-about`, `contact-label`, etc.)
+- `private-events.html` keys: **`pe-` prefix** (`pe-hero-label`, `pe-cta-btn`, etc.) — avoids collisions if keys are ever shared
+- Keys used in both files (the contact callout banner): `pe-main-callout`, `pe-main-callout-sub`, `pe-main-callout-link` — defined in **both** TRANSLATIONS objects; update both when changing copy
+
 After pasting any user-provided copy, run the smart quote syntax check. Full details, translation workflow, and syntax-check command: `_dev/i18n.md`
 
 ## Hard Rules
 - Do not use `transition-all`
 - Do not use default Tailwind blue/indigo as primary color
 - Do not stop after one screenshot pass
-- Do not add a JavaScript framework, build step, or split into multiple HTML files
+- Do not add a JavaScript framework or build step. Do not split `index.html` into components. Standalone landing pages with distinct audiences are allowed.
 - Do not change the color palette without user approval
 - Do not use glassmorphism or visible card containers on scroll sections
 - Do not use generic fonts (Arial, Roboto, or Inter) as a display font

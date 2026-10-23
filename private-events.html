@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eventos Privados — Chelo Ramírez</title>
+  <meta name="description" content="Contrata a Chelo Ramírez para tu evento privado. Mariachi, cumbia y música popular colombiana para bodas, aniversarios y celebraciones empresariales en Medellín y toda Colombia." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            wine:     '#5A0A18',
+            gold:     '#E5B547',
+            goldHigh: '#F5D078',
+            copper:   '#C25028',
+            cream:    '#F2E6C9',
+            muted:    '#8A7A69',
+            surface:  '#1A1410',
+            site:     '#0A0A0A',
+          },
+          fontFamily: {
+            display: ['"Cormorant Garamond"', 'serif'],
+            body:    ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: auto; }
+    body {
+      background-color: #0A0A0A;
+      color: #F2E6C9;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .font-display { font-family: 'Cormorant Garamond', serif; }
+
+    /* ── Header ── */
+    #pe-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.4rem 2.5rem;
+      transition: background 0.4s ease, backdrop-filter 0.4s ease;
+    }
+    #pe-header.scrolled {
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(229,181,71,0.15);
+    }
+
+    /* ── Gold rule ── */
+    .gold-rule {
+      height: 1px;
+      background: linear-gradient(to right, #E5B547, rgba(229,181,71,0));
+      transform-origin: left;
+    }
+    .gold-rule-full {
+      height: 1px;
+      background: rgba(229,181,71,0.2);
+    }
+
+    /* ── Scroll reveals ── */
+    .reveal-up, .reveal-left { will-change: transform, opacity; }
+
+    /* ── Hero ── */
+    #pe-hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 2.5rem 5rem;
+      background-color: #0A0A0A;
+      overflow: hidden;
+    }
+    #pe-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('brand%20assets/photos/chelo-2.jpg');
+      background-size: cover;
+      background-position: center top;
+      z-index: 0;
+    }
+    #pe-hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top, rgba(10,10,10,0.97) 0%, rgba(10,10,10,0.6) 45%, rgba(10,10,10,0.2) 100%),
+        linear-gradient(to right, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0) 60%);
+    }
+
+    /* ── Section base ── */
+    section { position: relative; overflow: hidden; }
+
+    /* ── Credential cards ── */
+    .cred-card {
+      border: 1px solid rgba(229,181,71,0.2);
+      padding: 1.75rem 1.5rem;
+      background: rgba(255,255,255,0.02);
+      transition: border-color 0.3s;
+    }
+    .cred-card:hover { border-color: rgba(229,181,71,0.45); }
+
+    /* ── Stage stat rows ── */
+    .stat-row {
+      display: grid;
+      grid-template-columns: 6rem 1fr;
+      gap: 1.5rem;
+      align-items: start;
+      padding: 2rem 0;
+      border-bottom: 1px solid rgba(229,181,71,0.15);
+    }
+    .stat-row:last-child { border-bottom: none; }
+    @media (max-width: 640px) {
+      .stat-row { grid-template-columns: 1fr; gap: 0.5rem; }
+    }
+
+    /* ── Step cards ── */
+    .step-card {
+      display: grid;
+      grid-template-columns: 4rem 1fr;
+      gap: 1.5rem;
+      align-items: start;
+      padding: 2rem 0;
+      border-bottom: 1px solid rgba(229,181,71,0.12);
+    }
+    .step-card:last-child { border-bottom: none; }
+    @media (max-width: 640px) {
+      .step-card { grid-template-columns: 1fr; gap: 0.5rem; }
+    }
+
+    /* ── Venue lists ── */
+    .venue-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 0.125rem 2rem;
+    }
+    .venue-list li {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      color: #C4B49A;
+      padding: 0.375rem 0;
+      border-bottom: 1px solid rgba(229,181,71,0.08);
+    }
+
+    /* ── CTA section photo ── */
+    #pe-cta {
+      position: relative;
+      overflow: hidden;
+    }
+    #pe-cta-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('brand%20assets/photos/chelo-9.jpg');
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
+    }
+    #pe-cta-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to right, rgba(10,10,10,0.95) 40%, rgba(10,10,10,0.5) 100%),
+        linear-gradient(to top, rgba(10,10,10,0.8) 0%, rgba(10,10,10,0) 60%);
+    }
+
+    /* ── Photo section (El Espectáculo) ── */
+    .show-photo {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    /* ── Experience section photo ── */
+    #pe-exp-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      min-height: 400px;
+    }
+
+    /* ── CTA buttons ── */
+    .btn-gold {
+      display: inline-block;
+      background: #E5B547;
+      color: #0A0A0A;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 1rem 2.5rem;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-gold:hover { background: #F5D078; }
+    .btn-gold:active { background: #C25028; color: #F2E6C9; }
+    .btn-gold:focus-visible { outline: 2px solid #E5B547; outline-offset: 3px; }
+
+    .btn-outline {
+      display: inline-block;
+      border: 1px solid rgba(229,181,71,0.5);
+      color: #E5B547;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.9rem 2rem;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .btn-outline:hover { border-color: #E5B547; background: rgba(229,181,71,0.08); }
+    .btn-outline:active { background: rgba(229,181,71,0.15); }
+    .btn-outline:focus-visible { outline: 2px solid #E5B547; outline-offset: 3px; }
+
+    /* ── Blockquote ── */
+    .pe-blockquote {
+      border-left: 3px solid rgba(229,181,71,0.4);
+      padding-left: 1.5rem;
+      margin: 1.5rem 0 0;
+    }
+
+    /* ── Noise grain ── */
+    .noise-grain::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ── Accessibility ── */
+    @media (prefers-reduced-motion: reduce) {
+      * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
+
+    /* ── Mobile padding ── */
+    @media (max-width: 768px) {
+      #pe-hero { padding: 0 1.5rem 4rem; }
+      #pe-header { padding: 1.2rem 1.5rem; }
+    }
+
+    /* ── Form ── */
+    .form-field {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(229,181,71,0.2);
+      color: #F2E6C9;
+      padding: 0.875rem 1.25rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-field:focus { border-color: #E5B547; }
+    .form-field::placeholder { color: #8A7A69; }
+    select.form-field option { background: #1A1410; color: #F2E6C9; }
+  </style>
+</head>
+
+<body class="bg-site text-cream font-body">
+
+  <!-- ══════════════════════════════════════════
+       HEADER (simplified — no full nav)
+  ══════════════════════════════════════════ -->
+  <header id="pe-header" aria-label="Page header">
+    <div class="flex items-center justify-between max-w-7xl mx-auto">
+
+      <!-- CHR logo → main site -->
+      <a href="index.html"
+        class="font-display text-3xl font-bold text-cream hover:text-gold transition-colors"
+        style="letter-spacing:0.08em; text-decoration:none;">CHR</a>
+
+      <!-- Right: back link + lang toggle -->
+      <div class="flex items-center gap-6">
+        <a href="index.html" id="pe-back-link" class="font-body font-medium text-muted hover:text-cream transition-colors"
+          style="font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none;"
+          data-i18n="pe-back">← Volver al sitio</a>
+
+        <a href="#" id="lang-toggle"
+          class="font-body font-medium hover:text-cream transition-colors"
+          style="font-size:1.17rem; letter-spacing:0.15em; text-transform:uppercase; text-decoration:none; white-space:nowrap;"
+          aria-label="Cambiar idioma">
+          <span id="lang-es" style="color:#E5B547;">ES</span><span class="text-muted" style="margin:0 3px; opacity:0.5;">/</span><span id="lang-en" style="color:#8A7A69;">EN</span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- ══════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════ -->
+  <section id="pe-hero">
+    <div id="pe-hero-bg"></div>
+
+    <!-- Noise grain overlay -->
+    <div style="position:absolute; inset:0; z-index:1; pointer-events:none;
+      background-image:url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E&quot;);">
+    </div>
+
+    <!-- Radial accent gradients -->
+    <div style="position:absolute; inset:0; z-index:1; pointer-events:none;
+      background:
+        radial-gradient(ellipse at 70% 30%, rgba(90,10,24,0.35) 0%, transparent 60%),
+        radial-gradient(ellipse at 20% 80%, rgba(229,181,71,0.08) 0%, transparent 50%);"></div>
+
+    <div style="position:relative; z-index:2; max-width:860px;">
+
+      <!-- Label -->
+      <p id="pe-hero-label"
+        class="reveal-up font-body font-medium text-gold mb-6"
+        style="font-size:0.72rem; letter-spacing:0.32em; text-transform:uppercase;"
+        data-i18n="pe-hero-label">EVENTOS PRIVADOS</p>
+
+      <!-- Headline -->
+      <h1 id="pe-hero-tagline"
+        class="font-display font-bold text-cream"
+        style="font-size:clamp(3.5rem,8vw,7rem); line-height:0.92; letter-spacing:-0.02em; opacity:0; transform:translateY(30px);"
+        data-i18n-html="pe-hero-tagline-html">
+        Celebra con tu propia<br /><em class="text-gold" style="font-style:italic;">banda sonora.</em>
+      </h1>
+
+      <!-- Sub -->
+      <p id="pe-hero-sub"
+        class="font-body text-muted mt-7 leading-relaxed"
+        style="font-size:0.95rem; max-width:52ch; opacity:0; transform:translateY(20px);"
+        data-i18n="pe-hero-sub">
+        Mariachi, cumbia, música popular colombiana y fusión con vallenato. Un espectáculo adaptado a tu ocasión.
+      </p>
+
+      <!-- Location -->
+      <p id="pe-hero-location"
+        class="font-body text-muted mt-3"
+        style="font-size:0.8rem; letter-spacing:0.1em; opacity:0; transform:translateY(15px);"
+        data-i18n="pe-hero-location">
+        Medellín · Disponible en toda Colombia
+      </p>
+
+      <!-- CTAs -->
+      <div id="pe-hero-ctas"
+        class="flex flex-wrap gap-4 mt-10"
+        style="opacity:0; transform:translateY(15px);">
+        <a href="Chelo_Ramirez_Eventos_Privados_Carta.pdf" download
+          class="btn-gold"
+          data-i18n="pe-download-btn">Descargar propuesta</a>
+        <a href="#pe-booking-form-wrap"
+          class="btn-outline"
+          data-i18n="pe-consult-btn"
+          id="hero-check-avail-btn">Consultar disponibilidad</a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       TRAYECTORIA
+  ══════════════════════════════════════════ -->
+  <section id="pe-tray" style="background:#1A1410; padding:6rem 1.5rem;" class="md:py-32">
+    <div class="max-w-6xl mx-auto">
+
+      <!-- Heading -->
+      <div class="mb-16">
+        <p class="reveal-up font-body font-medium text-gold mb-4"
+          style="font-size:0.7rem; letter-spacing:0.28em; text-transform:uppercase;"
+          data-i18n="pe-tray-label">Trayectoria</p>
+        <h2 class="reveal-up font-display font-bold text-cream"
+          style="font-size:clamp(2.8rem,6vw,5rem); line-height:0.92; letter-spacing:-0.02em;"
+          data-i18n-html="pe-tray-heading-html">
+          Una trayectoria<br /><em class="text-gold" style="font-style:italic;">que respalda cada show.</em>
+        </h2>
+      </div>
+
+      <!-- Credential cards -->
+      <div class="grid md:grid-cols-3 gap-5 mb-20">
+
+        <div class="cred-card reveal-up">
+          <p class="font-body font-medium text-gold mb-3"
+            style="font-size:0.65rem; letter-spacing:0.28em; text-transform:uppercase;"
+            data-i18n="pe-card1-label">Spotify Colombia</p>
+          <p class="font-display font-bold text-cream mb-3"
+            style="font-size:clamp(2.5rem,5vw,3.5rem); line-height:0.95; letter-spacing:-0.01em;"
+            data-i18n="pe-card1-heading">Top 5</p>
+          <p class="font-body text-muted leading-relaxed"
+            style="font-size:0.85rem;"
+            data-i18n="pe-card1-body">Con su sencillo «Suerte».</p>
+        </div>
+
+        <div class="cred-card reveal-up" style="transition-delay:0.08s;">
+          <p class="font-body font-medium text-gold mb-3"
+            style="font-size:0.65rem; letter-spacing:0.28em; text-transform:uppercase;"
+            data-i18n="pe-card2-label">Acordeón</p>
+          <p class="font-display font-bold text-cream mb-3"
+            style="font-size:clamp(2.5rem,5vw,3.5rem); line-height:0.95; letter-spacing:-0.01em;"
+            data-i18n="pe-card2-heading">Rey del Festival</p>
+          <p class="font-body text-muted leading-relaxed"
+            style="font-size:0.85rem;"
+            data-i18n="pe-card2-body">Francisco el Hombre, Antioquia. Cuarto lugar a nivel nacional en acordeón.</p>
+        </div>
+
+        <div class="cred-card reveal-up" style="transition-delay:0.16s;">
+          <p class="font-body font-medium text-gold mb-3"
+            style="font-size:0.65rem; letter-spacing:0.28em; text-transform:uppercase;"
+            data-i18n="pe-card3-label">Compositor</p>
+          <p class="font-display font-bold text-cream mb-3"
+            style="font-size:clamp(2.5rem,5vw,3.5rem); line-height:0.95; letter-spacing:-0.01em; font-size:clamp(1.8rem,4vw,2.6rem);"
+            data-i18n="pe-card3-heading">Warner Chappell México</p>
+          <p class="font-body text-muted leading-relaxed"
+            style="font-size:0.85rem;"
+            data-i18n="pe-card3-body">Contrato vigente como compositor.</p>
+        </div>
+
+      </div>
+
+      <!-- Shared stages -->
+      <div class="mb-14">
+        <p class="font-body font-medium text-muted mb-5"
+          style="font-size:0.68rem; letter-spacing:0.24em; text-transform:uppercase;"
+          data-i18n="pe-stages-label">Ha compartido escenario con</p>
+        <div class="gold-rule mb-6" style="width:100%; background:rgba(229,181,71,0.2);"></div>
+        <p id="pe-stages-names" class="reveal-up font-display font-bold text-cream leading-none"
+          style="font-size:clamp(1.6rem,4.5vw,3.2rem); letter-spacing:-0.01em; line-height:1.2;">
+          Jessi Uribe &nbsp;·&nbsp; Paola Jara &nbsp;·&nbsp; Yeison Jiménez &nbsp;·&nbsp; Luis Alfonso &nbsp;·&nbsp; Dos Carnales &nbsp;·&nbsp; Piso 21
+        </p>
+        <div class="gold-rule mt-6" style="width:100%; background:rgba(229,181,71,0.2);"></div>
+      </div>
+
+      <!-- Collaborations + Production -->
+      <div class="grid md:grid-cols-2 gap-10">
+
+        <div>
+          <p class="font-body font-medium text-gold mb-4"
+            style="font-size:0.65rem; letter-spacing:0.24em; text-transform:uppercase;"
+            data-i18n="pe-collab-label">Colaboraciones</p>
+          <p class="font-body text-cream leading-loose"
+            style="font-size:1rem;">
+            Zion &nbsp;·&nbsp; Jhonny Rivera &nbsp;·&nbsp; El Bebeto &nbsp;·&nbsp; Samuel Sarmiento
+          </p>
+        </div>
+
+        <div>
+          <p class="font-body font-medium text-gold mb-4"
+            style="font-size:0.65rem; letter-spacing:0.24em; text-transform:uppercase;"
+            data-i18n="pe-prod-label">Producción</p>
+          <p class="font-body text-muted leading-relaxed"
+            style="font-size:0.9rem;"
+            data-i18n="pe-prod-body">
+            Su música cuenta con la producción de George Parra (Colombia), Fer de Santiago (México) y Horacio Palencia (México).
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       EL ESPECTÁCULO
+  ══════════════════════════════════════════ -->
+  <section id="pe-show" style="background:#0A0A0A; padding:6rem 1.5rem;" class="md:py-32">
+    <div class="max-w-6xl mx-auto">
+
+      <!-- Heading -->
+      <div class="mb-14">
+        <p class="reveal-up font-body font-medium text-gold mb-4"
+          style="font-size:0.7rem; letter-spacing:0.28em; text-transform:uppercase;"
+          data-i18n="pe-show-label">El Espectáculo</p>
+        <h2 class="reveal-up font-display font-bold text-cream"
+          style="font-size:clamp(2.8rem,6vw,5rem); line-height:0.92; letter-spacing:-0.02em;"
+          data-i18n-html="pe-show-heading-html">
+          Música en vivo.<br /><em class="text-gold" style="font-style:italic;">De principio a fin.</em>
+        </h2>
+      </div>
+
+      <!-- Stage photo -->
+      <div id="pe-show-photo" class="mb-16 overflow-hidden" style="
+        box-shadow: 0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(229,181,71,0.1);
+        position:relative;">
+        <img src="brand assets/photos/chelo-14.jpg"
+          alt="Chelo Ramírez en escena con su banda"
+          class="show-photo"
+          style="transform:scale(1.02);" />
+        <div style="position:absolute; inset:0;
+          background:linear-gradient(to top, rgba(10,10,10,0.5) 0%, transparent 50%);"></div>
+      </div>
+
+      <!-- Stats -->
+      <div id="pe-stats">
+
+        <div class="stat-row">
+          <div>
+            <p class="font-display font-bold text-gold"
+              style="font-size:clamp(2.8rem,7vw,5rem); line-height:0.9;">90</p>
+            <p class="font-body font-medium text-gold mt-1"
+              style="font-size:0.6rem; letter-spacing:0.28em; text-transform:uppercase;"
+              data-i18n="pe-show-90-label">MINUTOS</p>
+          </div>
+          <p class="font-body text-muted leading-relaxed"
+            style="font-size:0.9rem; padding-top:0.5rem;"
+            data-i18n="pe-show-90-body">
+            Una presentación continua. También puede organizarse en dos bloques, previa coordinación.
+          </p>
+        </div>
+
+        <div class="stat-row">
+          <div>
+            <p class="font-display font-bold text-gold"
+              style="font-size:clamp(2.8rem,7vw,5rem); line-height:0.9;">8</p>
+            <p class="font-body font-medium text-gold mt-1"
+              style="font-size:0.6rem; letter-spacing:0.28em; text-transform:uppercase;"
+              data-i18n="pe-show-8-label">ARTISTAS</p>
+          </div>
+          <p class="font-body text-muted leading-relaxed"
+            style="font-size:0.9rem; padding-top:0.5rem;"
+            data-i18n="pe-show-8-body">
+            Chelo más siete músicos: batería, bajo, requinto, guitarra, vihuela y dos trompetas.
+          </p>
+        </div>
+
+        <div class="stat-row">
+          <div style="padding-top:0.25rem;">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="#E5B547" aria-hidden="true">
+              <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+            </svg>
+            <p class="font-body font-medium text-gold mt-2"
+              style="font-size:0.55rem; letter-spacing:0.22em; text-transform:uppercase; line-height:1.4;"
+              data-i18n="pe-show-songs-label">CANCIONES<br />ESPECIALES</p>
+          </div>
+          <p class="font-body text-muted leading-relaxed"
+            style="font-size:0.9rem; padding-top:0.5rem;"
+            data-i18n="pe-show-songs-body">
+            Solicitudes anticipadas para entradas, primeros bailes y dedicatorias, confirmadas antes del evento.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       UNA EXPERIENCIA A TU MEDIDA
+  ══════════════════════════════════════════ -->
+  <section id="pe-exp" style="background:#5A0A18; padding:0;" class="overflow-hidden">
+    <div class="grid lg:grid-cols-2">
+
+      <!-- Photo -->
+      <div class="relative overflow-hidden" style="min-height:500px;">
+        <img id="pe-exp-img"
+          src="brand assets/photos/chelo-4.jpg"
+          alt="Chelo Ramírez"
+          style="width:100%; height:100%; object-fit:cover; object-position:center top; min-height:500px;" />
+        <div style="position:absolute; inset:0;
+          background:linear-gradient(to right, rgba(90,10,24,0) 60%, rgba(90,10,24,0.8) 100%);"></div>
+      </div>
+
+      <!-- Content -->
+      <div class="flex flex-col justify-center px-8 py-16 md:px-14 md:py-24" style="position:relative; z-index:1;">
+
+        <!-- Radial accent -->
+        <div style="position:absolute; inset:0; pointer-events:none;
+          background:radial-gradient(ellipse at 80% 20%, rgba(229,181,71,0.1) 0%, transparent 60%);"></div>
+
+        <p class="reveal-up font-body font-medium text-gold mb-5"
+          style="font-size:0.7rem; letter-spacing:0.28em; text-transform:uppercase; position:relative;"
+          data-i18n="pe-exp-label">A Tu Medida</p>
+
+        <h2 class="reveal-up font-display font-bold text-cream mb-6"
+          style="font-size:clamp(2.6rem,5vw,4.5rem); line-height:0.92; letter-spacing:-0.02em; position:relative;"
+          data-i18n-html="pe-exp-heading-html">
+          Una celebración.<br /><em class="text-gold" style="font-style:italic;">Muchas emociones.</em>
+        </h2>
+
+        <p class="reveal-up font-body text-cream leading-relaxed mb-6"
+          style="font-size:0.95rem; line-height:1.75; opacity:0.9; position:relative;"
+          data-i18n="pe-exp-body">
+          Desde una dedicatoria romántica hasta un momento para cantar y bailar: Chelo adapta el repertorio a la celebración y a las preferencias del cliente.
+        </p>
+
+        <p class="reveal-up font-display font-bold"
+          style="font-size:1.25rem; color:rgba(229,181,71,0.85); font-style:italic; letter-spacing:0.02em; position:relative;"
+          data-i18n="pe-exp-genres">
+          Mariachi · Cumbia · Música popular colombiana
+        </p>
+
+        <div class="pe-blockquote reveal-up mt-6" style="position:relative;">
+          <p class="font-body text-cream leading-relaxed"
+            style="font-size:0.875rem; opacity:0.8;"
+            data-i18n="pe-exp-quote">
+            El acordeón de Chelo aporta una fusión de mariachi con vallenato que da un sello propio al espectáculo.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       ESCENARIOS
+  ══════════════════════════════════════════ -->
+  <section id="pe-venues" style="background:#0A0A0A; padding:6rem 1.5rem;" class="md:py-32">
+    <div class="max-w-6xl mx-auto">
+
+      <!-- Heading -->
+      <div class="mb-16">
+        <p class="reveal-up font-body font-medium text-gold mb-4"
+          style="font-size:0.7rem; letter-spacing:0.28em; text-transform:uppercase;"
+          data-i18n="pe-venues-label">Escenarios</p>
+        <h2 class="reveal-up font-display font-bold text-cream"
+          style="font-size:clamp(2.8rem,6vw,5rem); line-height:0.92; letter-spacing:-0.02em;"
+          data-i18n-html="pe-venues-heading-html">
+          Del corazón de Medellín<br /><em class="text-gold" style="font-style:italic;">a escenarios internacionales.</em>
+        </h2>
+      </div>
+
+      <!-- International -->
+      <div class="mb-14">
+        <p class="font-body font-medium text-gold mb-5"
+          style="font-size:0.65rem; letter-spacing:0.28em; text-transform:uppercase;"
+          data-i18n="pe-venues-intl">Internacional</p>
+        <div class="gold-rule-full mb-8"></div>
+        <div class="grid sm:grid-cols-2 gap-0">
+          <div style="border-bottom:1px solid rgba(229,181,71,0.1); padding:1rem 0;">
+            <p class="font-display font-semibold text-cream" style="font-size:1.4rem; letter-spacing:-0.01em;">Miami</p>
+            <p class="font-body text-muted" style="font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; margin-top:0.2rem;">Florida</p>
+          </div>
+          <div style="border-bottom:1px solid rgba(229,181,71,0.1); padding:1rem 0 1rem 2rem;">
+            <p class="font-display font-semibold text-cream" style="font-size:1.4rem; letter-spacing:-0.01em;">Boston</p>
+            <p class="font-body text-muted" style="font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; margin-top:0.2rem;">Massachusetts</p>
+          </div>
+          <div style="border-bottom:1px solid rgba(229,181,71,0.1); padding:1rem 0;">
+            <p class="font-display font-semibold text-cream" style="font-size:1.4rem; letter-spacing:-0.01em;">Monterrey</p>
+            <p class="font-body text-muted" style="font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; margin-top:0.2rem;">México</p>
+          </div>
+          <div style="border-bottom:1px solid rgba(229,181,71,0.1); padding:1rem 0 1rem 2rem;">
+            <p class="font-display font-semibold text-cream" style="font-size:1.4rem; letter-spacing:-0.01em;">Ciudad de México</p>
+            <p class="font-body text-muted" style="font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; margin-top:0.2rem;">México</p>
+          </div>
+          <div style="border-bottom:1px solid rgba(229,181,71,0.1); padding:1rem 0;">
+            <p class="font-display font-semibold text-cream" style="font-size:1.4rem; letter-spacing:-0.01em;">Aguascalientes</p>
+            <p class="font-body text-muted" style="font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; margin-top:0.2rem;">México</p>
+          </div>
+          <div style="border-bottom:1px solid rgba(229,181,71,0.1); padding:1rem 0 1rem 2rem;">
+            <p class="font-display font-semibold text-cream" style="font-size:1.4rem; letter-spacing:-0.01em;">Estadio Atahualpa</p>
+            <p class="font-body text-muted" style="font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; margin-top:0.2rem;">Ecuador</p>
+          </div>
+          <div style="padding:1rem 0;">
+            <p class="font-display font-semibold text-cream" style="font-size:1.4rem; letter-spacing:-0.01em;">Loja · Catamayo</p>
+            <p class="font-body text-muted" style="font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; margin-top:0.2rem;">Ecuador</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Antioquia -->
+      <div>
+        <p class="font-body font-medium text-gold mb-5"
+          style="font-size:0.65rem; letter-spacing:0.28em; text-transform:uppercase;"
+          data-i18n="pe-venues-ant">Antioquia</p>
+        <div class="gold-rule-full mb-8"></div>
+        <ul class="venue-list">
+          <li>Angelópolis</li>
+          <li>Armenia Mantequilla</li>
+          <li>Ciudad Bolívar</li>
+          <li>Concepción</li>
+          <li>Dabeiba</li>
+          <li>El Santuario</li>
+          <li>Entrerríos</li>
+          <li>Frontino</li>
+          <li>Heliconia</li>
+          <li>Hispania</li>
+          <li>Ituango</li>
+          <li>Liborina</li>
+          <li>Medellín</li>
+          <li>Mutatá</li>
+          <li>Nariño</li>
+          <li>Puerto Triunfo</li>
+          <li>Sabaneta</li>
+          <li>San Antonio de Pereira</li>
+          <li>San Luis</li>
+          <li>San Roque</li>
+          <li>Tarso</li>
+          <li>Turbo</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       PLANEAMOS CONTIGO
+  ══════════════════════════════════════════ -->
+  <section id="pe-plan" style="background:#1A1410; padding:6rem 1.5rem;" class="md:py-32">
+    <div class="max-w-5xl mx-auto">
+
+      <!-- Heading -->
+      <div class="mb-16">
+        <p class="reveal-up font-body font-medium text-gold mb-4"
+          style="font-size:0.7rem; letter-spacing:0.28em; text-transform:uppercase;"
+          data-i18n="pe-plan-label">Planeamos Contigo</p>
+        <h2 class="reveal-up font-display font-bold text-cream mb-4"
+          style="font-size:clamp(2.8rem,6vw,5rem); line-height:0.92; letter-spacing:-0.02em;"
+          data-i18n-html="pe-plan-heading-html">
+          El show se adapta.<br /><em style="color:#C25028; font-style:italic;">La producción se coordina.</em>
+        </h2>
+        <p class="reveal-up font-body text-muted"
+          style="font-size:0.9rem;"
+          data-i18n="pe-plan-sub">
+          Para bodas, cumpleaños, aniversarios y celebraciones empresariales.
+        </p>
+      </div>
+
+      <!-- Steps -->
+      <div id="pe-steps" class="mb-20">
+
+        <div class="step-card">
+          <div>
+            <p class="font-display font-bold"
+              style="font-size:clamp(3rem,7vw,4.5rem); line-height:1; color:rgba(229,181,71,0.35); letter-spacing:-0.03em;">01</p>
+          </div>
+          <div style="padding-top:0.5rem;">
+            <p class="font-body font-medium text-gold mb-2"
+              style="font-size:0.65rem; letter-spacing:0.24em; text-transform:uppercase;"
+              data-i18n="pe-step1-label">TU EVENTO</p>
+            <p class="font-body text-muted leading-relaxed"
+              style="font-size:0.9rem;"
+              data-i18n="pe-step1-body">
+              Cuéntanos la fecha, ciudad, lugar, número de invitados y tipo de celebración.
+            </p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div>
+            <p class="font-display font-bold"
+              style="font-size:clamp(3rem,7vw,4.5rem); line-height:1; color:rgba(229,181,71,0.35); letter-spacing:-0.03em;">02</p>
+          </div>
+          <div style="padding-top:0.5rem;">
+            <p class="font-body font-medium text-gold mb-2"
+              style="font-size:0.65rem; letter-spacing:0.24em; text-transform:uppercase;"
+              data-i18n="pe-step2-label">TU MÚSICA</p>
+            <p class="font-body text-muted leading-relaxed"
+              style="font-size:0.9rem;"
+              data-i18n="pe-step2-body">
+              Coordinamos el repertorio, las canciones especiales y el horario de la presentación.
+            </p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div>
+            <p class="font-display font-bold"
+              style="font-size:clamp(3rem,7vw,4.5rem); line-height:1; color:rgba(229,181,71,0.35); letter-spacing:-0.03em;">03</p>
+          </div>
+          <div style="padding-top:0.5rem;">
+            <p class="font-body font-medium text-gold mb-2"
+              style="font-size:0.65rem; letter-spacing:0.24em; text-transform:uppercase;"
+              data-i18n="pe-step3-label">LOS DETALLES</p>
+            <p class="font-body text-muted leading-relaxed"
+              style="font-size:0.9rem;"
+              data-i18n="pe-step3-body">
+              Recibes una cotización con el alcance del servicio y las condiciones específicas del evento.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sound + Travel footnotes -->
+      <div class="gold-rule-full mb-10"></div>
+      <div class="grid md:grid-cols-2 gap-10">
+
+        <div>
+          <p class="font-body font-medium text-gold mb-3"
+            style="font-size:0.65rem; letter-spacing:0.24em; text-transform:uppercase;"
+            data-i18n="pe-sound-label">Sonido</p>
+          <p class="font-body text-muted leading-relaxed"
+            style="font-size:0.875rem; line-height:1.8;"
+            data-i18n="pe-sound-body">
+            Para eventos pequeños de aproximadamente 100–200 asistentes, Chelo proporciona el sistema, sujeto a las condiciones del lugar. Para eventos mayores, el organizador suministra el sonido principal según el rider técnico.
+          </p>
+        </div>
+
+        <div>
+          <p class="font-body font-medium text-gold mb-3"
+            style="font-size:0.65rem; letter-spacing:0.24em; text-transform:uppercase;"
+            data-i18n="pe-travel-label">Desplazamientos</p>
+          <p class="font-body text-muted leading-relaxed"
+            style="font-size:0.875rem; line-height:1.8;"
+            data-i18n="pe-travel-body">
+            Disponibilidad nacional. Cuando el viaje supera las tres horas, se cotiza alojamiento adicional. Los demás gastos y requerimientos se detallan en la propuesta.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       CONSULTA DISPONIBILIDAD
+  ══════════════════════════════════════════ -->
+  <section id="pe-cta" style="padding:6rem 1.5rem;" class="md:py-36">
+    <div id="pe-cta-bg"></div>
+
+    <!-- Noise -->
+    <div style="position:absolute; inset:0; z-index:1; pointer-events:none;
+      background-image:url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E&quot;);"></div>
+
+    <div class="max-w-3xl mx-auto" style="position:relative; z-index:2;">
+
+      <p class="reveal-up font-body font-medium text-gold mb-5"
+        style="font-size:0.7rem; letter-spacing:0.28em; text-transform:uppercase;"
+        data-i18n="pe-cta-label">Reserva tu Evento</p>
+
+      <h2 class="reveal-up font-display font-bold text-cream mb-6"
+        style="font-size:clamp(2.8rem,6vw,5.5rem); line-height:0.92; letter-spacing:-0.02em;"
+        data-i18n-html="pe-cta-heading-html">
+        Hablemos de tu<br /><em class="text-gold" style="font-style:italic;">próxima celebración.</em>
+      </h2>
+
+      <p class="reveal-up font-body text-muted mb-10 leading-relaxed"
+        style="font-size:0.95rem; max-width:50ch;"
+        data-i18n="pe-cta-sub">
+        Comparte la fecha, ciudad, lugar y número aproximado de invitados. Prepararemos una propuesta para tu evento.
+      </p>
+
+      <!-- Contact info -->
+      <div class="mb-10 space-y-3">
+        <div class="flex items-center gap-4">
+          <p class="font-body font-medium text-gold"
+            style="font-size:0.62rem; letter-spacing:0.24em; text-transform:uppercase; width:6rem;"
+            data-i18n="pe-whatsapp-label">WHATSAPP</p>
+          <a href="https://wa.me/573217291143" target="_blank" rel="noopener"
+            class="font-body text-cream"
+            style="font-size:1.05rem; text-decoration:none; transition:color 0.2s;"
+            onmouseover="this.style.color='#E5B547'" onmouseout="this.style.color='#F2E6C9'"
+            onfocus="this.style.color='#E5B547'" onblur="this.style.color='#F2E6C9'">+57 321 729 1143</a>
+        </div>
+        <div class="flex items-center gap-4">
+          <p class="font-body font-medium text-gold"
+            style="font-size:0.62rem; letter-spacing:0.24em; text-transform:uppercase; width:6rem;"
+            data-i18n="pe-email-label">CORREO</p>
+          <a href="mailto:cheloramirezmusic@gmail.com"
+            class="font-body text-cream"
+            style="font-size:1.05rem; text-decoration:none; transition:color 0.2s;"
+            onmouseover="this.style.color='#E5B547'" onmouseout="this.style.color='#F2E6C9'"
+            onfocus="this.style.color='#E5B547'" onblur="this.style.color='#F2E6C9'">cheloramirezmusic@gmail.com</a>
+        </div>
+      </div>
+
+      <!-- CTAs -->
+      <div id="pe-cta-btns" class="flex flex-wrap gap-4">
+        <a href="Chelo_Ramirez_Eventos_Privados_Carta.pdf" download
+          class="btn-outline"
+          data-i18n="pe-download-btn">Descargar propuesta</a>
+      </div>
+
+      <!-- Booking form -->
+      <div id="pe-booking-form-wrap" class="mt-14 pt-10" style="border-top:1px solid rgba(229,181,71,0.15);">
+        <p class="reveal-up font-body font-medium text-center text-muted mb-8"
+          style="font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase;"
+          data-i18n="pe-form-or">O ENVÍA UN MENSAJE</p>
+
+        <form id="pe-contact-form" action="[FORMSPREE_ENDPOINT]" method="POST">
+
+          <div class="grid md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <input type="text" name="name" placeholder="Nombre *" class="form-field" required data-i18n-placeholder="form-name" />
+            </div>
+            <div>
+              <input type="email" name="email" placeholder="Correo *" class="form-field" required data-i18n-placeholder="form-email" />
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <input type="tel" name="phone" placeholder="Teléfono" class="form-field" data-i18n-placeholder="form-phone" />
+            </div>
+            <div>
+              <select name="event_type" class="form-field" required>
+                <option value="" disabled selected data-i18n="form-event-type">Tipo de evento *</option>
+                <option value="wedding" data-i18n="form-wedding">Boda</option>
+                <option value="festival" data-i18n="form-festival">Festival</option>
+                <option value="corporate" data-i18n="form-corporate">Corporativo</option>
+                <option value="private" data-i18n="form-private">Privado</option>
+                <option value="other" data-i18n="form-other">Otro</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-6">
+            <textarea name="message" placeholder="Cuéntanos sobre tu evento *" class="form-field" rows="5" required style="resize:vertical;" data-i18n-placeholder="form-message"></textarea>
+          </div>
+
+          <div id="pe-contact-submit" class="text-center">
+            <button type="submit"
+              class="bg-gold text-site font-body font-semibold px-12 py-4 w-full md:w-auto"
+              style="font-size:0.8rem; letter-spacing:0.18em; text-transform:uppercase; cursor:pointer; border:none; transition:background-color 0.2s, color 0.2s;"
+              onmouseover="this.style.background='#F5D078'"
+              onmouseout="this.style.background='#E5B547'"
+              onfocus="this.style.background='#F5D078'"
+              onblur="this.style.background='#E5B547'"
+              data-i18n="form-submit">
+              Enviar Solicitud
+            </button>
+          </div>
+
+
+
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       FOOTER (minimal)
+  ══════════════════════════════════════════ -->
+  <footer style="background:#0A0A0A; padding:2.5rem 1.5rem; border-top:1px solid rgba(229,181,71,0.12);">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <a href="index.html" class="font-display text-2xl font-bold text-muted hover:text-gold transition-colors"
+        style="letter-spacing:0.08em; text-decoration:none;">CHR</a>
+      <p class="font-body text-muted" style="font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase;">
+        © 2026 Chelo Ramírez · El Mariachi de Colombia
+      </p>
+      <a href="index.html" class="font-body text-muted hover:text-gold transition-colors"
+        style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none;"
+        data-i18n="pe-back">← Volver al sitio</a>
+    </div>
+  </footer>
+
+
+  <!-- ══════════════════════════════════════════
+       SCRIPTS
+  ══════════════════════════════════════════ -->
+  <script src="config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <script>
+    // ══ 1. Lenis + GSAP init (ORDER CRITICAL) ══
+    const lenis = new Lenis();
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+    gsap.ticker.lagSmoothing(0);
+    gsap.registerPlugin(ScrollTrigger);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.globalTimeline.timeScale(100);
+    }
+
+
+    // ══ 2. Header scroll behavior ══
+    ScrollTrigger.create({
+      start: 80,
+      onEnter:     () => document.getElementById('pe-header').classList.add('scrolled'),
+      onLeaveBack: () => document.getElementById('pe-header').classList.remove('scrolled'),
+    });
+
+
+    // ══ 3. Hero entrance animation ══
+    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    heroTl
+      .from('#pe-hero-bg', { opacity: 0, scale: 1.06, duration: 1.4 }, 0)
+      .from('#pe-hero-label', { opacity: 0, y: 20, duration: 0.7 }, 0.4)
+      .to('#pe-hero-tagline', { opacity: 1, y: 0, duration: 0.9 }, 0.6)
+      .to('#pe-hero-sub',     { opacity: 1, y: 0, duration: 0.7 }, 0.9)
+      .to('#pe-hero-location',{ opacity: 1, y: 0, duration: 0.6 }, 1.05)
+      .to('#pe-hero-ctas',    { opacity: 1, y: 0, duration: 0.6 }, 1.15);
+
+    // Hero parallax
+    gsap.to('#pe-hero-bg', {
+      yPercent: 22,
+      ease: 'none',
+      scrollTrigger: { trigger: '#pe-hero', start: 'top top', end: 'bottom top', scrub: true }
+    });
+
+
+    // ══ 4. Scroll reveal helper ══
+    function revealUp(selector, trigger, stagger, delay) {
+      gsap.from(selector, {
+        opacity: 0, y: 40, duration: 0.85, ease: 'power3.out',
+        stagger: stagger || 0, delay: delay || 0,
+        scrollTrigger: { trigger: trigger || selector, start: 'top 85%', toggleActions: 'play none none none' }
+      });
+    }
+
+
+    // ══ 5. Section animations ══
+
+    // Trayectoria
+    revealUp('#pe-tray h2',    '#pe-tray');
+    revealUp('.cred-card',     '#pe-tray', 0.1, 0.1);
+    revealUp('#pe-stages-names', '#pe-stages-names', 0, 0);
+
+    // El Espectáculo
+    revealUp('#pe-show h2',    '#pe-show');
+    gsap.from('#pe-show-photo', {
+      opacity: 0, y: 40, scale: 0.96, duration: 1, ease: 'power3.out',
+      scrollTrigger: { trigger: '#pe-show-photo', start: 'top 85%' }
+    });
+    gsap.from('.stat-row', {
+      opacity: 0, x: -30, duration: 0.7, ease: 'power3.out', stagger: 0.15,
+      scrollTrigger: { trigger: '#pe-stats', start: 'top 85%' }
+    });
+
+    // Experiencia
+    gsap.from('#pe-exp-img', {
+      opacity: 0, scale: 1.06, duration: 1.1, ease: 'power3.out',
+      scrollTrigger: { trigger: '#pe-exp', start: 'top 80%' }
+    });
+    revealUp('#pe-exp h2', '#pe-exp', 0, 0.1);
+
+    // Venues
+    revealUp('#pe-venues h2', '#pe-venues');
+
+    // Planeamos contigo
+    revealUp('#pe-plan h2', '#pe-plan');
+
+    // CTA
+    revealUp('#pe-cta h2', '#pe-cta');
+    revealUp('#pe-cta-btns', '#pe-cta', 0, 0.2);
+    revealUp('#pe-booking-form-wrap p.reveal-up', '#pe-booking-form-wrap');
+
+
+    // ══ 6. Translations ══
+    const TRANSLATIONS = {
+      en: {
+        'pe-back':              '← Back to site',
+        'pe-hero-label':        'PRIVATE EVENTS',
+        'pe-hero-tagline-html': 'Celebrate with your own<br /><em class="text-gold" style="font-style:italic;">soundtrack.</em>',
+        'pe-hero-sub':          'Mariachi, cumbia, Colombian popular music and fusion with vallenato. A show tailored to your occasion.',
+        'pe-hero-location':     'Medellín · Available throughout Colombia',
+        'pe-download-btn':      'Download proposal',
+        'pe-consult-btn':       'Check availability',
+        'pe-tray-label':        'Credentials',
+        'pe-tray-heading-html': 'A track record<br /><em class="text-gold" style="font-style:italic;">behind every show.</em>',
+        'pe-card1-label':       'Spotify Colombia',
+        'pe-card1-heading':     'Top 5',
+        'pe-card1-body':        'With his single «Suerte».',
+        'pe-card2-label':       'Accordion',
+        'pe-card2-heading':     'Festival King',
+        'pe-card2-body':        'Francisco el Hombre, Antioquia. Fourth place nationally in accordion.',
+        'pe-card3-label':       'Songwriter',
+        'pe-card3-heading':     'Warner Chappell México',
+        'pe-card3-body':        'Active contract as a songwriter.',
+        'pe-stages-label':      'Has shared the stage with',
+        'pe-collab-label':      'Collaborations',
+        'pe-prod-label':        'Production',
+        'pe-prod-body':         'His music features production by George Parra (Colombia), Fer de Santiago (México) and Horacio Palencia (México).',
+        'pe-show-label':        'The Show',
+        'pe-show-heading-html': 'Live music.<br /><em class="text-gold" style="font-style:italic;">Start to finish.</em>',
+        'pe-show-90-label':     'MINUTES',
+        'pe-show-8-label':      'ARTISTS ON STAGE',
+        'pe-show-songs-label':  'SPECIAL SONGS',
+        'pe-show-90-body':      'One continuous performance. Can also be organized in two sets, coordinated in advance.',
+        'pe-show-8-body':       'Chelo plus seven musicians: drums, bass, requinto, guitar, vihuela and two trumpets.',
+        'pe-show-songs-body':   'Advance requests for entrances, first dances and dedications, confirmed before the event.',
+        'pe-exp-label':         'Tailored to You',
+        'pe-exp-heading-html':  'One celebration.<br /><em class="text-gold" style="font-style:italic;">Many emotions.</em>',
+        'pe-exp-body':          "From a romantic dedication to a moment for singing and dancing: Chelo adapts the repertoire to the celebration and the client's preferences.",
+        'pe-exp-genres':        'Mariachi · Cumbia · Colombian Popular Music',
+        'pe-exp-quote':         "Chelo's accordion brings a fusion of mariachi with vallenato that gives the show a distinctive signature.",
+        'pe-venues-label':      'Venues',
+        'pe-venues-heading-html': 'From the heart of Medellín<br /><em class="text-gold" style="font-style:italic;">to international stages.</em>',
+        'pe-venues-intl':       'International',
+        'pe-venues-ant':        'Antioquia',
+        'pe-plan-label':        'We Plan With You',
+        'pe-plan-heading-html': 'The show adapts.<br /><em style="color:#C25028; font-style:italic;">Production is coordinated.</em>',
+        'pe-plan-sub':          'For weddings, birthdays, anniversaries and corporate celebrations.',
+        'pe-step1-label':       'YOUR EVENT',
+        'pe-step1-body':        'Tell us the date, city, venue, number of guests and type of celebration.',
+        'pe-step2-label':       'YOUR MUSIC',
+        'pe-step2-body':        'We coordinate the repertoire, special songs and performance schedule.',
+        'pe-step3-label':       'THE DETAILS',
+        'pe-step3-body':        'You receive a quote with the scope of service and specific event conditions.',
+        'pe-sound-label':       'SOUND',
+        'pe-sound-body':        'For small events of approximately 100–200 guests, Chelo provides the system, subject to venue conditions. For larger events, the organizer supplies the main sound per the technical rider.',
+        'pe-travel-label':      'TRAVEL',
+        'pe-travel-body':       'Available nationwide. When travel exceeds three hours, additional accommodation is quoted. Other expenses and requirements are detailed in the proposal.',
+        'pe-cta-label':         'Book Your Event',
+        'pe-cta-heading-html':  "Let's talk about your<br /><em class=\"text-gold\" style=\"font-style:italic;\">next celebration.</em>",
+        'pe-cta-sub':           "Share the date, city, venue and approximate number of guests. We'll prepare a proposal for your event.",
+        'pe-whatsapp-label':    'WHATSAPP',
+        'pe-email-label':       'EMAIL',
+        'pe-cta-btn':           'CHECK AVAILABILITY',
+        'pe-form-or':           'OR SEND A MESSAGE',
+        'form-name':            'Name *',
+        'form-email':           'Email *',
+        'form-phone':           'Phone',
+        'form-event-type':      'Event type *',
+        'form-wedding':         'Wedding',
+        'form-festival':        'Festival',
+        'form-corporate':       'Corporate',
+        'form-private':         'Private',
+        'form-other':           'Other',
+        'form-message':         'Tell us about your event *',
+        'form-submit':          'Send Request',
+        'form-submitting':      'Sending…',
+        'form-success':         "Thank you — we'll be in touch soon.",
+        'form-error':           'Something went wrong. Please try again.',
+        'form-email-cta':       'Or email us directly:',
+      },
+      es: {
+        'pe-back':              '← Volver al sitio',
+        'pe-hero-label':        'EVENTOS PRIVADOS',
+        'pe-hero-tagline-html': 'Celebra con tu propia<br /><em class="text-gold" style="font-style:italic;">banda sonora.</em>',
+        'pe-hero-sub':          'Mariachi, cumbia, música popular colombiana y fusión con vallenato. Un espectáculo adaptado a tu ocasión.',
+        'pe-hero-location':     'Medellín · Disponible en toda Colombia',
+        'pe-download-btn':      'Descargar propuesta',
+        'pe-consult-btn':       'Consultar disponibilidad',
+        'pe-tray-label':        'Trayectoria',
+        'pe-tray-heading-html': 'Una trayectoria<br /><em class="text-gold" style="font-style:italic;">que respalda cada show.</em>',
+        'pe-card1-label':       'Spotify Colombia',
+        'pe-card1-heading':     'Top 5',
+        'pe-card1-body':        'Con su sencillo «Suerte».',
+        'pe-card2-label':       'Acordeón',
+        'pe-card2-heading':     'Rey del Festival',
+        'pe-card2-body':        'Francisco el Hombre, Antioquia. Cuarto lugar a nivel nacional en acordeón.',
+        'pe-card3-label':       'Compositor',
+        'pe-card3-heading':     'Warner Chappell México',
+        'pe-card3-body':        'Contrato vigente como compositor.',
+        'pe-stages-label':      'Ha compartido escenario con',
+        'pe-collab-label':      'Colaboraciones',
+        'pe-prod-label':        'Producción',
+        'pe-prod-body':         'Su música cuenta con la producción de George Parra (Colombia), Fer de Santiago (México) y Horacio Palencia (México).',
+        'pe-show-label':        'El Espectáculo',
+        'pe-show-heading-html': 'Música en vivo.<br /><em class="text-gold" style="font-style:italic;">De principio a fin.</em>',
+        'pe-show-90-label':     'MINUTOS',
+        'pe-show-8-label':      'ARTISTAS EN ESCENA',
+        'pe-show-songs-label':  'CANCIONES ESPECIALES',
+        'pe-show-90-body':      'Una presentación continua. También puede organizarse en dos bloques, previa coordinación.',
+        'pe-show-8-body':       'Chelo más siete músicos: batería, bajo, requinto, guitarra, vihuela y dos trompetas.',
+        'pe-show-songs-body':   'Solicitudes anticipadas para entradas, primeros bailes y dedicatorias, confirmadas antes del evento.',
+        'pe-exp-label':         'A Tu Medida',
+        'pe-exp-heading-html':  'Una celebración.<br /><em class="text-gold" style="font-style:italic;">Muchas emociones.</em>',
+        'pe-exp-body':          'Desde una dedicatoria romántica hasta un momento para cantar y bailar: Chelo adapta el repertorio a la celebración y a las preferencias del cliente.',
+        'pe-exp-genres':        'Mariachi · Cumbia · Música popular colombiana',
+        'pe-exp-quote':         'El acordeón de Chelo aporta una fusión de mariachi con vallenato que da un sello propio al espectáculo.',
+        'pe-venues-label':      'Escenarios',
+        'pe-venues-heading-html': 'Del corazón de Medellín<br /><em class="text-gold" style="font-style:italic;">a escenarios internacionales.</em>',
+        'pe-venues-intl':       'Internacional',
+        'pe-venues-ant':        'Antioquia',
+        'pe-plan-label':        'Planeamos Contigo',
+        'pe-plan-heading-html': 'El show se adapta.<br /><em style="color:#C25028; font-style:italic;">La producción se coordina.</em>',
+        'pe-plan-sub':          'Para bodas, cumpleaños, aniversarios y celebraciones empresariales.',
+        'pe-step1-label':       'TU EVENTO',
+        'pe-step1-body':        'Cuéntanos la fecha, ciudad, lugar, número de invitados y tipo de celebración.',
+        'pe-step2-label':       'TU MÚSICA',
+        'pe-step2-body':        'Coordinamos el repertorio, las canciones especiales y el horario de la presentación.',
+        'pe-step3-label':       'LOS DETALLES',
+        'pe-step3-body':        'Recibes una cotización con el alcance del servicio y las condiciones específicas del evento.',
+        'pe-sound-label':       'SONIDO',
+        'pe-sound-body':        'Para eventos pequeños de aproximadamente 100–200 asistentes, Chelo proporciona el sistema, sujeto a las condiciones del lugar. Para eventos mayores, el organizador suministra el sonido principal según el rider técnico.',
+        'pe-travel-label':      'DESPLAZAMIENTOS',
+        'pe-travel-body':       'Disponibilidad nacional. Cuando el viaje supera las tres horas, se cotiza alojamiento adicional. Los demás gastos y requerimientos se detallan en la propuesta.',
+        'pe-cta-label':         'Reserva tu Evento',
+        'pe-cta-heading-html':  'Hablemos de tu<br /><em class="text-gold" style="font-style:italic;">próxima celebración.</em>',
+        'pe-cta-sub':           'Comparte la fecha, ciudad, lugar y número aproximado de invitados. Prepararemos una propuesta para tu evento.',
+        'pe-whatsapp-label':    'WHATSAPP',
+        'pe-email-label':       'CORREO',
+        'pe-cta-btn':           'CONSULTAR DISPONIBILIDAD',
+        'pe-form-or':           'O ENVÍA UN MENSAJE',
+        'form-name':            'Nombre *',
+        'form-email':           'Correo *',
+        'form-phone':           'Teléfono',
+        'form-event-type':      'Tipo de evento *',
+        'form-wedding':         'Boda',
+        'form-festival':        'Festival',
+        'form-corporate':       'Corporativo',
+        'form-private':         'Privado',
+        'form-other':           'Otro',
+        'form-message':         'Cuéntanos sobre tu evento *',
+        'form-submit':          'Enviar Solicitud',
+        'form-submitting':      'Enviando…',
+        'form-success':         'Gracias — nos pondremos en contacto pronto.',
+        'form-error':           'Algo salió mal. Por favor inténtalo de nuevo.',
+        'form-email-cta':       'O escríbenos directamente:',
+      }
+    };
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+      localStorage.setItem('cr-lang', lang);
+      const t = TRANSLATIONS[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        if (t[el.dataset.i18n] !== undefined) el.textContent = t[el.dataset.i18n];
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        if (t[el.dataset.i18nHtml] !== undefined) el.innerHTML = t[el.dataset.i18nHtml];
+      });
+      const esEl = document.getElementById('lang-es');
+      const enEl = document.getElementById('lang-en');
+      if (esEl) esEl.style.color = lang === 'es' ? '#E5B547' : '#8A7A69';
+      if (enEl) enEl.style.color = lang === 'en' ? '#E5B547' : '#8A7A69';
+    }
+
+    document.getElementById('hero-check-avail-btn').addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.getElementById('pe-booking-form-wrap');
+      if (target) lenis.scrollTo(target, { offset: -80, duration: 1.4, easing: t => 1 - Math.pow(1 - t, 3) });
+    });
+
+    document.getElementById('lang-toggle').addEventListener('click', function(e) {
+      e.preventDefault();
+      const current = localStorage.getItem('cr-lang') || 'es';
+      setLanguage(current === 'en' ? 'es' : 'en');
+    });
+
+    // Init on load — default Spanish, but respect saved preference
+    const _savedLang = localStorage.getItem('cr-lang') || 'es';
+    setLanguage(_savedLang);
+
+
+    // ══ 7. PE booking form — Web3Forms setup + AJAX submit ══
+    if (typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.booking) {
+      const b = SITE_CONFIG.booking;
+      if (b.web3formsKey) {
+        const form = document.getElementById('pe-contact-form');
+        if (form) {
+          form.action = 'https://api.web3forms.com/submit';
+          [
+            { name: 'access_key', value: b.web3formsKey },
+            { name: 'subject',    value: 'Booking Request (Eventos Privados) — Chelo Ramírez' },
+          ].forEach(({ name, value }) => {
+            const inp = document.createElement('input');
+            inp.type = 'hidden'; inp.name = name; inp.value = value;
+            form.prepend(inp);
+          });
+          const bot = document.createElement('input');
+          bot.type = 'checkbox'; bot.name = 'botcheck'; bot.style.display = 'none';
+          form.prepend(bot);
+        }
+      }
+    }
+
+    document.getElementById('pe-contact-form')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const btn = form.querySelector('[type="submit"]');
+      const originalText = btn.textContent.trim();
+      const lang = localStorage.getItem('cr-lang') || 'es';
+      btn.disabled = true;
+      btn.textContent = TRANSLATIONS[lang]['form-submitting'];
+
+      let ok = false;
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        });
+        ok = res.ok && (await res.json()).success;
+      } catch (_) {}
+
+      if (ok) {
+        form.innerHTML = '<p class="text-center text-gold font-display italic text-2xl py-16" data-i18n="form-success"></p>';
+        setLanguage(localStorage.getItem('cr-lang') || 'es');
+      } else {
+        btn.disabled = false;
+        btn.textContent = originalText;
+        const err = document.createElement('p');
+        err.className = 'text-center text-copper mt-4 text-sm';
+        err.setAttribute('data-i18n', 'form-error');
+        form.appendChild(err);
+        setLanguage(localStorage.getItem('cr-lang') || 'es');
+        setTimeout(() => err.remove(), 5000);
+      }
+    });
+
+  </script>
+
+</body>
+</html>
